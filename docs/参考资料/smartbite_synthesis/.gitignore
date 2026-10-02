@@ -1,0 +1,16 @@
+# ---- DATA FILES (large, regenerated from notebooks) ----
+data/*.parquet
+
+# ---- MODEL ARTIFACTS (heavy .pkl files) ----
+models/*.pkl
+
+# ---- LOGS & TEMP ----
+logs/
+*.log
+
+# ---- System Files ----
+.DS_Store
+
+# ---- Cache files ----
+__pycache__/
+*.pyc

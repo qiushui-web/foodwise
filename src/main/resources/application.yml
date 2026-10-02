@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: foodwise
+  ai:
+    openai:
+      api-key: ${ZHIPU_API_KEY:foodwise-disabled}
+      base-url: ${ZHIPU_API_BASE_URL:https://open.bigmodel.cn/api/paas/v4}
+      chat:
+        options:
+          model: ${ZHIPU_MODEL:glm-4-flash}
+  profiles:
+    default: local
+  thymeleaf:
+    cache: false
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    baseline-version: 0
+    validate-on-migrate: true
+foodwise:
+  data:
+    csv-path: ${FOODWISE_CSV_PATH:}
+    classpath-fallback: data/foodwise_operations_14d.csv
+    nature: 高校餐饮经营测算资料
+    source-label: 项目内经营测算快照
+  ai:
+    enabled: ${ZHIPU_AI_ENABLED:true}
+    spring-ai-enabled: ${FOODWISE_SPRING_AI_ENABLED:false}
+    api-key: ${ZHIPU_API_KEY:}
+    model: ${ZHIPU_MODEL:glm-4-flash}
+    endpoint: ${ZHIPU_API_ENDPOINT:https://open.bigmodel.cn/api/paas/v4/chat/completions}
+  security:
+    enabled: ${FOODWISE_SECURITY_ENABLED:false}
+    admin-user: ${FOODWISE_ADMIN_USER:foodwise-admin}
+    admin-password: ${FOODWISE_ADMIN_PASSWORD:}
+    operator-user: ${FOODWISE_OPERATOR_USER:}
+    operator-password: ${FOODWISE_OPERATOR_PASSWORD:}
+    analyst-user: ${FOODWISE_ANALYST_USER:}
+    analyst-password: ${FOODWISE_ANALYST_PASSWORD:}
+  amap:
+    key: ${AMAP_API_KEY:}
+server:
+  port: ${SERVER_PORT:8089}
+  servlet:
+    context-path: ${FOODWISE_CONTEXT_PATH:}
+  compression:
+    enabled: true
+  error:
+    include-message: always

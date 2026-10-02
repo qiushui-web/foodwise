@@ -1,0 +1,34 @@
+{
+  "updated_at": "2026-08-07",
+  "sources": [
+    {
+      "id": "MOE_2025",
+      "title": "全国高等学校名单（截至2025年6月20日）",
+      "publisher": "中华人民共和国教育部",
+      "url": "https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/A03/202506/t20250627_1195683.html",
+      "use": "宏观市场背景"
+    },
+    {
+      "id": "LAW_2021",
+      "title": "中华人民共和国反食品浪费法",
+      "publisher": "中国政府网",
+      "url": "https://www.gov.cn/xinwen/2021-04/29/content_5604362.htm",
+      "use": "政策与合规依据"
+    },
+    {
+      "id": "OPEN_METEO_LF_2026",
+      "title": "廊坊市级历史天气",
+      "publisher": "Open-Meteo",
+      "url": "https://archive-api.open-meteo.com/",
+      "license": "CC BY 4.0",
+      "use": "需求预测外部特征"
+    },
+    {
+      "id": "AV_FOOD_DEMAND",
+      "title": "Food Demand Forecasting",
+      "publisher": "Analytics Vidhya",
+      "url": "https://datahack.analyticsvidhya.com/contest/genpact-machine-learning-hackathon-1/",
+      "use": "算法字段和方法参考；未确认再分发许可，因此不随项目复制原始文件"
+    }
+  ]
+}

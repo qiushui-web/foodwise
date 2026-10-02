@@ -1,0 +1,31 @@
+{
+  "scenario": "高校滚动回测：gylaf真实样本初始化 + university_food_waste 2600行（waste_rate按gylaf真实日销量+meal×cat×stall行业权重推，waste_rate≈17.5%）",
+  "rolling_windows": 2,
+  "avg_mae": 3.354,
+  "avg_mape_pct": 6.166,
+  "rule_mape_pct": 24.7245,
+  "improvement_over_rule_pct": 18.56,
+  "waste_rate_reestimated_mean_pct": 17.5,
+  "target_transform": "log1p(sold_qty)",
+  "windows_detail": [
+    {
+      "w_start": 0,
+      "w_end": 2405,
+      "n_train": 2580,
+      "n_test": 325,
+      "MAE": 4.541,
+      "MAPE_pct": 8.706,
+      "RULE_MAPE_pct": 24.852
+    },
+    {
+      "w_start": 325,
+      "w_end": 2600,
+      "n_train": 2580,
+      "n_test": 195,
+      "MAE": 2.167,
+      "MAPE_pct": 3.626,
+      "RULE_MAPE_pct": 24.597
+    }
+  ],
+  "pretrain_val_mape_pct": 88.9866
+}

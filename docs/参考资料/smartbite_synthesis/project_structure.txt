@@ -1,0 +1,54 @@
+.
+├── .DS_Store
+├── .gitignore
+├── data
+│   ├── data_01_loaded.parquet
+│   ├── data_02_featured.parquet
+│   └── smartbite_cafeteria_dataset_2022_2025.csv
+├── docs
+│   ├── Smartbite_dataset_generation_doc.pdf
+│   ├── SmartBite_project_proposal.pdf
+│   └── SmartBite_project_report.pdf
+├── figures
+│   ├── .DS_Store
+│   ├── association_rules_by_meal.png
+│   ├── clustering_01_elbow_plot.png
+│   ├── clustering_02_profile_barchart.png
+│   ├── clustering_03_pca_scatter.png
+│   ├── eda_01_event_vacation_impact.png
+│   ├── eda_02_avg_servings_by_meal.png
+│   ├── eda_03_daily_servings_timeline.png
+│   ├── eda_04_top_20_dishes.png
+│   ├── eda_05_correlation_heatmap.png
+│   ├── eda_06_key_predictor_scatter.png
+│   ├── final_feature_importance.png
+│   ├── final_model_comparison_rmse.png
+│   ├── forecast_avg_by_meal.png
+│   ├── prophet_01_forecast_plot.png
+│   ├── prophet_02_components_plot.png
+│   ├── shap_dependence_Servings_Lag_1.png
+│   └── shap_summary_final_model.png
+├── logs
+├── models
+│   ├── .DS_Store
+│   ├── baseline_best_model.pkl
+│   ├── final_best_model.pkl
+│   ├── le_day_encoder.pkl
+│   ├── le_dish_encoder.pkl
+│   └── le_meal_encoder.pkl
+├── notebooks
+│   ├── SmartBite_dataset.ipynb
+│   └── SmartBite.ipynb
+├── project_structure.txt
+└── reports
+    ├── association_rules_report_all_meals.csv
+    ├── baseline_model_results.csv
+    ├── cluster_profiles_report.csv
+    ├── cluster_strategy_recommendations.csv
+    ├── daily_clustered_data.csv
+    ├── final_tuned_model_results.csv
+    ├── forecast_next7days.csv
+    ├── menu_recommendations_from_rules.csv
+    └── prophet_model_results.csv
+
+8 directories, 44 files

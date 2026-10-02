@@ -1,0 +1,40 @@
+{
+  "model": "LGBMRegressor(log1p target, n=600, lr=0.04, leaves=127)",
+  "train_rows": 480893,
+  "val_rows": 53433,
+  "val_MAE": 28.771,
+  "val_MAPE_pct": 88.9866,
+  "features_used": [
+    "day_of_week",
+    "is_weekend",
+    "is_exam_week",
+    "has_campus_event",
+    "weather_code",
+    "temp_max_c",
+    "category_id",
+    "price",
+    "unit_cost",
+    "discount_rate",
+    "promotion_flag",
+    "lag_1_sold",
+    "lag_2_sold",
+    "lag_3_sold",
+    "lag_7_sold",
+    "rolling_mean_3",
+    "rolling_mean_7",
+    "rolling_std_7",
+    "same_dow_last_4w_mean",
+    "is_school_holiday",
+    "is_state_holiday",
+    "special_day",
+    "comp_price_ratio",
+    "recent_trend_3d"
+  ],
+  "top5_features": [
+    "lag_1_sold",
+    "same_dow_last_4w_mean",
+    "rolling_mean_7",
+    "rolling_mean_3",
+    "price"
+  ]
+}

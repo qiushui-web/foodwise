@@ -1,0 +1,15 @@
+{
+  "title": "全国高等学校名单（截至2025年6月20日）",
+  "publisher": "中华人民共和国教育部",
+  "published_date": "2025-06-27",
+  "statistics_date": "2025-06-20",
+  "url": "https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/A03/202506/t20250627_1195683.html",
+  "facts": {
+    "all_institutions": 3167,
+    "regular_institutions": 2919,
+    "undergraduate": 1365,
+    "vocational": 1554,
+    "adult": 248
+  },
+  "usage": "用于高校餐饮服务市场的宏观背景，不直接等同于可服务高校数、食堂数或档口数。"
+}

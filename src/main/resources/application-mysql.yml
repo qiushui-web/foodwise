@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: ${FOODWISE_DB_URL:jdbc:mysql://127.0.0.1:3306/foodwise?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true}
+    username: ${FOODWISE_DB_USERNAME:foodwise}
+    password: ${FOODWISE_DB_PASSWORD:foodwise}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 1
+      connection-timeout: 10000
+foodwise:
+  data:
+    demo-enabled: false
+    nature: 当前数据库经营台账
+    source-label: 实际录入或导入记录
