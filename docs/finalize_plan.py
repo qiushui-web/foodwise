@@ -6,6 +6,7 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.table import WD_CELL_VERTICAL_ALIGNMENT
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
+import zipfile
 
 SRC = Path('计划书/食刻有数_商业计划书_70页参赛版.docx')
 OUT = Path('计划书/食刻有数_商业计划书_最终统一版.docx')
@@ -104,4 +105,14 @@ for p in list(doc.paragraphs):
             p._element.getparent().remove(p._element)
 
 doc.save(OUT)
+# The template footer contains a literal total-page field. Update only footer
+# text after rendering so it matches the compact final edition.
+tmp = OUT.with_suffix('.tmp.docx')
+with zipfile.ZipFile(OUT, 'r') as zin, zipfile.ZipFile(tmp, 'w', zipfile.ZIP_DEFLATED) as zout:
+    for item in zin.infolist():
+        data = zin.read(item.filename)
+        if item.filename.startswith('word/footer') and item.filename.endswith('.xml'):
+            data = data.replace(b'<w:t>68</w:t>', b'<w:t>64</w:t>')
+        zout.writestr(item, data)
+tmp.replace(OUT)
 print(OUT)
