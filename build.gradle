@@ -41,13 +41,26 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
-    // Keep both output directories explicit. This avoids Gradle 9's JVM test
-    // suite classloader dropping the test output in a non-ASCII project path.
-    testClassesDirs = sourceSets.test.output.classesDirs
-    classpath = files(
-        sourceSets.test.output.classesDirs,
-        sourceSets.main.output.classesDirs,
-        sourceSets.main.output.resourcesDir,
-        configurations.testRuntimeClasspath
-    )
+    doFirst {
+        if (org.gradle.internal.os.OperatingSystem.current().isWindows() &&
+                projectDir.absolutePath.any { it.codePointAt(0) > 127 }) {
+            def linkRoot = new File(System.getProperty('java.io.tmpdir'), 'foodwise-gradle-link')
+            if (!linkRoot.exists()) {
+                linkRoot.parentFile.mkdirs()
+                def result = new ProcessBuilder('cmd', '/c', 'mklink', '/J', linkRoot.absolutePath, projectDir.absolutePath)
+                        .redirectErrorStream(true).start()
+                result.waitFor()
+            }
+            if (linkRoot.isDirectory()) {
+                def sourceRoot = projectDir.absolutePath
+                def rewrite = { File path ->
+                    new File(path.absolutePath.startsWith(sourceRoot)
+                            ? linkRoot.absolutePath + path.absolutePath.substring(sourceRoot.length())
+                            : path.absolutePath)
+                }
+                testClassesDirs = files(testClassesDirs.files.collect(rewrite))
+                classpath = files(classpath.files.collect(rewrite))
+            }
+        }
+    }
 }
