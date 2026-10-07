@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 """安装大模型混测后端：拷贝3个service文件 + 给ApiController加接口"""
 import shutil, re, sys
+from pathlib import Path
 
 SRC = r"c:\Users\lenovo\Desktop\商业精英挑战赛\deploy\java_pure"
-DST = r"D:\IdeaProjects\Examples\src\main\java\org\example\examples\service"
-CTL = r"D:\IdeaProjects\Examples\src\main\java\org\example\examples\controller\ApiController.java"
+ROOT = Path(__file__).resolve().parents[1]
+DST = str(ROOT / "src" / "main" / "java" / "org" / "foodwise" / "service")
+CTL = str(ROOT / "src" / "main" / "java" / "org" / "foodwise" / "api" / "v1" / "ApiV1Controller.java")
 
 files = ["LgbmCampusModel.java", "ZhipuAiService.java", "ModelCrossCheckService.java"]
 for f in files:

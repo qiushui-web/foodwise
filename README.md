@@ -95,7 +95,7 @@ $env:FOODWISE_ADMIN_PASSWORD="请设置至少10位的独立强密码"
 网站启动时优先读取高校餐饮经营测算资料，并在事务中校验、刷新数据库经营记录：
 
 ```text
-C:\Users\lenovo\Desktop\商业精英挑战赛\项目数据中心\01_现有仿真经营数据\foodwise_operations_14d.csv
+src/main/resources/data/foodwise_operations_14d.csv
 ```
 
 可通过环境变量覆盖路径：

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import pandas as pd
 from pathlib import Path
-p = Path(r"D:\IdeaProjects\Examples\modeling\data\02_processed\finetune_uwaste.parquet")
+ROOT = Path(__file__).resolve().parents[1]
+p = ROOT / "modeling" / "data" / "02_processed" / "finetune_uwaste.parquet"
 df = pd.read_parquet(p)
 print("shape:", df.shape)
 print("columns:", list(df.columns))

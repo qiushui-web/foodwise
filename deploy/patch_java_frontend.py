@@ -3,7 +3,7 @@
 import shutil
 from pathlib import Path
 
-SRC = Path(r"D:\IdeaProjects\Examples")
+SRC = Path(__file__).resolve().parents[1]
 STAGE = Path(r"c:\Users\lenovo\Desktop\商业精英挑战赛\deploy\staging")
 
 def patch(path, old, new, label):
@@ -17,7 +17,7 @@ def patch(path, old, new, label):
     print(f"[OK] {label}")
 
 # ---------- 0. 新服务文件落位 ----------
-svc = SRC / "src/main/java/org/example/examples/service"
+svc = SRC / "src/main/java/org/foodwise/service"
 for f in ["LgbmCampusModel.java", "DualPredictionService.java"]:
     shutil.copy2(STAGE / f, svc / f)
     print(f"[COPY] {f}")
@@ -31,7 +31,7 @@ patch(gradle,
     "build.gradle lightgbmlib依赖")
 
 # ---------- 2. ApiController：import + 字段 + 构造器 + 3个接口 ----------
-api = SRC / "src/main/java/org/example/examples/controller/ApiController.java"
+api = SRC / "src/main/java/org/foodwise/api/v1/ApiV1Controller.java"
 patch(api,
     "import org.foodwise.service.EnhancedPredictionService;\n",
     "import org.foodwise.service.EnhancedPredictionService;\n"
@@ -74,7 +74,7 @@ patch(api,
     "ApiController 3个新接口")
 
 # ---------- 3. AnalyticsService：真实回测序列 + 特征重要性 ----------
-ana = SRC / "src/main/java/org/example/examples/service/AnalyticsService.java"
+ana = SRC / "src/main/java/org/foodwise/service/AnalyticsService.java"
 NEW_METHODS = '''    /** 高校真实回测序列：campus_backtest_predictions.csv（LGBM真实模型滚动回测逐日预测），每4行聚合成日级点 */
     public Map<String, Object> campusSeries() {
         List<String> labels = new ArrayList<>();
@@ -154,7 +154,7 @@ NEW_METHODS = '''    /** 高校真实回测序列：campus_backtest_predictions.
 patch(ana, "    public Map<String, Object> financial() {", NEW_METHODS, "AnalyticsService 两个新方法")
 
 # ---------- 4. app.js ----------
-appjs = SRC / "src/main/resources/static/js/app.js"
+appjs = SRC / "src/main/resources/static/build/app.js"
 patch(appjs, "fetch('/api/predictions/run'", "fetch('/api/predictions/dual'", "app.js 预测接口切换dual")
 
 # 4.2 renderPrediction 加双引擎对比条

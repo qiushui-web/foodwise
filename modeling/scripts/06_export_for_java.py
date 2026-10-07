@@ -7,7 +7,7 @@
 把 Python 训练的所有产物"翻译"成 Java 侧 `DataBootstrapService` 能直接读入的格式：
 
 【Java 侧如何消费？】
-在 D:\\IdeaProjects\\Examples\\src\\main\\resources\\application.yml 里新建：
+在项目根目录的 src/main/resources/application.yml 里新建：
   foodwise:
     modeling:
       enabled: true
@@ -30,7 +30,7 @@ BASE = Path(__file__).resolve().parent.parent / "data"
 OUT  = BASE / "03_output"
 PROC = BASE / "02_processed"
 
-# 目标目录：Spring Boot 项目根的 classpath（D:\IdeaProjects\Examples\src\main\resources\modeling）
+# 目标目录：Spring Boot 项目根的 classpath（src/main/resources/modeling）
 # 注：脚本位于 modeling/scripts/，resolve().parent.parent = modeling\ ；项目根是再上一层
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 JAVA_CP = PROJECT_ROOT / "src" / "main" / "resources" / "modeling"

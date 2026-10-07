@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from pathlib import Path
-p = Path(r"D:\IdeaProjects\Examples\src\main\resources\static\js\app.js")
+ROOT = Path(__file__).resolve().parents[1]
+p = ROOT / "src" / "main" / "resources" / "static" / "build" / "app.js"
 t = p.read_text(encoding="utf-8")
 reps = [
     ("xAxis: { type: 'category', data: days, axisTick",

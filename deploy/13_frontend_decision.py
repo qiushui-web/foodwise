@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 """前端补丁：训练模型决策依据(归因条形图+决策路径) + 大模型混测面板"""
 import io
+from pathlib import Path
 
-JS = r"D:\IdeaProjects\Examples\src\main\resources\static\js\app.js"
-CSS = r"D:\IdeaProjects\Examples\src\main\resources\static\css\visual-enhanced.css"
+ROOT = Path(__file__).resolve().parents[1]
+JS = str(ROOT / "src" / "main" / "resources" / "static" / "build" / "app.js")
+CSS = str(ROOT / "src" / "main" / "resources" / "static" / "css" / "visual-enhanced.css")
 
 js = io.open(JS, encoding="utf-8").read()
 

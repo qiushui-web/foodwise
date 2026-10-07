@@ -46,3 +46,23 @@ data/raw/*.parquet
 modeling/data/02_processed/
 modeling/data/03_output/
 *.zip
+
+# Local build, rendering, office and test caches
+.gradle/
+build/
+lo_profile_ai/
+.lo_profile/
+pdfcheck/
+pdfcheck2/
+render_*/
+*.log
+deploy/__pycache__/
+**/__pycache__/
+
+# Local presentation and planning work is kept outside the application release
+PPT/
+计划书/
+
+# Local screenshots and imported source packages are not application source
+项目照片/
+数据来源/

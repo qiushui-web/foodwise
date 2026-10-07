@@ -19,7 +19,8 @@ from pathlib import Path
 warnings.filterwarnings("ignore")
 
 # ── 路径配置 ──────────────────────────────────────────────
-PROJECT_CSV   = r"D:\IdeaProjects\Examples\src\main\resources\data\foodwise_operations_14d.csv"
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_CSV   = str(PROJECT_ROOT / "src" / "main" / "resources" / "data" / "foodwise_operations_14d.csv")
 COMPETITION_CSV = r"C:\Users\lenovo\Desktop\商业精英挑战赛\统一数据与来源\数据文件\foodwise_operations.csv"
 WEATHER_JSON  = r"C:\Users\lenovo\Desktop\商业精英挑战赛\统一数据与来源\数据文件\langfang_weather_2026-07-07_2026-07-20.json"
 OUTPUT_DIR    = r"C:\Users\lenovo\Desktop\商业精英挑战赛\建模输出"

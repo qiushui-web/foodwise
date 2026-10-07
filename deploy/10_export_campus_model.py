@@ -16,9 +16,10 @@ from pathlib import Path
 import lightgbm as lgb
 from sklearn.metrics import mean_absolute_percentage_error
 
-MODELING = Path(r"D:\IdeaProjects\Examples\modeling")
+ROOT = Path(__file__).resolve().parents[1]
+MODELING = ROOT / "modeling"
 PROC = MODELING / "data" / "02_processed"
-JAVA_RES = Path(r"D:\IdeaProjects\Examples\src\main\resources\modeling")
+JAVA_RES = ROOT / "src" / "main" / "resources" / "modeling"
 
 FEATS = [
     "day_of_week", "is_weekend", "is_exam_week", "has_campus_event",

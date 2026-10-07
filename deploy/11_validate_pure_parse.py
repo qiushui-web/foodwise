@@ -10,8 +10,9 @@ import numpy as np
 import pandas as pd
 import lightgbm as lgb
 
-MODEL_TXT = Path(r"D:\IdeaProjects\Examples\src\main\resources\modeling\lgbm_campus_model.txt")
-PARQUET = Path(r"D:\IdeaProjects\Examples\modeling\data\02_processed\finetune_uwaste.parquet")
+ROOT = Path(__file__).resolve().parents[1]
+MODEL_TXT = ROOT / "src" / "main" / "resources" / "modeling" / "lgbm_campus_model.txt"
+PARQUET = ROOT / "modeling" / "data" / "02_processed" / "finetune_uwaste.parquet"
 
 
 def parse_txt(path: Path):
