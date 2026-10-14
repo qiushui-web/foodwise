@@ -17,7 +17,6 @@ import java.math.RoundingMode;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -88,38 +87,37 @@ public class PredictionService implements PredictionEngine {
         }
     }
 
+    @org.springframework.transaction.annotation.Transactional
     public PredictionResult predict(long dishId, String weather, boolean examWeek, boolean campusEvent) {
-        return predict(dishId, weather, examWeek, campusEvent, "system", null, "system");
+        return calculateAndSave(new PredictionContext(dishId, weather, examWeek, campusEvent));
     }
 
-    private PredictionResult predict(long dishId, String weather, boolean examWeek, boolean campusEvent,
-                                     String traceId, String idempotencyKey, String operatorName) {
+    private PredictionResult calculateAndSave(PredictionContext context) {
+        long dishId = context.dishId(); String weather = context.weather();
+        boolean examWeek = context.examWeek(); boolean campusEvent = context.campusEvent();
+        String traceId = context.traceId(); String idempotencyKey = context.idempotencyKey();
+        String operatorName = context.operatorName();
         DishDetail dish = repository.dishDto(dishId);
-        List<Integer> sales = repository.recentSales(dishId);
-        if (sales.isEmpty()) {
-            throw new IllegalArgumentException("该菜品暂无历史销量，无法生成预测");
-        }
-
-        double weighted = weightedAverage(sales);
+        var observations = repository.recentSalesObservations(dishId, context.historyCutoff(), context.mealPeriod());
+        var features = org.foodwise.prediction.FeatureBuilder.build(observations);
+        double weighted = features.weightedDemand();
 
         // 从动态天气因子缓存获取系数，优先使用外部更新的因子，其次查询品类系数表，最后降级默认值
-        double weatherFactor = getDynamicWeatherFactor(dish, weather);
+        double weatherFactor = getDynamicWeatherFactor(dish, weather, context.historyCutoff().equals(LocalDate.now()));
 
         double calendarFactor = examWeek ? 0.94 : 1.00;
         double eventFactor = campusEvent ? 1.08 : 1.00;
-        double trendFactor = dishTrendFactors.getOrDefault(dishId, trendFactor(sales));
+        double trendFactor = features.trend();
         double predicted = weighted * weatherFactor * calendarFactor * eventFactor * trendFactor;
 
-        int mid = Math.max(1, (int) Math.round(predicted));
-        int low = Math.max(1, (int) Math.floor(mid * 0.92));
-        int high = Math.max(mid + 1, (int) Math.ceil(mid * 1.08));
-        int firstBatch = Math.max(1, (int) Math.round(low * 0.82));
-        int replenish = Math.max(0, mid - firstBatch);
-        BigDecimal confidence = BigDecimal.valueOf(Math.max(72, 91 - variability(sales)))
+        var quantities = org.foodwise.prediction.PredictionPolicy.quantities(predicted);
+        int mid = quantities.mid(), low = quantities.low(), high = quantities.high();
+        int firstBatch = quantities.firstBatch(), replenish = quantities.replenish();
+        BigDecimal confidence = BigDecimal.valueOf(Math.max(72, 91 - features.variability()))
                 .setScale(1, RoundingMode.HALF_UP);
 
         List<PredictionResult.Factor> factors = new ArrayList<>();
-        factors.add(new PredictionResult.Factor("历史基线", "最近7日加权销量 " + Math.round(weighted) + " 份",
+        factors.add(new PredictionResult.Factor("历史基线", "截至" + context.historyCutoff() + "，最近" + features.observations() + "个有记录营业日的" + context.mealPeriod() + "加权销量 " + Math.round(weighted) + " 份",
                 BigDecimal.valueOf(weighted).setScale(1, RoundingMode.HALF_UP), "baseline"));
         factors.add(new PredictionResult.Factor("天气影响", weather + "，需求系数 " + weatherFactor,
                 BigDecimal.valueOf((weatherFactor - 1) * 100).setScale(1, RoundingMode.HALF_UP), "weather"));
@@ -128,13 +126,14 @@ public class PredictionService implements PredictionEngine {
         factors.add(new PredictionResult.Factor("近期趋势", trendFactor >= 1 ? "近期销量上升" : "近期销量下降",
                 BigDecimal.valueOf((trendFactor - 1) * 100).setScale(1, RoundingMode.HALF_UP), "trend"));
 
-        long predictionId = repository.savePrediction(dishId, LocalDate.now().plusDays(1), low, mid, high,
+        long predictionId = repository.savePrediction(dishId, context.targetDate(), low, mid, high,
                 firstBatch, replenish, confidence, BigDecimal.valueOf(weatherFactor),
                 BigDecimal.valueOf(calendarFactor), BigDecimal.valueOf(trendFactor), traceId,
                 idempotencyKey, operatorName);
 
         IntelligentAdvice advice = intelligentDecisionService.predictionAdvice(
-                dish.name(), low, mid, high, firstBatch, replenish, 12, 18,
+                dish.name(), low, mid, high, firstBatch, replenish,
+                org.foodwise.prediction.PredictionPolicy.STOP_HOUR, org.foodwise.prediction.PredictionPolicy.STOP_MINUTE,
                 confidence, weather, examWeek, campusEvent, factors.stream().map(PredictionResult.Factor::detail).toList());
 
         PredictionResult result = new PredictionResult(
@@ -146,8 +145,8 @@ public class PredictionService implements PredictionEngine {
                 high,
                 firstBatch,
                 replenish,
-                12,
-                18,
+                org.foodwise.prediction.PredictionPolicy.STOP_HOUR,
+                org.foodwise.prediction.PredictionPolicy.STOP_MINUTE,
                 confidence,
                 high - mid > 10 ? "中" : "低",
                 weatherFactor < 0.9 ? "中" : "低",
@@ -155,7 +154,7 @@ public class PredictionService implements PredictionEngine {
                 advice
         );
         repository.savePredictionSnapshot(predictionId, modelVersion(),
-                new PredictionContext(dishId, weather, examWeek, campusEvent, traceId, idempotencyKey, operatorName), result);
+                context, result);
         return result;
     }
 
@@ -170,21 +169,21 @@ public class PredictionService implements PredictionEngine {
     }
 
     @Override
+    @org.springframework.transaction.annotation.Transactional
     public PredictionEngineResult predict(PredictionContext context) {
         return new PredictionEngineResult(key(), modelVersion(),
-                predict(context.dishId(), context.weather(), context.examWeek(), context.campusEvent(),
-                        context.traceId(), context.idempotencyKey(), context.operatorName()),
+                calculateAndSave(context),
                 java.time.Instant.now());
     }
 
     /**
      * 获取动态天气因子：优先使用外部更新的因子，其次从品类系数表查询，最后降级默认值
      */
-    private double getDynamicWeatherFactor(DishDetail dish, String weather) {
+    private double getDynamicWeatherFactor(DishDetail dish, String weather, boolean useCommittedFeedback) {
         // 先检查是否有外部动态更新的因子
         long dishId = dish.id();
         Map<String, Double> dynamicFactors = dishDynamicFactors.get(dishId);
-        if (dynamicFactors != null && dynamicFactors.containsKey("weatherFactor")) {
+        if (useCommittedFeedback && dynamicFactors != null && dynamicFactors.containsKey("weatherFactor")) {
             return dynamicFactors.get("weatherFactor");
         }
 
@@ -239,33 +238,4 @@ public class PredictionService implements PredictionEngine {
         dishTrendFactors.put(dishId, Math.max(0.92, Math.min(1.08, newTrend)));
     }
 
-    private double weightedAverage(List<Integer> newestFirst) {
-        double total = 0;
-        double weights = 0;
-        for (int index = 0; index < newestFirst.size(); index++) {
-            double weight = newestFirst.size() - index;
-            total += newestFirst.get(index) * weight;
-            weights += weight;
-        }
-        return total / weights;
-    }
-
-    private double trendFactor(List<Integer> newestFirst) {
-        if (newestFirst.size() < 4) return 1.0;
-        List<Integer> chronological = new ArrayList<>(newestFirst);
-        Collections.reverse(chronological);
-        double early = chronological.subList(0, chronological.size() / 2).stream()
-                .mapToInt(Integer::intValue).average().orElse(1);
-        double recent = chronological.subList(chronological.size() / 2, chronological.size()).stream()
-                .mapToInt(Integer::intValue).average().orElse(early);
-        return Math.max(0.92, Math.min(1.08, recent / early));
-    }
-
-    private double variability(List<Integer> sales) {
-        double mean = sales.stream().mapToInt(Integer::intValue).average().orElse(0);
-        if (mean == 0) return 19;
-        double variance = sales.stream().mapToDouble(value -> Math.pow(value - mean, 2)).average().orElse(0);
-        return Math.min(19, Math.sqrt(variance) / mean * 100);
-    }
 }
-

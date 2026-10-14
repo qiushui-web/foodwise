@@ -1,28 +1,29 @@
 <script setup lang="ts">
+import type { Summary, Metadata, TrendPoint, Alert, Order, Session } from "../api/types";
 import { computed, onMounted, ref } from "vue";
 import { RouterLink } from "vue-router";
-import { getApi } from "../utils/vue-api";
+import { getAllPages, getApi } from "../utils/vue-api";
 
 const loading = ref(true);
 const error = ref("");
-const summary = ref<any>({});
-const metadata = ref<any>({});
-const trend = ref<any[]>([]);
-const alerts = ref<any[]>([]);
-const orders = ref<any[]>([]);
+const summary = ref<Summary>({});
+const metadata = ref<Metadata>({});
+const trend = ref<TrendPoint[]>([]);
+const alerts = ref<Alert[]>([]);
+const orders = ref<Order[]>([]);
 const session = ref<{ role: string; demo: boolean } | null>(null);
 const dataDate = computed(() => metadata.value.period_end ? String(metadata.value.period_end).slice(0, 10) : "暂无经营记录");
 const pendingAlerts = computed(() => alerts.value.filter((item) => item.status !== "已处理").length);
 const pendingOrders = computed(() => orders.value.filter((item) => item.status === "待取餐").length);
-const soldRate = computed(() => summary.value.prepared ? Math.round(summary.value.sold * 1000 / summary.value.prepared) / 10 : 0);
-const accuracy = computed(() => Number(summary.value.accuracy || 0).toFixed(1));
+const soldRate = computed(() => summary.value.prepared ? Math.round((summary.value.sold ?? 0) * 1000 / summary.value.prepared) / 10 : 0);
+
 
 onMounted(async () => {
   try {
     [summary.value, metadata.value, trend.value] = await Promise.all([
-      getApi("/operations/summary"), getApi("/analytics/metadata"), getApi("/operations/trend"),
+      getApi<Summary>("/operations/summary"), getApi<Metadata>("/analytics/metadata"), getApi<TrendPoint[]>("/operations/trend"),
     ]);
-    const extras = await Promise.allSettled([getApi<any[]>("/alerts"), getApi<any[]>("/orders"), getApi<any>("/session")]);
+    const extras = await Promise.allSettled([getAllPages<Alert>("/alerts"), getAllPages<Order>("/orders"), getApi<Session>("/session")]);
     if (extras[0].status === "fulfilled") alerts.value = extras[0].value;
     if (extras[1].status === "fulfilled") orders.value = extras[1].value;
     if (extras[2].status === "fulfilled") session.value = extras[2].value;
@@ -40,7 +41,7 @@ onMounted(async () => {
   <template v-else>
     <section class="workbench" aria-label="经营工作台">
       <div><span class="workbench-label">经营工作台</span><h2>先处理当下的事</h2><p>当前台账截至 <strong>{{ dataDate }}</strong>；{{ session?.demo ? '演示数据仅用于熟悉流程。' : '请核对日期后再操作。' }}</p></div>
-      <div class="workbench-actions"><RouterLink v-if="session?.role !== 'ANALYST'" class="btn primary" to="/app/prediction">生成备餐建议</RouterLink><RouterLink v-if="session?.role !== 'ANALYST'" class="btn ghost" to="/app/operations/feedback">回填经营数据</RouterLink></div>
+      <div class="workbench-actions"><RouterLink v-if="session && session.role !== 'ANALYST'" class="btn primary" to="/app/prediction">生成备餐建议</RouterLink><RouterLink v-if="session && session.role !== 'ANALYST'" class="btn ghost" to="/app/operations/feedback">回填经营数据</RouterLink></div>
     </section>
     <div class="task-strip" aria-label="待办事项">
       <RouterLink to="/app/alerts"><strong>{{ pendingAlerts }}</strong><span>条待处理预警</span></RouterLink>
@@ -69,5 +70,5 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-.workbench{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 26px;border:1px solid #cbdfee;border-radius:8px;background:#edf6fd}.workbench-label{font-size:12px;font-weight:700;color:#3478c9}.workbench h2{margin:5px 0;font-size:25px;color:#183d62}.workbench p{margin:0;color:#526f88;font-size:13px;line-height:1.6}.workbench-actions{display:flex;gap:10px;flex-wrap:wrap}.workbench-actions .btn{white-space:nowrap}.task-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0}.task-strip a{display:flex;align-items:baseline;gap:8px;padding:15px 18px;background:#fff;border:1px solid #d8e7f2;border-radius:8px}.task-strip strong{font-size:22px;color:#2469ae;white-space:nowrap}.task-strip span{font-size:13px;color:#526f88}.data-context{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:16px 0;padding:14px 18px;border:1px solid #cbdfee;border-radius:8px;background:#f4f9fe}.data-context strong{font-size:14px;color:#24496d}.data-context p{margin:6px 0 0;font-size:12px;line-height:1.7;color:#55718d}.data-context a{flex:none;color:#286daf;font-size:13px;font-weight:700}.workflow-help{margin:16px 0;padding:14px;border:1px solid #d7e7f4;border-radius:8px;background:#fff}.workflow-help summary{cursor:pointer;font-size:13px;font-weight:700;color:#286daf}.guide-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:12px}.guide-steps a{padding:12px;background:#f5f9fd;border-radius:6px;font-size:12px;color:#355f85}.plain-explain,.quick-check{font-size:13px;line-height:1.8;color:#526d83}.plain-explain{margin:8px 0}.quick-check{padding-left:20px;margin:6px 0 12px}.quick-check li{margin-bottom:7px}.text-link{font-size:13px}.state{padding:28px;background:#fff;border-radius:8px}.error{color:#ae3f39}@media(max-width:820px){.workbench{display:block;padding:18px}.workbench h2{font-size:21px}.workbench-actions{margin-top:15px}.workbench-actions .btn{flex:1;text-align:center}.task-strip{grid-template-columns:1fr 1fr}.task-strip a:last-child{grid-column:1/-1}.task-strip a{padding:12px;flex-direction:column;gap:2px}.task-strip strong{font-size:19px}.data-context{align-items:flex-start;flex-direction:column}.guide-steps{grid-template-columns:1fr}}
+.workbench{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 26px;border:1px solid #cbdfee;border-radius:8px;background:#edf6fd}.workbench-label{font-size:12px;font-weight:700;color:#286daf}.workbench h2{margin:5px 0;font-size:25px;color:#183d62}.workbench p{margin:0;color:#526f88;font-size:13px;line-height:1.6}.workbench-actions{display:flex;gap:10px;flex-wrap:wrap}.workbench-actions .btn{white-space:nowrap}.task-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0}.task-strip a{display:flex;align-items:baseline;gap:8px;padding:15px 18px;background:#fff;border:1px solid #d8e7f2;border-radius:8px}.task-strip strong{font-size:22px;color:#2469ae;white-space:nowrap}.task-strip span{font-size:13px;color:#526f88}.data-context{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:16px 0;padding:14px 18px;border:1px solid #cbdfee;border-radius:8px;background:#f4f9fe}.data-context strong{font-size:14px;color:#24496d}.data-context p{margin:6px 0 0;font-size:12px;line-height:1.7;color:#55718d}.data-context a{flex:none;color:#286daf;font-size:13px;font-weight:700}.workflow-help{margin:16px 0;padding:14px;border:1px solid #d7e7f4;border-radius:8px;background:#fff}.workflow-help summary{cursor:pointer;font-size:13px;font-weight:700;color:#286daf}.guide-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:12px}.guide-steps a{padding:12px;background:#f5f9fd;border-radius:6px;font-size:12px;color:#355f85}.plain-explain,.quick-check{font-size:13px;line-height:1.8;color:#526d83}.plain-explain{margin:8px 0}.quick-check{padding-left:20px;margin:6px 0 12px}.quick-check li{margin-bottom:7px}.text-link{font-size:13px}.state{padding:28px;background:#fff;border-radius:8px}.error{color:#ae3f39}@media(max-width:820px){.workbench{display:block;padding:18px}.workbench h2{font-size:21px}.workbench-actions{margin-top:15px}.workbench-actions .btn{flex:1;text-align:center}.task-strip{grid-template-columns:1fr 1fr}.task-strip a:last-child{grid-column:1/-1}.task-strip a{padding:12px;flex-direction:column;gap:2px}.task-strip strong{font-size:19px}.data-context{align-items:flex-start;flex-direction:column}.guide-steps{grid-template-columns:1fr}}
 </style>

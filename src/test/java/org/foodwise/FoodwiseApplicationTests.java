@@ -47,7 +47,34 @@ public class FoodwiseApplicationTests {
 
 
     @Test
+    @Transactional
+    void predictionHandlesZeroSalesHistoryWithoutNonFiniteNumbers() {
+        jdbcTemplate.update("UPDATE daily_operation SET sold_qty=0, discount_sold_qty=0, leftover_qty=prepared_qty WHERE dish_id=1");
+        PredictionEngineResult result = predictionOrchestrator.predict(new PredictionContext(1, "晴", false, false));
+        org.junit.jupiter.api.Assertions.assertNotNull(result.prediction());
+        org.junit.jupiter.api.Assertions.assertTrue(result.prediction().predictedHigh() >= result.prediction().predictedLow());
+    }
+
+    @Test
     void contextLoads() {
+    }
+
+    @Test void mapAndDtoShareScenarioCalculationAndRounding() {
+        var dto = foodwiseService.getDashboardSummary();
+        var summary = (Map<?, ?>)foodwiseService.dashboard().get("summary");
+        assertEquals(dto.costSaved(), summary.get("cost_saved"));
+        assertEquals(dto.carbonSaved(), summary.get("carbon_saved"));
+        assertEquals(dto.waterSaved(), summary.get("water_saved"));
+        org.junit.jupiter.api.Assertions.assertTrue(summary.get("scenario_statement").toString().contains("非实测收益"));
+    }
+
+    @Test
+    void predictionDeclaresHeuristicRangeInsteadOfClaimingCalibration() {
+        PredictionEngineResult result = predictionOrchestrator.predict(
+                new PredictionContext(1, "晴", false, false));
+        assertEquals("heuristic", result.prediction().intervalMethod());
+        org.junit.jupiter.api.Assertions.assertFalse(result.prediction().intervalCalibrated());
+        assertEquals("heuristic_score_not_accuracy", result.prediction().confidenceKind());
     }
 
     @Test
@@ -80,9 +107,8 @@ public class FoodwiseApplicationTests {
 
         assertEquals(98, ((Number) metadata.get("records")).intValue());
         assertEquals(100.0, metadata.get("validation_rate"));
-        org.junit.jupiter.api.Assertions.assertTrue(((Number) backtest.get("samples")).intValue() > 0);
-        org.junit.jupiter.api.Assertions.assertTrue(((Map<?, ?>) backtest.get("baseline")).containsKey("mape"));
-        org.junit.jupiter.api.Assertions.assertTrue(((Map<?, ?>) backtest.get("enhanced")).containsKey("mape"));
+        assertEquals(true, backtest.get("available"));
+        org.junit.jupiter.api.Assertions.assertNotNull(backtest.get("test_metrics"));
         org.junit.jupiter.api.Assertions.assertTrue(((Map<?, ?>) financial.get("change")).containsKey("avoided_leftover_cost"));
     }
 

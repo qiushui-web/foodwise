@@ -131,7 +131,7 @@ def main():
         if "/foodwise/" not in check("/", 302).headers.get("Location", ""):
             raise RuntimeError("Root path does not redirect to Foodwise")
         for asset in ["/foodwise/build/app.js", "/foodwise/build/app.css",
-                      "/foodwise/css/app.css", "/foodwise/images/brand-logo-blue-transparent.png"]:
+                      "/foodwise/css/foodwise.css", "/foodwise/images/brand-logo-blue-transparent.png"]:
             check(asset, 200)
         redirect = check("/foodwise/app/dashboard", 302, accept="text/html")
         if "/foodwise/login" not in redirect.headers.get("Location", ""):

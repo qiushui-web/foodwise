@@ -1,0 +1,206 @@
+{
+  "protocol": "public-sales-v2",
+  "seed": 42,
+  "source": "modeling/data/01_raw/reduce_foodwaste/train.csv",
+  "label_origin": "supplier_public_scaled_sales",
+  "unit": "scaled store sales (continuous; may be negative)",
+  "origin_provenance_status": "supplier_statement_not_independently_verified",
+  "source_url_status": "verify against supplier README before public claims",
+  "splits": {
+    "train": {
+      "rows": 2280,
+      "start": "2021-08-30",
+      "end": "2022-12-24"
+    },
+    "tune": {
+      "rows": 400,
+      "start": "2023-01-02",
+      "end": "2023-03-20"
+    },
+    "calibration": {
+      "rows": 622,
+      "start": "2023-03-21",
+      "end": "2023-06-13"
+    },
+    "test": {
+      "rows": 1380,
+      "start": "2023-06-14",
+      "end": "2023-11-30"
+    }
+  },
+  "test_metrics": {
+    "pred_last_day": {
+      "mae": 0.30957455433306064,
+      "wape_pct": 41.76197149754879,
+      "smape_pct": 63.859022632134156,
+      "rmsle": null
+    },
+    "pred_lag7": {
+      "mae": 0.2613636888562639,
+      "wape_pct": 35.258269039665194,
+      "smape_pct": 58.506470538148186,
+      "rmsle": null
+    },
+    "pred_same_weekday_mean4": {
+      "mae": 0.22970244366896791,
+      "wape_pct": 30.98712982430769,
+      "smape_pct": 57.61934774118399,
+      "rmsle": null
+    },
+    "pred_mean7": {
+      "mae": 0.3097205988541253,
+      "wape_pct": 41.78167307521629,
+      "smape_pct": 72.91082152134722,
+      "rmsle": null
+    },
+    "pred_lgbm": {
+      "mae": 0.30838332138091995,
+      "wape_pct": 41.60127277119056,
+      "smape_pct": 61.09844261648122,
+      "rmsle": null
+    },
+    "pred_frozen_fusion": {
+      "mae": 0.30838332138091995,
+      "wape_pct": 41.60127277119056,
+      "smape_pct": 61.09844261648122,
+      "rmsle": null
+    },
+    "selected_prediction": {
+      "mae": 0.30838332138091995,
+      "wape_pct": 41.60127277119056,
+      "smape_pct": 61.09844261648122,
+      "rmsle": null
+    }
+  },
+  "interval": {
+    "method": "absolute_residual_calibration",
+    "nominal_coverage": 0.8,
+    "radius": 0.5415274528720928,
+    "test_coverage": 0.8202898550724638,
+    "mean_width": 1.0830549057441858,
+    "guarantee": "No guaranteed coverage under temporal drift or correlated observations."
+  },
+  "limitations": [
+    "Observed sales may censor demand; no causal intervention or field savings evidence.",
+    "Sales are standardized/scaled continuous values; RMSLE and unit-level interpretation are not applicable when labels are negative.",
+    "No currency conversion of scaled sales; no hourly replenishment validation.",
+    "No campus export or cross-dataset generalization claim.",
+    "Asymmetric loss is in scaled units; production capacity, batches and monetary cost are NOT evaluated."
+  ],
+  "environment": {
+    "python": "3.12.4 | packaged by Anaconda, Inc. | (main, Jun 18 2024, 15:03:56) [MSC v.1929 64 bit (AMD64)]",
+    "numpy": "1.26.4",
+    "pandas": "2.2.3",
+    "lightgbm": "4.5.0"
+  },
+  "git_head": "05c2bf6d4bfbf09478463084ad6126853fa0f5cc",
+  "script_sha256": "1296e6f4d8177e4846dc96f1254d40221224248dd682707da182d8fa21b288d4",
+  "selected_on_tune": "lgbm",
+  "protocol_detail": "Frozen model; next-day origins use previously observed sales; five chronological test reporting blocks, no retraining.",
+  "run_id": "public_sales_20261012T090638369705Z",
+  "source_sha256": "1038b1f20317e83b29cc9f9e847ba9cbdf4146d463ceefd1623ed41041d99efc",
+  "model_version": "public-sales-v2 / LightGBM 4.5.0",
+  "dataset": "Reduce Foodwaste / supplier public scaled sales",
+  "report_source": "modeling/data/03_output/public_sales_20261012T090638369705Z/metrics.json",
+  "series": [
+    {
+      "date": "2023-06-14",
+      "store": "store_0",
+      "actual": -1.5753832034184003,
+      "baseline": -1.478610000030641,
+      "prediction": -0.9523351123074772
+    },
+    {
+      "date": "2023-06-15",
+      "store": "store_0",
+      "actual": -1.4797759422401324,
+      "baseline": -1.4220618028703242,
+      "prediction": -0.8035751936447745
+    },
+    {
+      "date": "2023-06-16",
+      "store": "store_0",
+      "actual": -1.4168150629276146,
+      "baseline": -1.410985351880159,
+      "prediction": -0.7668912068883385
+    },
+    {
+      "date": "2023-06-17",
+      "store": "store_0",
+      "actual": -1.3328672238442574,
+      "baseline": -1.310714321863927,
+      "prediction": -0.7856054123933524
+    },
+    {
+      "date": "2023-06-18",
+      "store": "store_0",
+      "actual": -1.398159987575757,
+      "baseline": -1.4057386119374493,
+      "prediction": -1.0332339859701944
+    },
+    {
+      "date": "2023-06-19",
+      "store": "store_0",
+      "actual": -1.5030947864299538,
+      "baseline": -1.4325552827557442,
+      "prediction": -1.0870835104023946
+    },
+    {
+      "date": "2023-06-20",
+      "store": "store_0",
+      "actual": -1.6080295852841504,
+      "baseline": -1.5421538504479049,
+      "prediction": -1.121924649707743
+    },
+    {
+      "date": "2023-06-21",
+      "store": "store_0",
+      "actual": -1.5823788566753467,
+      "baseline": -1.5211668906770655,
+      "prediction": -0.9523351123074772
+    },
+    {
+      "date": "2023-06-22",
+      "store": "store_0",
+      "actual": -1.538073052714686,
+      "baseline": -1.464035722412003,
+      "prediction": -0.8035751936447745
+    },
+    {
+      "date": "2023-06-23",
+      "store": "store_0",
+      "actual": -1.4214788317655789,
+      "baseline": -1.3882494787950832,
+      "prediction": -0.7287121491096744
+    },
+    {
+      "date": "2023-06-24",
+      "store": "store_0",
+      "actual": -1.3701773745479715,
+      "baseline": -1.2932251887215607,
+      "prediction": -0.7856054123933524
+    },
+    {
+      "date": "2023-06-25",
+      "store": "store_0",
+      "actual": -1.4284744850225253,
+      "baseline": -1.4057386119374493,
+      "prediction": -1.0307224295141757
+    },
+    {
+      "date": "2023-06-26",
+      "store": "store_0",
+      "actual": -1.5240817462007932,
+      "baseline": -1.41739803403236,
+      "prediction": -1.1261787519824276
+    },
+    {
+      "date": "2023-06-27",
+      "store": "store_0",
+      "actual": -1.4681165201452218,
+      "baseline": -1.563140810218744,
+      "prediction": -1.0599425022446267
+    }
+  ],
+  "series_scope": "store_0，测试期前14个观测日；不是全部测试样本"
+}

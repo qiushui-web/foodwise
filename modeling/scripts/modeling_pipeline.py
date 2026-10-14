@@ -5,6 +5,10 @@
      python modeling_pipeline.py
 """
 
+import sys
+if "--historical" not in sys.argv:
+    raise SystemExit("Historical pipeline only. Use modeling/scripts/verify_current.py for current verification; --historical explicitly opts into old local paths.")
+
 import os
 import json
 import warnings

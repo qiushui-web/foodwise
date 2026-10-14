@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.foodwise.CampusInferenceParityTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-13T10:42:56.041Z" hostname="LAPTOP-2R211UDQ" time="0.323">
+  <properties/>
+  <testcase name="javaMatchesNativeLightgbmOnFrozenFiniteVectors()" classname="org.foodwise.CampusInferenceParityTests" time="0.31"/>
+  <system-out><![CDATA[[LgbmCampusModel] 派生目标演示模型加载成功(纯Java推理) trees=500 features=24 自检输出=58.21821200362114 观测销量精度未验证 训练行数=0
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

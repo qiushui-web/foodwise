@@ -2,8 +2,8 @@
 """
 07_validate_kaggle.py
 =====================
-Kaggle Food Demand Forecasting 真实数据集验证脚本。
-用 45 万行真实食堂订单数据验证模型的有效性，产出可对评委展示的 MAPE 数字。
+Kaggle Food Demand Forecasting 公开数据集验证脚本。
+用公开团餐需求数据做时间滚动回测；结果只代表该公开数据域，不代表本地高校现场效果。
 """
 from __future__ import annotations
 import sys, json
@@ -19,7 +19,7 @@ OUT = BASE / "data" / "03_output"
 OUT.mkdir(parents=True, exist_ok=True)
 
 print("=" * 65)
-print("Kaggle Food Demand 真实数据集验证")
+print("Kaggle Food Demand 公开数据集离线验证")
 print("=" * 65)
 
 train = pd.read_csv(RAW / "train.csv")
@@ -130,7 +130,7 @@ def mape(a,p):
 bm=mape(rd,"pred_baseline"); rm=mape(rd,"pred_rule"); lm=mape(rd,"pred_lgbm"); em=mape(rd,"pred_ensemble")
 
 print("\n"+"="*65)
-print("  Kaggle 真实食堂数据验证结果")
+print("  Kaggle 公开团餐需求数据离线验证结果")
 print("="*65)
 print(f"  {'基线（前4周均值）':<40} MAPE = {bm}%")
 print(f"  {'规则（加权平均×折扣因子）':<40} MAPE = {rm}%")
@@ -138,15 +138,15 @@ print(f"  {'LightGBM（本地训练）':<40} MAPE = {lm}%")
 print(f"  {'集成模型（70%规则+30%LGBM）':<40} MAPE = {em}%  <- 最终")
 print(f"  {'改善（规则 vs 集成）':<40} {round(rm-em,2) if rm and em else 'N/A'} 个百分点")
 print("-"*65)
-print(f"  * 验证数据: Kaggle Food Demand Forecasting 真实食堂订单")
+print(f"  * 验证数据: Kaggle Food Demand Forecasting 公开订单数据")
 print(f"  * 验证方式: 前16周训练, 每4周滚动测试, 无未来泄漏")
 print(f"  * 样本量: {len(rd)} 个预测点, {len(sample_centers)} 个食堂中心")
 print("="*65)
 
 rd.to_csv(OUT/"kaggle_validation_results.csv", index=False, encoding="utf-8-sig")
 report = {
-    "title": "Kaggle Food Demand 真实数据外部验证",
-    "data_source": "Kaggle Food Demand (45万行, 77中心, 51餐品, 真实订单)",
+    "title": "Kaggle Food Demand 公开数据外部离线验证",
+    "data_source": "Kaggle Food Demand（公开数据；约45万行、77中心、51餐品）",
     "validation":"滚动回测(前16周训练,每4周测试)",
     "sample_centers":int(len(sample_centers)),"total_predictions":int(len(rd)),
     "model_comparison":{
@@ -156,7 +156,8 @@ report = {
         "ensemble":{"name":"集成70%规则+30%LGBM","mape_pct":em},
     },
     "improvement_pp":round(rm-em,2) if rm and em else None,
-    "conclusion":f"真实食堂数据验证: 集成MAPE={em}%, 优于规则({rm}%), 改善{round(rm-em,2) if rm and em else 'N/A'}pp",
+    "label_origin": "public_observation",
+    "conclusion":f"公开数据离线回测: 集成MAPE={em}%, 优于规则({rm}%), 改善{round(rm-em,2) if rm and em else 'N/A'}pp；不代表现场干预效果",
 }
 with open(OUT/"kaggle_validation_report.json","w",encoding="utf-8") as f:
     json.dump(report,f,ensure_ascii=False,indent=2,default=str)

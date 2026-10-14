@@ -29,22 +29,7 @@ public class FoodwiseService {
     @Cacheable(value = "dashboard", key = "'summary'")
     public Map<String, Object> dashboard() {
         Map<String, Object> data = new LinkedHashMap<>();
-        DashboardSummary summary = repository.dashboardSummaryDto();
-        List<OperationRow> rows = repository.operationRowsDto();
-
-        long baselineLeftover = rows.stream()
-                .filter(r -> "基线期".equals(r.phase()))
-                .mapToInt(OperationRow::leftoverQty).sum();
-        long interventionLeftover = rows.stream()
-                .filter(r -> "干预期".equals(r.phase()))
-                .mapToInt(OperationRow::leftoverQty).sum();
-        long reducedPieces = Math.max(0L, baselineLeftover - interventionLeftover);
-        double wasteWeightKg = reducedPieces * 0.3d;
-        double annualFactor = 260d / 14d;
-        long costSaved = Math.round(repository.reportSummaryDto().avoidedLoss().doubleValue() * annualFactor);
-        long carbonSaved = Math.round(wasteWeightKg * 1.1d * annualFactor);
-        long waterSaved = Math.round(wasteWeightKg * 250d * annualFactor);
-
+        DashboardSummary summary = getDashboardSummary();
         Map<String, Object> summaryMap = new LinkedHashMap<>();
         summaryMap.put("prepared", summary.prepared());
         summaryMap.put("sold", summary.sold());
@@ -52,10 +37,13 @@ public class FoodwiseService {
         summaryMap.put("rescued", summary.rescued());
         summaryMap.put("revenue", summary.revenue());
         summaryMap.put("accuracy", summary.accuracy());
-        summaryMap.put("cost_saved", costSaved);
-        summaryMap.put("carbon_saved", carbonSaved);
-        summaryMap.put("water_saved", waterSaved);
+        summaryMap.put("cost_saved", summary.costSaved());
+        summaryMap.put("carbon_saved", summary.carbonSaved());
+        summaryMap.put("water_saved", summary.waterSaved());
 
+        var trends = repository.trend();
+        summaryMap.put("business_day", trends.isEmpty() ? "未提供" : trends.get(trends.size() - 1).get("business_day"));
+        summaryMap.put("scenario_statement", "年化场景：260营业日/14日，0.3kg/份，1.1kg碳/kg，250L水/kg；非实测收益");
         data.put("summary", summaryMap);
         data.put("trend", repository.trend());
         data.put("risks", repository.riskDishes());
@@ -192,17 +180,8 @@ public class FoodwiseService {
     // === DTO 快速查询方法（供 Controller 直接使用） ===
 
     public DashboardSummary getDashboardSummary() {
-        DashboardSummary s = repository.dashboardSummaryDto();
-        List<OperationRow> rows = repository.operationRowsDto();
-        long bl = rows.stream().filter(r -> "基线期".equals(r.phase())).mapToInt(OperationRow::leftoverQty).sum();
-        long il = rows.stream().filter(r -> "干预期".equals(r.phase())).mapToInt(OperationRow::leftoverQty).sum();
-        long rp = Math.max(0L, bl - il);
-        double ww = rp * 0.3d;
-        double af = 260d / 14d;
-        long cs = Math.round(repository.reportSummaryDto().avoidedLoss().doubleValue() * af);
-        long cb = Math.round(ww * 1.1d * af);
-        long ws = Math.round(ww * 250d * af);
-        return new DashboardSummary(s.prepared(), s.sold(), s.leftover(), s.rescued(), s.revenue(), s.accuracy(), cs, cb, ws);
+        return SummaryCalculator.calculate(repository.dashboardSummaryDto(), repository.operationRowsDto(),
+                repository.reportSummaryDto().avoidedLoss());
     }
 
     @Cacheable(value = "stalls", key = "'dto'")

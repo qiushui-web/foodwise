@@ -1,21 +1,41 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, onUnmounted, nextTick, ref, watch } from "vue";
 import { RouterLink, RouterView, useRoute } from "vue-router";
 import { useAppStore } from "../stores/app";
-import { getApi } from "../utils/vue-api";
+import type { Session, Alert } from "../api/types";
+import { getAllPages, getApi } from "../utils/vue-api";
 import { publicPath } from "../utils/public-base";
 
 const route = useRoute();
 const app = useAppStore();
 const menuOpen = ref(false);
+const menuButton = ref<HTMLButtonElement | null>(null);
+const sidebar = ref<HTMLElement | null>(null);
+const sessionError = ref("");
+watch(menuOpen, async (open) => {
+  await nextTick();
+  if (open) sidebar.value?.querySelector<HTMLElement>("a")?.focus();
+  else menuButton.value?.focus();
+});
+function menuKey(event: KeyboardEvent) {
+  if (!menuOpen.value) return;
+  if (event.key === "Escape") { menuOpen.value = false; return; }
+  if (event.key !== "Tab") return;
+  const links = Array.from(sidebar.value?.querySelectorAll<HTMLElement>("a,button") ?? []);
+  const first = links[0]; const last = links[links.length - 1];
+  if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+  else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+}
+onMounted(() => window.addEventListener("keydown", menuKey));
+onUnmounted(() => window.removeEventListener("keydown", menuKey));
 const session = ref<{ name: string; role: string; demo: boolean } | null>(null);
 const title = computed(() => String(route.meta.title || "经营驾驶舱"));
 const active = computed(() => String(route.meta.active || "dashboard"));
 
 onMounted(async () => {
-  try { session.value = await getApi("/session"); } catch { /* API error is shown by the active view. */ }
+  try { session.value = await getApi<Session>("/session"); } catch { sessionError.value = "会话加载失败，请刷新页面；导航暂不可用。"; }
   try {
-    const alerts = await getApi<any[]>("/alerts");
+    const alerts = await getAllPages<Alert>("/alerts");
     app.setPendingAlertCount(alerts.filter((item) => item.status !== "已处理").length);
   } catch {
     // Individual views still show their own loading/error state.
@@ -33,11 +53,11 @@ const groups = [
   ]},
   { label: "复盘与说明", items: [
     ["reports", "经营复盘", "chart-no-axes-combined"],
-    ["insights/realtime", "实时经营", "radio-tower", "insights-realtime"], ["insights/demand", "需求分析", "chart-spline", "insights-demand"],
+    ["insights/realtime", "营业快照", "radio-tower", "insights-realtime"], ["insights/demand", "需求分析", "chart-spline", "insights-demand"],
     ["insights/waste", "减损分析", "recycle", "insights-waste"], ["about", "服务说明", "circle-help"],
   ]},
 ];
-const visibleGroups = computed(() => session.value?.role === "ANALYST"
+const visibleGroups = computed(() => !session.value ? [] : session.value?.role === "ANALYST"
   ? groups.map((group) => ({ ...group, items: group.items.filter((item) =>
       !["operation-feedback", "prediction", "offers", "orders", "alerts"].includes(item[0])) }))
       .filter((group) => group.items.length)
@@ -62,11 +82,11 @@ const iconPaths: Record<string, string> = {
 <template>
   <div class="app-shell" :class="{ 'menu-open': menuOpen }">
     <a class="skip-link" href="#main-content">跳到主要内容</a>
-    <aside class="sidebar">
+    <aside id="app-navigation" ref="sidebar" class="sidebar">
       <RouterLink class="brand" to="/app/dashboard" @click="menuOpen = false">
         <span class="brand-mark"><img :src="publicPath('images/brand-logo-blue-transparent.png')" alt="" width="44" height="44" /></span><span><strong>食刻有数</strong><small>FOODWISE</small></span>
       </RouterLink>
-      <div v-for="group in visibleGroups" :key="group.label" class="vue-nav-group">
+      <p v-if="sessionError" role="alert">{{ sessionError }}</p><p v-else-if="!session">正在确认会话…</p><div v-for="group in visibleGroups" :key="group.label" class="vue-nav-group">
         <span class="sidebar-label">{{ group.label }}</span>
         <nav class="nav-list">
         <RouterLink v-for="item in group.items" :key="item[0]" :to="`/app/${item[0]}`" :class="{ active: active === (item[3] || item[0]) }" @click="menuOpen = false">
@@ -79,7 +99,7 @@ const iconPaths: Record<string, string> = {
     <div v-if="menuOpen" class="vue-backdrop" @click="menuOpen = false"></div>
     <main id="main-content" class="main-shell" tabindex="-1">
       <header class="topbar">
-        <button class="mobile-menu" aria-label="打开菜单" @click="menuOpen = !menuOpen">☰</button>
+        <button ref="menuButton" class="mobile-menu" aria-label="打开菜单" :aria-expanded="menuOpen" aria-controls="app-navigation" @click="menuOpen = !menuOpen">☰</button>
         <div class="topbar-title"><span class="eyebrow">{{ session?.demo ? '演示环境 · 非实时经营数据' : '高校食堂经营工作台' }}</span><h1>{{ title }}</h1></div>
         <div class="topbar-actions"><span v-if="session?.demo" class="demo-tag">演示</span><span v-if="session && !session.demo" class="session-role">{{ session.role === 'ADMIN' ? '管理员' : session.role === 'OPERATOR' ? '运营员' : '分析员' }}</span><RouterLink v-if="app.pendingAlertCount && session?.role !== 'ANALYST'" class="alert-link" to="/app/alerts">{{ app.pendingAlertCount }} 条待处理预警</RouterLink><RouterLink class="help-link" to="/app/about">使用说明</RouterLink></div>
       </header>
@@ -90,5 +110,5 @@ const iconPaths: Record<string, string> = {
 
 <style scoped>
 .skip-link{position:absolute;left:12px;top:-100px;z-index:100;padding:10px 14px;border-radius:8px;background:#fff;color:#155a98;font-weight:700}.skip-link:focus{top:12px}
-.app-shell{min-height:100vh}.vue-nav-group{margin:8px 0}.mobile-menu{display:none;border:0;background:transparent;font-size:22px;color:#3478c9}.sidebar-help{display:block;margin-top:12px;font-size:12px;font-weight:700;color:#3478c9}.sidebar-foot small{display:block;line-height:1.6;margin-top:6px}.topbar-title{min-width:0}.topbar-actions{display:flex;align-items:center;gap:8px;margin-left:auto}.help-link,.alert-link,.session-role,.demo-tag{display:inline-flex;align-items:center;min-height:38px;padding:8px 11px;border:1px solid #dbe8f4;border-radius:8px;background:#fff;color:#2e6fae;font-size:12px;font-weight:700;white-space:nowrap}.demo-tag{display:none;background:#fff4dd;border-color:#f1d99d;color:#875e13}.alert-link{color:#a94a2e;background:#fff6f2;border-color:#f4d7cb}.session-role{color:#53708a;background:#f6f9fc}@media(max-width:820px){.sidebar{transform:translateX(-100%);transition:transform .22s ease}.menu-open .sidebar{transform:translateX(0)}.main-shell{margin-left:0}.mobile-menu{display:block}.vue-backdrop{display:block;position:fixed;inset:0;background:rgba(20,48,78,.35);z-index:35}.topbar{gap:8px}.topbar h1{font-size:18px;line-height:1.3}.topbar .eyebrow,.session-role,.help-link{display:none}.demo-tag{display:inline-flex}.alert-link{padding:7px 8px;font-size:11px}@media(max-width:390px){.alert-link{display:none}}}
+.app-shell{min-height:100vh}.vue-nav-group{margin:8px 0}.mobile-menu{display:none;min-width:44px;min-height:44px;border:0;background:transparent;font-size:22px;color:#286daf}.sidebar-help{display:block;margin-top:12px;font-size:12px;font-weight:700;color:#286daf}.sidebar-foot small{display:block;line-height:1.6;margin-top:6px}.topbar-title{min-width:0}.topbar-actions{display:flex;align-items:center;gap:8px;margin-left:auto}.help-link,.alert-link,.session-role,.demo-tag{display:inline-flex;align-items:center;min-height:38px;padding:8px 11px;border:1px solid #dbe8f4;border-radius:8px;background:#fff;color:#2e6fae;font-size:12px;font-weight:700;white-space:nowrap}.demo-tag{display:none;background:#fff4dd;border-color:#f1d99d;color:#875e13}.alert-link{color:#a94a2e;background:#fff6f2;border-color:#f4d7cb}.session-role{color:#53708a;background:#f6f9fc}@media(max-width:820px){.sidebar{transform:translateX(-100%);transition:transform .22s ease}.menu-open .sidebar{transform:translateX(0)}.main-shell{margin-left:0}.mobile-menu{display:block}.vue-backdrop{display:block;position:fixed;inset:0;background:rgba(20,48,78,.35);z-index:35}.topbar{gap:8px}.topbar h1{font-size:18px;line-height:1.3}.topbar .eyebrow,.session-role,.help-link{display:none}.demo-tag{display:inline-flex}.alert-link{padding:7px 8px;font-size:11px}@media(max-width:390px){.alert-link{display:none}}}
 </style>

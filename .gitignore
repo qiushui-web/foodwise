@@ -52,12 +52,14 @@ modeling/data/03_output/
 build/
 lo_profile_ai/
 .lo_profile/
+.lo_profile_*/
 pdfcheck/
 pdfcheck2/
 render_*/
 *.log
 deploy/__pycache__/
 **/__pycache__/
+**/.venv/
 
 # Local presentation and planning work is kept outside the application release
 PPT/
@@ -66,3 +68,7 @@ PPT/
 # Local screenshots and imported source packages are not application source
 项目照片/
 数据来源/
+
+# Browser runs are reproducible; final evidence is stored in docs/validation.
+frontend/test-results/
+frontend/playwright-report/

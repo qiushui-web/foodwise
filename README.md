@@ -1,19 +1,32 @@
 # 食刻有数
 
+## 本地目录布局
+
+项目工作目录为 `项目代码/`，Git 仓库、后端、前端、模型、部署脚本和工程文档均在此目录。运行本 README 中的命令前，请先进入该目录。
+
+上一级目录仅保留 `项目代码/`、`计划书/`、`PPT/`、`数据来源/`、`软著资料/` 五类内容。网站截图位于 `../计划书/计划书照片/网站截图/`。历史计划书生成脚本已归档至 docs/archive/20261013/，不参与应用构建。
+
+原先被 Git 跟踪的计划书和软著文件已迁出代码仓库，Git 状态会显示这些旧路径为删除；材料文件仍保存在上一级对应目录中，历史版本仍可从 Git 查看。
+
 高校食堂精细化经营与食品减损平台。当前主技术路线为 Spring Boot、Java 21、Vue 3、Vue Router、Pinia、Vite、TypeScript、MySQL/H2 和 Flyway，围绕“经营数据 - 销量预测 - 分批备餐 - 限时优惠 - 订单核销 - 效果复盘”形成可追踪的运营闭环。
 
-## 页面
+## 页面与验证
 
-- `/dashboard`：经营驾驶舱
-- `/stalls`：档口与菜品
-- `/prediction`：智能备餐中心
-- `/offers`：限时优惠
-- `/orders`：订单核销
-- `/reports`：经营仿真报告
-- `/insights/realtime`：实时经营分析（售速、排队和档口效率）
-- `/insights/demand`：需求预测分析（置信区间、因素贡献和需求热力）
-- `/insights/waste`：减损成效分析（餐品流向、价值挽回和试点对比）
-- `/about`：服务说明
+当前应用入口为 `/app/dashboard`，生产环境加 `/foodwise/` 前缀。
+
+- `/app/stalls`：档口与菜品；数值统一舍入，图片为同类菜品示意。
+- `/app/prediction`：按目标日期、餐次生成规则备餐参考；经验范围尚未校准。
+- `/app/operations/feedback`：手工回填、CSV 预览与逐行导入、台账导出。
+- `/app/offers`、`/app/orders`、`/app/alerts`：优惠、核销、预警。
+- `/app/reports`：经营测算与冻结公开实验分别展示。
+- `/app/insights/realtime`：最近营业日快照，不代表实时监测。
+- `/app/insights/demand`：同源公开销量观测、基线、模型预测对照。
+- `/app/insights/waste`：剩余测算；不代表现场减损收益。
+- `/app/about`：输入要求、使用步骤与来源说明。
+
+工程整理与验收见 [优化实施报告](docs/validation/optimization-implementation-20261013/REPORT.md)。
+建模当前入口为 `modeling/scripts/verify_current.py`；添加 `--experiment` 运行新的不可覆盖公开销量实验。
+历史管道只有显式 `--historical` 才可运行，并不能替代当前验证。
 
 ## 本机启动
 
@@ -68,7 +81,7 @@ java -Xms96m -Xmx256m -jar foodwise-0.0.1-SNAPSHOT.jar --spring.profiles.active=
 PowerShell中临时配置：
 
 ```powershell
-$env:ZHIPU_API_KEY="重新生成后的智谱API Key"
+$env:ZHIPU_API_KEY="<填写你自己的 API 密钥>"
 $env:ZHIPU_MODEL="glm-4-flash"
 ```
 
@@ -120,10 +133,10 @@ $env:FOODWISE_CSV_PATH="D:\data\foodwise_operations.csv"
 
 生产角色可通过环境变量增加运营员和分析员账号：`FOODWISE_OPERATOR_USER`、`FOODWISE_OPERATOR_PASSWORD`、`FOODWISE_ANALYST_USER`、`FOODWISE_ANALYST_PASSWORD`。管理员负责写操作，分析员只读。
 
-新版模块化接口位于 `/api/v1`，返回统一的 `success/data/code/message/traceId/timestamp` 结构。列表接口支持 `page`、`size` 参数，分页数据包含 `items/page/size/total/totalPages`；前端会自动展开 `items` 以保持页面组件简单。
+新版模块化接口位于 `/api/v1`，返回统一的 `success/data/code/message/traceId/timestamp` 结构。列表接口支持 `page`、`size` 参数，分页数据包含 `items/page/size/total/totalPages`；前端 getPage 保留完整元数据，getAllPages 用于需要加载全部分页的列表。
 
 - `GET /api/v1/predictions/engines`：可用预测引擎。
-- `POST /api/v1/predictions`：按 `dishId/weather/examWeek/campusEvent/engine` 生成带模型版本的预测。
+- `POST /api/v1/predictions`：按 `dishId/weather/examWeek/campusEvent/engine/targetDate/mealPeriod` 生成带模型版本的预测，未提供日期与餐次时默认明天、全日。
 - `GET /api/v1/analytics/metadata`、`GET /api/v1/analytics/backtest`：数据元信息和回测结果。
 
 写接口必须携带 `Idempotency-Key`，重复提交返回 `409 IDEMPOTENCY_CONFLICT`。预测、优惠、核销、预警处理和经营反馈会写入 `audit_log`，记录 trace、账号、角色、资源和请求路径。`ADMIN` 拥有全部权限；`OPERATOR` 负责经营写操作；`ANALYST` 仅可读取分析与经营数据。
@@ -138,7 +151,7 @@ Spring AI OpenAI-compatible 适配器默认关闭。设置 `FOODWISE_SPRING_AI_E
 ### 后端 (Gradle)
 
 ```powershell
-$env:JAVA_HOME = "D:\Program Files\Java\jdk-21.0.12.1+1"
+# JAVA_HOME 指向本机 Java 21 安装目录
 .\gradlew.bat build          # 编译 + 测试 + 打包
 .\gradlew.bat bootRun        # 本地启动
 ```
@@ -149,12 +162,14 @@ $env:JAVA_HOME = "D:\Program Files\Java\jdk-21.0.12.1+1"
 
 ```powershell
 cd frontend
-npm install           # 首次运行前安装依赖
+npm ci                # 首次运行前按锁文件安装依赖
 npx vite build        # 生产构建
 npx vite              # 开发模式（热更新）
 ```
 
 前端主入口为 `frontend/src/app.ts`，使用 Vue 单文件组件、Vue Router 和 Pinia 管理 `/app/**` 路由，构建产物自动作为 Spring Boot 静态资源提供。旧原生 DOM 运行时代码已移除。
+
+Gradle 构建已经接入 frontendBuild → processResources → bootJar，打包前会构建前端；首次使用仍需在 frontend 执行 npm ci。静态构建资产沿用仓库既有跟踪方式，发布前必须统一重新构建。当前建模验证入口为 `modeling/scripts/verify_current.py`，旧管道须显式 `--historical`；完整本地与前缀验收命令、临时测试账号配置和验证限制见优化实施报告。
 
 Vue 应用入口：
 

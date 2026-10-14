@@ -1,0 +1,44 @@
+    /**
+     * 历史兼容数据序列，仅供旧报告恢复；当前公开实验接口使用冻结报告契约。
+     */
+    @Deprecated(forRemoval = false)
+    public Map<String, Object> campusSeries() {
+        List<String> labels = new ArrayList<>();
+        List<Double> actual = new ArrayList<>();
+        List<Double> lgbm = new ArrayList<>();
+        List<Double> rule = new ArrayList<>();
+        List<double[]> bin = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(
+                new ClassPathResource("modeling/campus_backtest_predictions.csv").getInputStream(),
+                StandardCharsets.UTF_8))) {
+            reader.readLine();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] p = line.split(",");
+                if (p.length < 5) continue;
+                bin.add(new double[]{Double.parseDouble(p[2]), Double.parseDouble(p[3]), Double.parseDouble(p[4])});
+                if (bin.size() == 4) {
+                    labels.add("回测" + (labels.size() + 1));
+                    actual.add(round(bin.stream().mapToDouble(x -> x[0]).average().orElse(0), 1));
+                    lgbm.add(round(bin.stream().mapToDouble(x -> x[1]).average().orElse(0), 1));
+                    rule.add(round(bin.stream().mapToDouble(x -> x[2]).average().orElse(0), 1));
+                    bin.clear();
+                }
+            }
+        } catch (Exception ignored) { }
+        int take = 30;
+        if (labels.size() > take) {
+            int from = labels.size() - take;
+            labels = labels.subList(from, labels.size());
+            actual = actual.subList(from, actual.size());
+            lgbm = lgbm.subList(from, lgbm.size());
+            rule = rule.subList(from, rule.size());
+        }
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("labels", labels);
+        result.put("actual", actual);
+        result.put("lgbm", lgbm);
+        result.put("rule", rule);
+        result.put("source", "campus_backtest_predictions.csv · LGBM公开数据离线滚动回测");
+        return result;
+    }

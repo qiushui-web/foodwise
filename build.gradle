@@ -44,7 +44,8 @@ tasks.named('test') {
     doFirst {
         if (org.gradle.internal.os.OperatingSystem.current().isWindows() &&
                 projectDir.absolutePath.any { it.codePointAt(0) > 127 }) {
-            def linkRoot = new File(System.getProperty('java.io.tmpdir'), 'foodwise-gradle-link')
+            def linkRoot = new File(System.getProperty('java.io.tmpdir'),
+                    'foodwise-gradle-link-' + Integer.toHexString(projectDir.absolutePath.hashCode()))
             if (!linkRoot.exists()) {
                 linkRoot.parentFile.mkdirs()
                 def result = new ProcessBuilder('cmd', '/c', 'mklink', '/J', linkRoot.absolutePath, projectDir.absolutePath)
@@ -64,3 +65,13 @@ tasks.named('test') {
         }
     }
 }
+
+// Build the frontend before copying resources so a JAR cannot contain stale pages.
+tasks.register('frontendBuild', Exec) {
+    workingDir file('frontend')
+    commandLine(org.gradle.internal.os.OperatingSystem.current().isWindows() ? 'npm.cmd' : 'npm', 'run', 'build')
+    inputs.dir('frontend/src')
+    inputs.files('frontend/package.json', 'frontend/package-lock.json', 'frontend/vite.config.js')
+    outputs.dir('src/main/resources/static/build')
+}
+tasks.named('processResources') { dependsOn 'frontendBuild' }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.foodwise.PredictionAtomicityTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-13T10:43:03.624Z" hostname="LAPTOP-2R211UDQ" time="1.618">
+  <properties/>
+  <testcase name="snapshotFailureRollsBackPredictionAndAdviceTogether()" classname="org.foodwise.PredictionAtomicityTests" time="0.12"/>
+  <system-out><![CDATA[2026-10-13T18:43:03.625+08:00  INFO 42436 --- [foodwise] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [org.foodwise.PredictionAtomicityTests]: PredictionAtomicityTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-13T18:43:03.629+08:00  INFO 42436 --- [foodwise] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration org.foodwise.FoodwiseApplication for test class org.foodwise.PredictionAtomicityTests
+2026-10-13T18:43:03.630+08:00  INFO 42436 --- [foodwise] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [org.foodwise.PredictionAtomicityTests]: PredictionAtomicityTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-13T18:43:03.631+08:00  INFO 42436 --- [foodwise] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration org.foodwise.FoodwiseApplication for test class org.foodwise.PredictionAtomicityTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.0)
+
+2026-10-13T18:43:03.658+08:00  INFO 42436 --- [foodwise] [    Test worker] org.foodwise.PredictionAtomicityTests    : Starting PredictionAtomicityTests using Java 21.0.12.1 with PID 42436 (started by lenovo in E:\食刻有数\项目代码)
+2026-10-13T18:43:03.658+08:00  INFO 42436 --- [foodwise] [    Test worker] org.foodwise.PredictionAtomicityTests    : No active profile set, falling back to 1 default profile: "local"
+2026-10-13T18:43:03.926+08:00  INFO 42436 --- [foodwise] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2026-10-13T18:43:03.939+08:00  INFO 42436 --- [foodwise] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11 ms. Found 0 JDBC repository interfaces.
+2026-10-13T18:43:03.982+08:00  INFO 42436 --- [foodwise] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2026-10-13T18:43:03.984+08:00  INFO 42436 --- [foodwise] [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection conn19: url=jdbc:h2:mem:prediction-atomicity user=SA
+2026-10-13T18:43:03.984+08:00  INFO 42436 --- [foodwise] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+[LgbmCampusModel] 派生目标演示模型加载成功(纯Java推理) trees=500 features=24 自检输出=58.21821200362114 观测销量精度未验证 训练行数=0
+2026-10-13T18:43:04.487+08:00  INFO 42436 --- [foodwise] [    Test worker] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:prediction-atomicity (H2 2.4)
+2026-10-13T18:43:04.489+08:00  WARN 42436 --- [foodwise] [    Test worker] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: H2 2.4.240 is newer than this version of Flyway and support has not been tested. The latest supported version of H2 is 2.2.224.
+2026-10-13T18:43:04.509+08:00  INFO 42436 --- [foodwise] [    Test worker] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "public"."flyway_schema_history" does not exist yet
+2026-10-13T18:43:04.510+08:00  INFO 42436 --- [foodwise] [    Test worker] o.f.core.internal.command.DbValidate     : Successfully validated 13 migrations (execution time 00:00.019s)
+2026-10-13T18:43:04.512+08:00  INFO 42436 --- [foodwise] [    Test worker] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "public"."flyway_schema_history" with baseline ...
+2026-10-13T18:43:04.518+08:00  INFO 42436 --- [foodwise] [    Test worker] o.f.core.internal.command.DbBaseline     : Successfully baselined schema with version: 0
+2026-10-13T18:43:04.521+08:00  INFO 42436 --- [foodwise] [    Test worker] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 0
+2026-10-13T18:43:04.530+08:00  INFO 42436 --- [foodwise] [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "1 - baseline"
+2026-10-13T18:43:04.540+08:00  INFO 42436 --- [foodwise] [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "2 - seed reference data"
+2026-10-13T18:43:04.551+08:00  INFO 42436 --- [foodwise] [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "3 - prediction model metadata"
+2026-10-13T18:43:04.558+08:00  INFO 42436 --- [foodwise] [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "4 - alert detail fields"
+2026-10-13T18:43:04.571+08:00  INFO 42436 --- [foodwise] [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "5 - backtest records"
+2026-10-13T18:43:04.576+08:00  INFO 42436 --- [foodwise] [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "6 - prediction feedback"
+2026-10-13T18:43:04.585+08:00  INFO 42436 --- [foodwise] [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "7 - operation import batches"
+2026-10-13T18:43:04.593+08:00  INFO 42436 --- [foodwise] [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "8 - api idempotency keys"
+2026-10-13T18:43:04.599+08:00  INFO 42436 --- [foodwise] [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "9 - audit log"
+2026-10-13T18:43:04.605+08:00  INFO 42436 --- [foodwise] [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "10 - prediction trace metadata"
+2026-10-13T18:43:04.609+08:00  INFO 42436 --- [foodwise] [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "11 - prediction trace metadata columns"
+2026-10-13T18:43:04.621+08:00  INFO 42436 --- [foodwise] [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "12 - meal period"
+2026-10-13T18:43:04.629+08:00  INFO 42436 --- [foodwise] [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "14 - import status length"
+2026-10-13T18:43:04.631+08:00  INFO 42436 --- [foodwise] [    Test worker] o.f.core.internal.command.DbMigrate      : Successfully applied 13 migrations to schema "public", now at version v14 (execution time 00:00.043s)
+2026-10-13T18:43:04.681+08:00  WARN 42436 --- [foodwise] [    Test worker] .s.a.UserDetailsServiceAutoConfiguration :
+
+Using generated security password: [REDACTED: temporary test credential]
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-10-13T18:43:04.683+08:00  INFO 42436 --- [foodwise] [    Test worker] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-10-13T18:43:05.087+08:00  INFO 42436 --- [foodwise] [    Test worker] org.foodwise.PredictionAtomicityTests    : Started PredictionAtomicityTests in 1.454 seconds (process running for 9.978)
+2026-10-13T18:43:05.245+08:00  INFO 42436 --- [foodwise] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2026-10-13T18:43:05.247+08:00  INFO 42436 --- [foodwise] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

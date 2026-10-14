@@ -1,6 +1,16 @@
 ﻿# 食刻有数 智能体赛道 · 建模数据集总览
 
-> 目录结构：01_raw/（只读原始数据）-> 02_processed/（特征工程产物，自动生成）-> 03_output/（模型、系数、报告）
+> 目录结构：01_raw/（只读原始数据）-> 02_processed/（特征工程产物）-> 03_output/（独立实验目录）
+
+## 当前有效口径（2026-10-13）
+
+下文保留的旧设计不作为当前来源、训练链或成效事实。实际目录与源审计对应：university_food_waste2600行仅浪费重量，无销量/备餐；reduce_foodwaste的train5142行、test/truth各1575行是缩放日销量；kaggle_cc0有76000行，但采样/生成背景和Demand语义待核实；kaggle_food_demand的456548行是周订单，不拆为校园日销量。GYLAF个人流水本轮未读取。98条经营台账为simulation。
+
+Reduce Foodwaste本地README/LICENSE/train的Git blob SHA与上游Green-AI Hub仓库一致，机构项目页背景相符；缩放公式、拟合时段、数据专用许可范围仍待明确，不换算份数、货币或校园减损。SmartBite旧目录/合计行数不证明当前模型效果，跨域规律需单独验证。
+
+当前线上派生演示链为finetune_uwaste.parquet→校园导出脚本→Java资源；已审查modeling/scripts和deploy未找到其生成器，完整重建链未成立。匹配元数据证明两处导出行切分时间重叠，不能称严格时间回测。旧02特征脚本串组滚动、全量填补未来泄漏、按记录lag7已用反例复现；不重跑旧导出覆盖线上模型。
+
+新独立实验14/17/18/21与旧链隔离，22审查来源、23审查旧链、20/24验复现。有效方案与结果见modeling/OPTIMIZATION_PLAN_20261013.md、OPTIMIZATION_RESULTS_20261013.md、OPTIMIZATION_ROUND2_20261013.md；新校园用户采集见CAMPUS_COLLECTION_GUIDE.md。以下旧描述仅追溯，不作效果证据。
 
 ---
 
@@ -9,8 +19,8 @@
 | # | 子目录 | 名称 | 行数 | 来源 | 许可 | 角色 |
 |---|---|---|---|---|---|---|
 | 1 | smartbite_campus_synthesis/ | SmartBite 高校食堂合成数据集 | 33,567行（2022-2025） | GitHub nox-pie/SmartBite | MIT License | [Pre-train底座] 学到"工作日/考试周/假期/天气x销量"的通用高校食堂规律 |
-| 2 | campus_real_ops/ | 食刻有数 实地经营台账 | 98行（4档口x7菜品x14日） | 团队实测 | 自有 | [Fine-tune微调+回测] 唯一真实校园标签，落地关键 |
-| 3 | reduce_foodwaste/ | Reduce-Foodwaste-Dataset | train.csv 1087行 + test.csv 227行 | 公开基准 | 自带LICENSE | [学术佐证] 证明剩余率降低->减损价值的换算标准 |
+| 2 | campus_real_ops/ | 食刻有数 经营测算台账 | 98行（4档口x7菜品x14日） | 项目内 simulation | 自有 | [流程与回测管线] 不作为现场试点或真实校园标签 |
+| 3 | reduce_foodwaste/ | Reduce-Foodwaste-Dataset | train5142行、test1575行 | 公开缩放销量 | MIT文本与上游一致，数据专用范围待明确 | 方法研究，不用于份数/金额/现场减损换算 |
 | 4 | cc0_retail_weather/ | Demand Forecasting Dataset (Ramin Huseyn) | ~6-8万行 | Kaggle（已落盘） | CC0 Public Domain | [系数校准] 独立估计天气x促销x季节系数，与SmartBite取平均 |
 | 5 | genpack_food_demand/ | Food Demand Forecasting (Genpack) | ~456,548行 | Kaggle（已落盘） | 学术可引用 | [跨域验证 加分项] 证明模型可拓展至团餐 |
 
@@ -56,7 +66,7 @@
 
 ## SmartBite菜品映射（不看名字语义，只看销量分布规律！）
 
-迁移学习学的是"天气->销量、考试周->销量、周末跌多少%"这种通用统计规律，菜品名字完全不重要。
+以下为旧迁移映射假设。餐次、品类、单位、供给限制与校历必须对齐，不能预先认定规律通用；需实测负迁移。
 
 | SmartBite Meal_Type | 映射您的category | 映射您的stall假设 |
 |---|---|---|

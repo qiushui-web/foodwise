@@ -38,6 +38,7 @@ public class OperationImportController {
     }
 
     @PostMapping(value = "/import", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @org.springframework.transaction.annotation.Transactional
     public ApiResponse<Map<String, Object>> importCsv(@RequestPart("file") MultipartFile file,
                                                        @RequestParam String operatorName,
                                                        @RequestParam boolean safetyConfirmed,

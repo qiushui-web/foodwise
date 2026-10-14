@@ -65,6 +65,7 @@ public class ApiV1Controller {
         this.amapWeather = amapWeather;
     }
 
+    @org.springframework.transaction.annotation.Transactional
     @PostMapping("/predictions")
     public ApiResponse<PredictionEngineResult> predict(@Valid @RequestBody PredictionRequest request,
                                                         HttpServletRequest httpRequest) {
@@ -72,7 +73,8 @@ public class ApiV1Controller {
         String idempotencyKey = ApiIdempotency.require(httpRequest);
         PredictionEngineResult result = predictions.predict(
                 new PredictionContext(request.dishId(), request.weather(), request.examWeek(), request.campusEvent(),
-                        ApiTrace.id(httpRequest), idempotencyKey, operatorName()),
+                        ApiTrace.id(httpRequest), idempotencyKey, operatorName(), request.targetDate(),
+                        request.mealPeriod(), request.sourceNature()),
                 request.engine());
         audit.record(httpRequest, "predictions.create", "prediction", String.valueOf(request.dishId()));
         return ApiResponse.success(result, ApiTrace.id(httpRequest));
@@ -125,6 +127,14 @@ public class ApiV1Controller {
         return ApiResponse.success(foodwise.getDashboardSummary(), ApiTrace.id(request));
     }
 
+    @GetMapping("/operations/export")
+    public org.springframework.http.ResponseEntity<byte[]> exportOperations() {
+        return org.springframework.http.ResponseEntity.ok()
+                .header("Content-Disposition", "attachment; filename=foodwise-operations.csv")
+                .contentType(org.springframework.http.MediaType.parseMediaType("text/csv;charset=UTF-8"))
+                .body(foodwise.exportOperationsCsv());
+    }
+
     @GetMapping("/operations/rows")
     public ApiResponse<PageResponse<OperationRow>> rows(@RequestParam(defaultValue = "1") @Min(1) int page,
                                                         @RequestParam(defaultValue = "20") @Min(1) int size,
@@ -168,12 +178,14 @@ public class ApiV1Controller {
         return ApiResponse.success(PageResponse.of(foodwise.offers(), page, size), ApiTrace.id(request));
     }
 
+    @org.springframework.transaction.annotation.Transactional
     @PostMapping("/intelligence/offers/recommend")
     public ApiResponse<OfferRecommendation> recommendOffer(@Valid @RequestBody OfferRequest request,
                                                             HttpServletRequest httpRequest) {
         return ApiResponse.success(intelligence.recommendOffer(request.dishId()), ApiTrace.id(httpRequest));
     }
 
+    @org.springframework.transaction.annotation.Transactional
     @PostMapping("/offers")
     public ApiResponse<Map<String, Object>> createOffer(@Valid @RequestBody OfferCreateRequest request,
                                                         HttpServletRequest httpRequest) {
@@ -197,6 +209,7 @@ public class ApiV1Controller {
         return ApiResponse.success(foodwise.orderByPickupCode(pickupCode), ApiTrace.id(request));
     }
 
+    @org.springframework.transaction.annotation.Transactional
     @PostMapping("/orders/{id}/verify")
     public ApiResponse<Map<String, Object>> verify(@PathVariable @Min(1) long id, HttpServletRequest request) {
         idempotency.reserve(request, "orders.verify");
@@ -212,6 +225,7 @@ public class ApiV1Controller {
         return ApiResponse.success(PageResponse.of(foodwise.alerts(), page, size), ApiTrace.id(request));
     }
 
+    @org.springframework.transaction.annotation.Transactional
     @PostMapping("/alerts/{id}/resolve")
     public ApiResponse<Map<String, Object>> resolveAlert(@PathVariable @Min(1) long id, HttpServletRequest request) {
         idempotency.reserve(request, "alerts.resolve");
@@ -232,6 +246,7 @@ public class ApiV1Controller {
         return ApiResponse.success(PageResponse.of(feedback.recentFeedback(), page, size), ApiTrace.id(request));
     }
 
+    @org.springframework.transaction.annotation.Transactional
     @PostMapping("/operations/feedback")
     public ApiResponse<OperationLearningResult> operationFeedback(@Valid @RequestBody FeedbackRequest request,
                                                                    HttpServletRequest httpRequest) {
@@ -246,9 +261,13 @@ public class ApiV1Controller {
 
     public record PredictionRequest(@Min(1) long dishId, @NotBlank String weather,
                                     boolean examWeek, boolean campusEvent,
-                                    String engine) {
+                                    String engine, java.time.LocalDate targetDate,
+                                    String mealPeriod, String sourceNature) {
         public PredictionRequest {
             engine = engine == null || engine.isBlank() ? "rule" : engine;
+            targetDate = targetDate == null ? java.time.LocalDate.now().plusDays(1) : targetDate;
+            mealPeriod = mealPeriod == null || mealPeriod.isBlank() ? "全日" : mealPeriod;
+            sourceNature = sourceNature == null || sourceNature.isBlank() ? "经营台账；来源待逐笔核验" : sourceNature;
         }
     }
 

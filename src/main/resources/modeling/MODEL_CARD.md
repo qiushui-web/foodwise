@@ -1,30 +1,23 @@
-# Model Card（全真实 · 零模拟 · waste_rate重估）
+# 校园模型卡：派生目标演示模型
 
-**生成时间**: 2026-08-31 09:38:15.283912
+复核日期：2026-10-12。此模型供工程演示，不是经过本地高校现场验证的销量模型。
 
-## 数据来源（原始观测与派生字段分开记录）
+## 当前产物
 
-- pretrain底座 534,326 行：
-  ① kaggle_food_demand 456,548 行（真实77团餐中心×51餐品×145周订单）
-  ② gylaf_campus 天津师大 14品类×126天 真实高校销量+天气编码
-  ③ kaggle_cc0 76,000 行（真实零售+天气+促销×2年）
-- 微调/回测 2,600 行：university_food_waste（真实中国高校 4档口×3餐次×4品类 1学年实测）
-- waste_rate 重估：gylaf真实高校日销量 × (meal×cat×stall) 三维行业权重 → waste_rate≈17.5%
+线上资源 lgbm_campus_model.txt、campus_feature_cols.json；导出入口 deploy/10_export_campus_model.py。24个特征名称/顺序已有静态检查，特征值及 Java/Python 推理一致性未验收。哈希以 modeling/data/03_output/FEATURE_CONTRACT_VERIFICATION.json 实际运行记录为准。
 
-## 预训练（log1p sold_qty）
+## 标签来源
 
-- model=LGBMRegressor(log target) n=500 lr=0.04 leaves=95
-- val_MAE=28.8206  val_MAPE=89.1719%
-- Top5 features=['lag_1_sold', 'same_dow_last_4w_mean', 'rolling_mean_7', 'rolling_mean_3', 'promotion_flag']
+校园导出使用 finetune_uwaste.parquet；其来源链包含 university_food_waste/university_canteen_waste.csv。原始文件2600行字段为日期、餐次、区域、品类、浪费重量、单位价格和成本损失，没有原始销量或备餐量。处理数据中的销量、备餐量、浪费份数等属于派生假设，不能称观测销量；误差不能证明真实销量预测精度。
 
-## 校园回测（项目内 14 天 simulation 台账）
+采集机构、地域、周期、真实性与许可待核实。旧卡“真实中国高校一学年实测”“真实零售天气”“全部销量属于来源方观测”等表述撤回。公开可下载或CC0不等于独立核实真实性。
 
-- rolling_windows=5，扩展训练集逐日预测
-- MAE、WAPE、sMAPE、RMSLE 见 `03_output/campus_metrics_report.json`
+历史 SmartBite 预训练与当前校园导出是不同管道，不以合计行数证明当前模型效果。历史误差数字、约17.5%派生浪费率只可追溯，不是现场校准依据。
 
+## 使用边界
 
-## 字段真实性与版本
+允许模型加载、接口、页面、预测管线演示。禁止宣称校园实测准确率、现场减损率、真实收入或无条件跨校泛化。固定百分比范围只是未校准经验范围，不能自动取得公开数据独立实验的区间覆盖证据。
 
-原始销量、交易、天气和浪费重量属于观测数据；`prepare_qty`、`waste_pieces`、`waste_rate` 及滞后/滚动特征属于规则或统计派生数据；模型输出属于预测数据。运行数据审计脚本后，以 `03_output/DATA_VERSION.json` 的哈希清单作为 Java 加载模型与训练产物的一致性依据。
+独立公开缩放销量实验入口 modeling/scripts/14_public_sales_validation.py，不导出或替换校园模型。合格来源、目标单位与字段语义对齐前不开展迁移。
 
-项目内 14 天经营台账明确标记为 `simulation`，只能用于流程和回测管线验证；真实试点结论必须来自新增的带来源证明的现场数据。五窗口销量指标见 `03_output/campus_metrics_report.json`，其中 `pred_waste` 不参与销量评估。
+替换演示模型的准入：可追溯销量标签、时间切分与冻结基线、独立区间校准、特征值及推理一致性、模型版本和降级测试全部通过。

@@ -148,7 +148,7 @@ def run_and_report():
             "改为98条本地从零训练，等实地数据积累到30+天/档口后再启用init_model继续微调。"
             "当前工程集成：90% 4因子规则 + 10% LGBM浅树，保证必赢纯规则基线。"
         ),
-        "data_source": "SmartBite (33,567 MIT) + 团队实地4档口×7菜品×14日=98条台账",
+        "data_source": "SmartBite (33,567 MIT) + 项目内经营测算4档口×7菜品×14日=98条 simulation 台账",
         "metric_method": "严格滚动时间序列回测（每日预测只用到当日之前的历史，无未来泄漏）",
         "model_comparison": metrics,
         "mape_improvement_rule_vs_final_pp": improve_pp,

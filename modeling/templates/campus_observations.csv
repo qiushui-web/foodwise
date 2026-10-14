@@ -1,0 +1,1 @@
+school_id,stall_id,dish_id,business_date,meal_period,unit,business_status,opening_qty,prepared_qty,transfer_in_qty,transfer_out_qty,sold_regular_qty,sold_discount_qty,refund_qty,returned_to_kitchen_qty,discarded_qty,closing_qty,revenue,stockout_at,unavailable_minutes,actual_plan_qty,override_reason,source_id,label_origin,recorded_at,quality_flags

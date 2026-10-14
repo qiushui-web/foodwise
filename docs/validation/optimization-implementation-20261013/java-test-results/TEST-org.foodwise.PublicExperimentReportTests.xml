@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.foodwise.PublicExperimentReportTests" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-13T10:43:05.279Z" hostname="LAPTOP-2R211UDQ" time="0.01">
+  <properties/>
+  <testcase name="missingOrInvalidReportsNeverFabricateAccuracy()" classname="org.foodwise.PublicExperimentReportTests" time="0.005"/>
+  <testcase name="frozenReportKeepsObservedScaledUnitsAndBaselineComparison()" classname="org.foodwise.PublicExperimentReportTests" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

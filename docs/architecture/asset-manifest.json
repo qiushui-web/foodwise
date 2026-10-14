@@ -1,0 +1,262 @@
+[
+  {
+    "path": "modeling/scripts/02_build_pretrain_features.py",
+    "sha256": "bf5f9935195fd88cc5df9060db71568bd5d57e7c701c320cbc2b4bf8f7f42c05",
+    "status": "historical-or-independent-review-required"
+  },
+  {
+    "path": "modeling/scripts/03_train_pretrain_lgbm.py",
+    "sha256": "bdfb3bc234d7946c9f53cb33f0bbd1cf6df05ac763fba93f529a932220e430f8",
+    "status": "historical-or-independent-review-required"
+  },
+  {
+    "path": "modeling/scripts/04_build_finetune_features.py",
+    "sha256": "fe505295d3db9d118106a7ab2fcb646bc77bca527518a4294b0d102734836fde",
+    "status": "historical-or-independent-review-required"
+  },
+  {
+    "path": "modeling/scripts/05_finetune_and_backtest.py",
+    "sha256": "d2604bfd205e0ee06121109de5a305edb9e5cf219cbeb5724520d80238ea34f9",
+    "status": "historical-or-independent-review-required"
+  },
+  {
+    "path": "modeling/scripts/06_export_for_java.py",
+    "sha256": "e67dd08715bdf562300791b366f72397e6c3e10ba8c512dea136038dd8ba0fa8",
+    "status": "historical-or-independent-review-required"
+  },
+  {
+    "path": "modeling/scripts/07_validate_kaggle.py",
+    "sha256": "049f0cd50c05f11cbdb1c564ce88cb9c443298b18b48a75f434ef5629db7a931",
+    "status": "historical-or-independent-review-required"
+  },
+  {
+    "path": "modeling/scripts/08_lstm_baseline.py",
+    "sha256": "27a26aca9f2b0b77b87f7c2201be1a03740bcd648495e0cdb66b2ab3ddaf11c0",
+    "status": "historical-or-independent-review-required"
+  },
+  {
+    "path": "modeling/scripts/08_lstm_baseline_part3.py",
+    "sha256": "e5775fe2428c4347e3c6d3baff2e03f9dd2d24c4ed1d71050475215ed005bda7",
+    "status": "historical-or-independent-review-required"
+  },
+  {
+    "path": "modeling/scripts/09_download_real_datasets.py",
+    "sha256": "f616f741da54d322d6637305ccbf5097a38c9051362b6a7fe26bf8b51bb3352f",
+    "status": "deprecated-explanatory-stub"
+  },
+  {
+    "path": "modeling/scripts/10_data_quality_audit.py",
+    "sha256": "f6104a92f382f1ff5c9ec9479c64aaff43c08e7bbb535b53bbd58e41940cfaca",
+    "status": "historical-or-independent-review-required"
+  },
+  {
+    "path": "modeling/scripts/11_evaluate_campus_metrics.py",
+    "sha256": "c3718d73208d04edc5940a5d63f5ba0a567da169767f7ea5f788d2c38e6a2cd0",
+    "status": "historical-or-independent-review-required"
+  },
+  {
+    "path": "modeling/scripts/12_campus_rolling_baseline.py",
+    "sha256": "7f8c87bd4ac7b9342f4b02da8c63e744ec67a2345dee944c5fcfcf65cb036f9a",
+    "status": "historical-or-independent-review-required"
+  },
+  {
+    "path": "modeling/scripts/13_source_audit.py",
+    "sha256": "ea1702514be70b2e660b4f6575a8df2dfae503423d6e9da7c2032e1f5ac87ba0",
+    "status": "historical-or-independent-review-required"
+  },
+  {
+    "path": "modeling/scripts/13_verify_java_artifacts.py",
+    "sha256": "0b89858bdf01c63cf535aa72d49946dd8c99dea5713032412dacf1b4ebc8070c",
+    "status": "historical-or-independent-review-required"
+  },
+  {
+    "path": "modeling/scripts/14_public_sales_validation.py",
+    "sha256": "1296e6f4d8177e4846dc96f1254d40221224248dd682707da182d8fa21b288d4",
+    "status": "current-verification"
+  },
+  {
+    "path": "modeling/scripts/15_feature_contract_check.py",
+    "sha256": "041f7a752bd3ed3dc84557ba6b8d679dd05bc9869c19639d228348aa782c0fad",
+    "status": "current-verification"
+  },
+  {
+    "path": "modeling/scripts/16_inference_parity_fixture.py",
+    "sha256": "c99bd6ba05536262bc77ea4dd8aa97da613c031806f5314aa2ad04c8d45a487d",
+    "status": "historical-or-independent-review-required"
+  },
+  {
+    "path": "modeling/scripts/17_internal_model_comparison.py",
+    "sha256": "89fd35649b84a3e6bb93cc3eab2945badcfa8448a9be27a87d504d8c536b9d6f",
+    "status": "historical-or-independent-review-required"
+  },
+  {
+    "path": "modeling/scripts/18_optimization_evidence.py",
+    "sha256": "3361b701a9565e60129300536a1db0773330c55eac064bc4b92ecd97a34b3461",
+    "status": "historical-or-independent-review-required"
+  },
+  {
+    "path": "modeling/scripts/19_summarize_optimization.py",
+    "sha256": "c433cbc7a3e5bcf59279bcc425204d745adf85ebb39f4b39c8c2efc0aaad3c42",
+    "status": "historical-or-independent-review-required"
+  },
+  {
+    "path": "modeling/scripts/20_verify_optimization.py",
+    "sha256": "6e87283978c7deacdf2270d7f4bf58c8fc547137ae55c704ad34860765c05909",
+    "status": "historical-or-independent-review-required"
+  },
+  {
+    "path": "modeling/scripts/21_entity_and_interval_validation.py",
+    "sha256": "946bd2a4e19c717860f8a0e95e869cfcd5f3092c44e4338f6ac420e8cf62db9b",
+    "status": "historical-or-independent-review-required"
+  },
+  {
+    "path": "modeling/scripts/22_upstream_provenance_review.py",
+    "sha256": "ad1a39a0746e03b9b3a3a54e9a152fa7b1e3975e63c330e4b6e13c7c5d0d4812",
+    "status": "historical-or-independent-review-required"
+  },
+  {
+    "path": "modeling/scripts/23_legacy_training_chain_audit.py",
+    "sha256": "d036e21954641b6ba0b37cb3e967984bd683401a4bbe3c4435ca889ab950c5b1",
+    "status": "historical-or-independent-review-required"
+  },
+  {
+    "path": "modeling/scripts/24_verify_entity_replay.py",
+    "sha256": "9b55e7df873258a7b21a03099ddfd0ae58fc893748eb4f886493a68494ba8648",
+    "status": "historical-or-independent-review-required"
+  },
+  {
+    "path": "modeling/scripts/_inspect_uwaste.py",
+    "sha256": "f616f741da54d322d6637305ccbf5097a38c9051362b6a7fe26bf8b51bb3352f",
+    "status": "deprecated-explanatory-stub"
+  },
+  {
+    "path": "modeling/scripts/modeling_pipeline.py",
+    "sha256": "e4d0a69dfe8a8ea537c61a3a4919b75359850d5fa7e941f000f46065f1ea2397",
+    "status": "historical-or-independent-review-required"
+  },
+  {
+    "path": "modeling/scripts/run_all.py",
+    "sha256": "f767ed272be2f5969ab86b4f24403701a6f006f07db7de76b4d1b896d0fa3044",
+    "status": "historical-or-independent-review-required"
+  },
+  {
+    "path": "modeling/scripts/verify_current.py",
+    "sha256": "4b1283f6c2d46b49ec1568fd80db76c3efa0535925b6225b6ade0a3b03cf1d81",
+    "status": "current-verification"
+  },
+  {
+    "path": "modeling/data/03_output/entity_interval_20261013T095827758320Z/metrics.json",
+    "sha256": "b97367d4d5f1a3bd9d892515563b0adaef484c01af71443ae317dd26543ccfcd",
+    "status": "retained-experiment-not-runtime-evidence"
+  },
+  {
+    "path": "modeling/data/03_output/entity_interval_20261013T100719991891Z/metrics.json",
+    "sha256": "305bce876e21b52c51b94f7f8fe3c35b646fbb30466fc6c70d78a83f1b671dc9",
+    "status": "retained-experiment-not-runtime-evidence"
+  },
+  {
+    "path": "modeling/data/03_output/internal_cv_20261013T094146389805Z/metrics.json",
+    "sha256": "8f83fe48f6d2bb01fb3075f2ed9bd6382a897dc89becf26387c44c8f65180265",
+    "status": "retained-experiment-not-runtime-evidence"
+  },
+  {
+    "path": "modeling/data/03_output/optimization_20261013T094604489654Z/metrics.json",
+    "sha256": "840bddcf141c7af1d8c45fd641b15437a8c8984e322c406ef15459234c67d15b",
+    "status": "retained-experiment-not-runtime-evidence"
+  },
+  {
+    "path": "modeling/data/03_output/optimization_20261013T094933099050Z/metrics.json",
+    "sha256": "aeef92143d33586d9515eaabb0be9703b0380dc47f86059177c1f250f94d2d42",
+    "status": "retained-experiment-not-runtime-evidence"
+  },
+  {
+    "path": "modeling/data/03_output/public_sales_20261012T064851961817Z/metrics.json",
+    "sha256": "4e1bcb6ee09d849efcdc80dad5c5996a63cb452fd6fe27134643daf4037f7b17",
+    "status": "retained-experiment-not-runtime-evidence"
+  },
+  {
+    "path": "modeling/data/03_output/public_sales_20261012T065048598254Z/metrics.json",
+    "sha256": "3fcdca10fb22cf15c50550e53d3ea2e977bfe0f2ad7aabc6d9731830516fab40",
+    "status": "retained-experiment-not-runtime-evidence"
+  },
+  {
+    "path": "modeling/data/03_output/public_sales_20261012T090610723345Z/metrics.json",
+    "sha256": "0645c98c5545de2ba4edba30580f11173a9816e504dfdcc3a0c3c7393dc91a9b",
+    "status": "retained-experiment-not-runtime-evidence"
+  },
+  {
+    "path": "modeling/data/03_output/public_sales_20261012T090638369705Z/metrics.json",
+    "sha256": "f69ec7c2c819d5aaebbfbabc5267e1f9e73d425b1a7b2ac5985d5e68e69539a1",
+    "status": "frozen-runtime-source"
+  },
+  {
+    "path": "modeling/data/03_output/public_sales_20261013T094503240676Z/metrics.json",
+    "sha256": "5c39220f6094af9e2606f17306e995003913af75458eec45b411d76185bcea0e",
+    "status": "reproduced-same-protocol"
+  },
+  {
+    "path": "src/main/resources/modeling/campus_backtest_predictions.csv",
+    "sha256": "538959b6439e5bf5d99ddb6dad757641f69488087d36ac3f6e8cc629b84623a1",
+    "status": "retained-resource-see-model-card"
+  },
+  {
+    "path": "src/main/resources/modeling/campus_backtest_report.json",
+    "sha256": "d75eea073646db992c20caee2970e13ae68afe1b4903aeb4dd43e629818aa41b",
+    "status": "retained-resource-see-model-card"
+  },
+  {
+    "path": "src/main/resources/modeling/campus_feature_cols.json",
+    "sha256": "a25ec8de74b654149cf01e1702b62ec1e6d5f59251745c8d07c795f65a215539",
+    "status": "retained-resource-see-model-card"
+  },
+  {
+    "path": "src/main/resources/modeling/category_coef_table.csv",
+    "sha256": "e5996006e83951f384d8a8bffc30a5a4c5b482122fd4ba971b43542a3905b35a",
+    "status": "retained-resource-see-model-card"
+  },
+  {
+    "path": "src/main/resources/modeling/category_volatility.csv",
+    "sha256": "2ce75f62ab9e3229398820fd563ba61397e3a7724c73a9d77646f6dce1d73c03",
+    "status": "retained-resource-see-model-card"
+  },
+  {
+    "path": "src/main/resources/modeling/feature_importance.csv",
+    "sha256": "0e53c90652c395bc97382c6f996a931c8244ad47dfddfd81b35c8d41168c69da",
+    "status": "retained-resource-see-model-card"
+  },
+  {
+    "path": "src/main/resources/modeling/feature_importance_campus.csv",
+    "sha256": "4793ba5d733f9e33b1d572cf28fd160920fd580e65bff3a220b9e24cca43fc68",
+    "status": "retained-resource-see-model-card"
+  },
+  {
+    "path": "src/main/resources/modeling/feature_weight_rule.csv",
+    "sha256": "988c530f91e07a339fd939bf3f023befc1f57f377dd8fd6df37f170382d328c6",
+    "status": "retained-resource-see-model-card"
+  },
+  {
+    "path": "src/main/resources/modeling/lgbm_campus_model.txt",
+    "sha256": "b4c5a2cb45f54e17c18e882ae7f0cceb5595797de889b6c5183d33fc97ead119",
+    "status": "retained-resource-see-model-card"
+  },
+  {
+    "path": "src/main/resources/modeling/lgbm_pretrained_model.txt",
+    "sha256": "5e0e5c697118160e0a1c80eebbb4e127cba518c06e8a3a3d44437261f9a4c6c4",
+    "status": "retained-resource-see-model-card"
+  },
+  {
+    "path": "src/main/resources/modeling/MODEL_CARD.md",
+    "sha256": "1c0eca7467b5596aed1a1f2b6fbe7767ded44abd01e2be4ec97af8e47bbf14ac",
+    "status": "retained-resource-see-model-card"
+  },
+  {
+    "path": "src/main/resources/modeling/pretrain_metrics.json",
+    "sha256": "8383cf4fc1ae3fd52a435488982f5e10e2b5cbaa880a39c24416698e41c8f856",
+    "status": "retained-resource-see-model-card"
+  },
+  {
+    "path": "src/main/resources/modeling/public_sales_report.json",
+    "sha256": "d700423fa01104e53ca64cbe90d1b97801db2772517c256e6dd4408dfa365010",
+    "status": "current-public-evidence"
+  }
+]

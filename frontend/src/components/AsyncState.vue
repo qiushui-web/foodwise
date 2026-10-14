@@ -1,0 +1,3 @@
+<script setup lang="ts">defineProps<{ loading?: boolean; error?: string; empty?: boolean }>(); defineEmits<{ retry: [] }>();</script>
+<template><div v-if="loading" class="fw-state" role="status">正在加载…</div><div v-else-if="error" class="fw-state fw-error" role="alert">{{ error }} <button type="button" @click="$emit('retry')">重试</button></div><div v-else-if="empty" class="fw-state" role="status"><slot name="empty">暂无数据。</slot></div><slot v-else /></template>
+<style scoped>.fw-state{padding:24px;background:#fff;border:1px solid #dce8f2;border-radius:12px;color:#496a85;font-size:14px}.fw-error{color:#9e332b}button{min-height:44px;margin-left:12px;color:#286daf;background:#fff;border:1px solid #bdd4e9;border-radius:6px;padding:8px 16px}</style>

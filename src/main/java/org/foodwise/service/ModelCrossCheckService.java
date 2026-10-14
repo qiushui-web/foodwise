@@ -24,6 +24,7 @@ import java.util.Optional;
  * 全程不修改训练模型结果，只做旁路基验，让"决策来自训练"可被外部模型复核。
  */
 @Service
+@org.springframework.boot.autoconfigure.condition.ConditionalOnProperty(name = "foodwise.prediction.experimental-enabled", havingValue = "true")
 public class ModelCrossCheckService {
 
     private final DualPredictionService dualPredictionService;
@@ -79,12 +80,9 @@ public class ModelCrossCheckService {
         // ---- ① 确定性交叉校验 ----
         List<Map<String, Object>> checks = new ArrayList<>();
         checks.add(check("模型运行时就绪", ready,
-                ready ? lgbmModel.treeCount() + "棵回归树已加载，纯Java推理与训练侧预测零误差" : "模型未就绪，当前仅有规则引擎结果"));
-        double mapeNum;
-        try { mapeNum = Double.parseDouble(lgbmModel.backtestMape()); }
-        catch (NumberFormatException e) { mapeNum = 999; }
-        checks.add(check("回测精度可信", mapeNum < 10,
-                "university_food_waste " + lgbmModel.trainedRows() + "行真实数据滚动回测 MAPE=" + lgbmModel.backtestMape() + "%"));
+                ready ? lgbmModel.treeCount() + "棵回归树已加载；运行就绪不代表预测有效" : "模型未就绪，当前仅有规则引擎结果"));
+        checks.add(check("销量标签与回测证据待核验", false,
+                "旧模型来源数据缺少原始销量标签，历史误差不作为真实销量预测精度证据"));
         if (lgbmPred != null) {
             double divergence = Math.abs(lgbmPred - rulePred) * 100.0 / Math.max(1, rulePred);
             checks.add(check("训练模型与规则引擎分歧度", divergence <= 30,

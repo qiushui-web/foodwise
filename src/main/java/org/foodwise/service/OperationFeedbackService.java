@@ -19,13 +19,15 @@ public class OperationFeedbackService {
     private static final String LEARNING_METHOD = "最近7日递增权重滚动更新";
     private final FoodwiseRepository repository;
     private final PredictionService predictionService;
+    private final org.springframework.context.ApplicationEventPublisher events;
 
-    public OperationFeedbackService(FoodwiseRepository repository, PredictionService predictionService) {
+    public OperationFeedbackService(FoodwiseRepository repository, PredictionService predictionService, org.springframework.context.ApplicationEventPublisher events) {
         this.repository = repository;
         this.predictionService = predictionService;
+        this.events = events;
     }
 
-    @Transactional
+    @Transactional(propagation = org.springframework.transaction.annotation.Propagation.NESTED)
     public OperationLearningResult submit(LocalDate businessDate, String mealPeriod, long dishId, int plannedQty,
                                           int preparedQty, int soldQty, int discountSoldQty,
                                           int leftoverQty, BigDecimal revenue, String weather,
@@ -82,8 +84,12 @@ public class OperationFeedbackService {
                 : "供需处于可控范围，新记录将在下一次备餐预测和经营复盘中直接使用。";
 
         // 反馈闭环：自动更新模型参数
-        autoUpdateModel(dishId);
+        org.springframework.transaction.support.TransactionSynchronizationManager.registerSynchronization(
+                new org.springframework.transaction.support.TransactionSynchronization() {
+                    @Override public void afterCommit() { autoUpdateModel(dishId); }
+                });
 
+        events.publishEvent(new OperationDataChanged(dishId));
         return new OperationLearningResult(saved.operationId(), dishId, dish.name(),
                 businessDate, saved.updated(), afterSales.size(), baselineBefore, baselineAfter,
                 adjustmentRate, leftoverRate, LEARNING_METHOD, summary, nextAction);
@@ -177,6 +183,7 @@ public class OperationFeedbackService {
                 .mapToInt(Integer::intValue).average().orElse(1);
         double recent = chronological.subList(chronological.size() / 2, chronological.size()).stream()
                 .mapToInt(Integer::intValue).average().orElse(early);
+        if (early == 0) return recent == 0 ? 1.0 : 1.08;
         return Math.max(0.92, Math.min(1.08, recent / early));
     }
 

@@ -2,7 +2,7 @@
 """
 10_export_campus_model.py
 高校场景真实 LGBM 模型导出（可复现、可审计）
-- 数据: finetune_uwaste.parquet (university_food_waste 2600行真实高校浪费实测)
+- 数据: finetune_uwaste.parquet (university_food_waste 公开高校浪费观测)
 - 严格滚动回测: 2 个扩展窗口, 无未来泄漏
 - 产物: lgbm_campus_model.txt(全量训练最终模型) + campus_feature_cols.json
         + campus_backtest_report.json + campus_backtest_predictions.csv
@@ -142,8 +142,8 @@ def main():
     pred_df.to_csv(JAVA_RES / "campus_backtest_predictions.csv", index=False, encoding="utf-8-sig")
 
     report = {
-        "scenario": "高校场景严格滚动回测: university_food_waste 2600行真实实测 (2扩展窗口, 无未来泄漏)",
-        "data_source": "Kaggle university canteen food-waste 实测 (4档口x3餐次x4品类, 1学年)",
+        "scenario": "高校场景严格滚动回测: university_food_waste 2600行公开观测 (2扩展窗口, 无未来泄漏)",
+        "data_source": "Kaggle university canteen food-waste 公开数据 (4档口x3餐次x4品类, 1学年)",
         "rolling_windows": 2,
         "avg_mae": round(avg_mae, 3),
         "avg_mape_pct": round(avg_mape, 3),

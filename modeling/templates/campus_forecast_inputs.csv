@@ -1,0 +1,1 @@
+school_id,stall_id,dish_id,target_date,meal_period,prediction_cutoff_at,available_at,price,unit_cost,price_effective_at,planned_open_at,planned_close_at,forecast_temperature,forecast_precipitation,forecast_issued_at,exam_flag,event_flag,promotion_plan,capacity_qty,min_batch_qty,lead_time_minutes,source_id

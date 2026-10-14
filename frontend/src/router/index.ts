@@ -1,17 +1,18 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { publicBase } from "../utils/public-base";
 import AppLayout from "../layouts/AppLayout.vue";
-import DashboardView from "../views/DashboardView.vue";
-import PredictionView from "../views/PredictionView.vue";
-import OrdersView from "../views/OrdersView.vue";
-import StallsView from "../views/StallsView.vue";
-import OffersView from "../views/OffersView.vue";
-import FeedbackView from "../views/FeedbackView.vue";
-import AlertsView from "../views/AlertsView.vue";
-import ReportsView from "../views/ReportsView.vue";
-import InsightsView from "../views/InsightsView.vue";
-import AboutView from "../views/AboutView.vue";
-import LoginView from "../views/LoginView.vue";
+const DashboardView = () => import("../views/DashboardView.vue");
+const PredictionView = () => import("../views/PredictionView.vue");
+const OrdersView = () => import("../views/OrdersView.vue");
+const StallsView = () => import("../views/StallsView.vue");
+const OffersView = () => import("../views/OffersView.vue");
+const FeedbackView = () => import("../views/FeedbackView.vue");
+const AlertsView = () => import("../views/AlertsView.vue");
+const ReportsView = () => import("../views/ReportsView.vue");
+const InsightsView = () => import("../views/InsightsView.vue");
+const AboutView = () => import("../views/AboutView.vue");
+const NotFoundView = () => import("../views/NotFoundView.vue");
+const LoginView = () => import("../views/LoginView.vue");
 
 const routes = [
   { path: "/login", component: LoginView },
@@ -33,13 +34,16 @@ const routes = [
       { path: "insights/demand", component: InsightsView, meta: { title: "需求预测分析", active: "insights-demand", insight: "demand" } },
       { path: "insights/waste", component: InsightsView, meta: { title: "减损场景分析", active: "insights-waste", insight: "waste" } },
       { path: "about", component: AboutView, meta: { title: "服务说明", active: "about" } },
-      { path: ":pathMatch(.*)*", redirect: "/app/dashboard" },
+      { path: ":pathMatch(.*)*", component: NotFoundView, meta: { title: "页面未找到", active: "dashboard" } },
     ],
   },
 ];
 
-export default createRouter({
+const router = createRouter({
   history: createWebHistory(publicBase),
   routes,
   scrollBehavior: () => ({ top: 0 }),
 });
+
+router.afterEach((to) => { document.title = `${String(to.meta.title || "食刻有数")} | 食刻有数`; });
+export default router;

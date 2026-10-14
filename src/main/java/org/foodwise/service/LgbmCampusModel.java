@@ -14,13 +14,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 高校场景真实 LightGBM 模型运行时（纯 Java 文本模型推理，零原生库依赖）。
+ * 校园场景派生目标演示模型运行时（纯 Java 文本模型推理）。
  * <p>
- * 模型来源：university_food_waste 2600 行真实高校食堂实测数据训练（离线 Python 管道导出）。
+ * 模型来源：university_food_waste 派生目标训练，不具有观测销量验证资格。
  * 推理方式：直接解析 LightGBM 官方文本模型文件（tree / split_feature / threshold /
  * left_child / right_child / leaf_value / internal_value），逐树遍历求和。
- * 该解析逻辑已在 Python 侧与原生 LightGBM booster.predict 在全部 2600 行上逐行比对，
- * 误差为 0（max|diff| = 0.0），即「Java 推理结果 == 训练模型真实输出」。
+ * CampusInferenceParityTests 对 34 个冻结有限向量验证原生推理的数值容差；
+ * 该证据不覆盖线上特征构造、缺失值或标签真实性。
  * <p>
  * 目标变换：训练时 log1p(sold_qty)，推理输出 expm1 还原为份数，截断 [1, 400]。
  * 模型文件缺失/解析失败时 ready=false，上层自动降级为规则引擎，不影响业务。
@@ -128,9 +128,9 @@ public class LgbmCampusModel {
             this.ready = true;
             double[] probe = new double[featureCount];
             Double probePred = predict(probe);
-            System.out.println("[LgbmCampusModel] 真实模型加载成功(纯Java推理) trees=" + trees.size()
+            System.out.println("[LgbmCampusModel] 派生目标演示模型加载成功(纯Java推理) trees=" + trees.size()
                     + " features=" + featureCount + " 自检输出=" + probePred
-                    + " 回测MAPE=" + backtestMape + "% 训练行数=" + trainedRows);
+                    + " 观测销量精度未验证 训练行数=" + trainedRows);
         } catch (Throwable t) {
             this.ready = false;
             System.err.println("[LgbmCampusModel] 初始化失败，降级为规则引擎: " + t);
@@ -211,7 +211,7 @@ public class LgbmCampusModel {
         return Math.max(1.0, Math.min(400.0, sold));
     }
 
-    /** log 空间原始输出：所有树叶值求和（与 Python 侧 booster.predict 逐行比对误差为 0） */
+    /** log 空间原始输出：所有树叶值求和，数值契约由冻结样例测试覆盖。 */
     private double rawScore(double[] x) {
         double sum = 0;
         for (Tree t : trees) sum += leafValue(t, x);
@@ -367,7 +367,9 @@ public class LgbmCampusModel {
             String line;
             while ((line = reader.readLine()) != null) sb.append(line);
             String json = sb.toString();
-            backtestMape = extractNumber(json, "avg_mape_pct");
+            // Original waste CSV has no observed sales label. Do not expose its
+            // reconstructed-label backtest as evidence of sales accuracy.
+            backtestMape = "待核验";
             String rows = extractNumber(json, "n_train_final");
             if (!"—".equals(rows)) {
                 try { trainedRows = (int) Double.parseDouble(rows); } catch (Exception ignored) { }

@@ -1,0 +1,42 @@
+
+> foodwise-frontend@0.1.0 test:e2e
+> playwright test --workers=1
+
+
+Running 32 tests using 1 worker
+
+  ok  1 [chromium] › e2e\api-client.spec.ts:5:1 › write intent reuses retries and changes keys for a new intent (4ms)
+  ok  2 [chromium] › e2e\api-client.spec.ts:14:1 › client preserves pagination and clears timeout after abort or errors (171ms)
+  ok  3 [chromium] › e2e\app.spec.ts:3:1 › dashboard renders real data and routes to prediction (1.4s)
+  -   4 [chromium] › e2e\app.spec.ts:17:1 › mobile navigation opens and business pages are not placeholders
+  ok  5 [chromium] › e2e\app.spec.ts:28:1 › all business routes load without console or page errors (1.9s)
+  ok  6 [chromium] › e2e\app.spec.ts:47:1 › CSV import requires preview and explicit safety confirmation (1.2s)
+  ok  7 [chromium] › e2e\app.spec.ts:73:1 › pickup code lookup verifies order details before enabling handoff (981ms)
+  ok  8 [chromium] › e2e\app.spec.ts:84:1 › stale inventory cannot produce an offer and form stays usable (931ms)
+  ok  9 [chromium] › e2e\app.spec.ts:92:1 › key workbench screens fit the viewport without page overflow (1.1s)
+  ok 10 [chromium] › e2e\core-workflow.spec.ts:6:1 › writes refresh aggregates, predictions persist, discounts publish and orders verify once (1.2s)
+  ok 11 [chromium] › e2e\core-workflow.spec.ts:34:1 › analyst can read but cannot submit operational writes (153ms)
+  ok 12 [chromium] › e2e\core-workflow.spec.ts:41:1 › CSV preview then mixed import reports accepted and rejected rows (1.6s)
+  ok 13 [chromium] › e2e\optimization.spec.ts:5:1 › unknown route and session failure explain the next action (1.2s)
+  ok 14 [chromium] › e2e\optimization.spec.ts:14:1 › narrow screens and enlarged text keep reports readable (3.1s)
+  -  15 [chromium] › e2e\optimization.spec.ts:35:1 › mobile drawer closes on Escape and returns keyboard focus
+  ok 16 [chromium] › e2e\prefix.spec.ts:7:1 › foodwise prefix keeps login, assets, API, and subpages isolated (2.2s)
+  ok 17 [mobile] › e2e\api-client.spec.ts:5:1 › write intent reuses retries and changes keys for a new intent (4ms)
+  ok 18 [mobile] › e2e\api-client.spec.ts:14:1 › client preserves pagination and clears timeout after abort or errors (189ms)
+  ok 19 [mobile] › e2e\app.spec.ts:3:1 › dashboard renders real data and routes to prediction (1.0s)
+  ok 20 [mobile] › e2e\app.spec.ts:17:1 › mobile navigation opens and business pages are not placeholders (1.2s)
+  ok 21 [mobile] › e2e\app.spec.ts:28:1 › all business routes load without console or page errors (1.8s)
+  ok 22 [mobile] › e2e\app.spec.ts:47:1 › CSV import requires preview and explicit safety confirmation (1.2s)
+  ok 23 [mobile] › e2e\app.spec.ts:73:1 › pickup code lookup verifies order details before enabling handoff (1.0s)
+  ok 24 [mobile] › e2e\app.spec.ts:84:1 › stale inventory cannot produce an offer and form stays usable (931ms)
+  ok 25 [mobile] › e2e\app.spec.ts:92:1 › key workbench screens fit the viewport without page overflow (1.3s)
+  ok 26 [mobile] › e2e\core-workflow.spec.ts:6:1 › writes refresh aggregates, predictions persist, discounts publish and orders verify once (802ms)
+  ok 27 [mobile] › e2e\core-workflow.spec.ts:34:1 › analyst can read but cannot submit operational writes (139ms)
+  ok 28 [mobile] › e2e\core-workflow.spec.ts:41:1 › CSV preview then mixed import reports accepted and rejected rows (1.4s)
+  ok 29 [mobile] › e2e\optimization.spec.ts:5:1 › unknown route and session failure explain the next action (1.2s)
+  ok 30 [mobile] › e2e\optimization.spec.ts:14:1 › narrow screens and enlarged text keep reports readable (1.9s)
+  ok 31 [mobile] › e2e\optimization.spec.ts:35:1 › mobile drawer closes on Escape and returns keyboard focus (941ms)
+  ok 32 [mobile] › e2e\prefix.spec.ts:7:1 › foodwise prefix keeps login, assets, API, and subpages isolated (2.0s)
+
+  2 skipped
+  30 passed (36.3s)

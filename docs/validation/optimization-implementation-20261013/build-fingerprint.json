@@ -1,0 +1,224 @@
+{
+  "evidence_finalized": "2026-10-14",
+  "suites": [
+    {
+      "name": "org.foodwise.CampusInferenceParityTests",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.foodwise.FoodwiseApplicationTests",
+      "tests": "15",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.foodwise.OperationCacheTests",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.foodwise.PredictionAtomicityTests",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.foodwise.PredictionHistoryTests",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.foodwise.PredictionPolicyTests",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.foodwise.PublicExperimentReportTests",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    }
+  ],
+  "tests": 24,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "jar_sha256": "1555a25930007560d7e20580db1c3e9dddc2f7c1953cac85478d5c2898432fcc",
+  "archive_entries_verified": 25,
+  "packaged_resources": [
+    {
+      "path": "static/build/AboutView.css",
+      "sha256": "0a0572080f94de5e4c24f15a4a2c8e8f320589f2d6907d79bc499db8e294ccf7",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/AlertsView.css",
+      "sha256": "5d6001540800a19ad9602fc7b626ba9baf4c3fcfae4b89aa4cf6dfa7537a0e05",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/app.css",
+      "sha256": "ea69814c92a6ff97db7ea32928cf85afcbe6cec0a48746a1b4c19fea2a578dc7",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/app.js",
+      "sha256": "8c97aed4b71edf8d032719bb0f70c6417720eba9bbcb630a6653f28db261a54f",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/chunks/AboutView-DLhrgQjG.js",
+      "sha256": "7a407094acd39deb70ed69ce09361fed0b1132b5441aba5c74ca990cf23208f1",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/chunks/AlertsView-D5dPKLZg.js",
+      "sha256": "4c3240147c1a532db680f0fa97e1f59748012743c8b22695db544b9871fa4a36",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/chunks/DashboardView-DDI7lBV2.js",
+      "sha256": "0a462b58278a29c0210e9b26dcff0679b3f201b6b6a7e6c76e3f17053f93dc84",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/chunks/dish-photo-vZ2FvkDd.js",
+      "sha256": "764e3c07bc6f8908d633202063e74d61941b7d8b9d6866e8871dfe4785d4c28a",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/chunks/FeedbackView-CyHkF9pp.js",
+      "sha256": "1049222225d12634644ddc92f28fe2923690dd9306890c5badfc86f9dd92c8e8",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/chunks/InsightsView-DtFif_H-.js",
+      "sha256": "3bfbf57c12791ab7f10fcbb88d8e4b8e7f04daccc15a88c8f0dc2a4e6e06217a",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/chunks/LoginView-tBfW9n6J.js",
+      "sha256": "dcffe52be874cb814183666b6a7557764db842b539a12fe4365899fdfd4f818f",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/chunks/NotFoundView-BcfES_nW.js",
+      "sha256": "71ffd56099ff3d59e457d276e6f9bb5ca88da067ce4fa1b2a253fe1c82b9566b",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/chunks/OffersView-D7YdxKu_.js",
+      "sha256": "b4c482b79c86a32fd660088b817c6a6f05dbbd3481a1c393896784f73c6c2ce8",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/chunks/OrdersView-C2IpWAZW.js",
+      "sha256": "d50a2c3cac229ce6536b5964cb42d836c00215a127299dc77decf1851290b29d",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/chunks/PageHeader-BphD0-gm.js",
+      "sha256": "62537cf79406bc383535a4fc9555c30649735c5531fc42f7dcee55ff7835f954",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/chunks/PredictionView-DDgHiZuz.js",
+      "sha256": "73af0a99e6940ccb37b0e271d80885588685f8120cade0c8d32ec259131d94f8",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/chunks/ReportsView-DZU7Vnkz.js",
+      "sha256": "2ac27baffebdbf95c0f972661181d8d67ddda34ad846bb57fe1e82181e254f9c",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/chunks/StallsView-DQJoRb1S.js",
+      "sha256": "78d2e0f17f0772c3c20cf3ea75603464d9e440e9a4173dbe2454407580ca45f5",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/chunks/write-intent-zdXd9Nd-.js",
+      "sha256": "239993b80c0510b2e6f8bc33b8f2f6e747c68178a4661ae09e4c1685d804ddba",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/DashboardView.css",
+      "sha256": "c17ae8c52aebba3ff7fa867b0defcec4a02c1b83bfc42ec6a934ea0857a462e7",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/FeedbackView.css",
+      "sha256": "b71f421097d59a75f4119f05bd9a68ac9265bbb160328241aca261839057afdf",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/InsightsView.css",
+      "sha256": "8a615dcceeff1562cc94cfa4f885dc8cf8805460724590060655219f03556a18",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/LoginView.css",
+      "sha256": "81b3db28298e69a61b302961b85930a7e36dbf16e2d627434a06dec910722bc0",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/OffersView.css",
+      "sha256": "5c464aadf3ee98d58ba86c65557046011aa09bc0dab87e087c1e989d1578f13b",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/OrdersView.css",
+      "sha256": "8818d67f76049adadd5e65fbb18b710e9d96dc9fa780da39139e2db55f5df7ad",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/PageHeader.css",
+      "sha256": "edfc4ef2ca73d8fb777153ac9da6e5813fd4334adf38897c514aec91e2afdccb",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/PredictionView.css",
+      "sha256": "a1dd58cba9b3d6416b0da913f0f1e87a9da7ee3e941a649b07d7d2e9d20b8ec5",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/ReportsView.css",
+      "sha256": "27101ba545429cefe9edb892ae94e36d80f377fcbf3845735b49d6b63c365b38",
+      "jar_matches": true
+    },
+    {
+      "path": "static/build/StallsView.css",
+      "sha256": "dbfecfcabb9f271d640a816b16b6a01afceb09570b88248fec9a8abb1fbc8888",
+      "jar_matches": true
+    },
+    {
+      "path": "static/css/foodwise.css",
+      "sha256": "3c394bca40da7225d43fcb2068fb6037c70ffd010e773c302229cbcfeb963d13",
+      "jar_matches": true
+    },
+    {
+      "path": "modeling/public_sales_report.json",
+      "sha256": "d700423fa01104e53ca64cbe90d1b97801db2772517c256e6dd4408dfa365010",
+      "jar_matches": true
+    }
+  ],
+  "browser": {
+    "passed": 30,
+    "skipped": 2,
+    "failed": 0,
+    "skip_reason": "desktop projects: mobile-only drawer tests"
+  },
+  "python_tests": 26
+}

@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import type { Dish, FeedbackRow, LearningStatus, LearningResult, ImportPreview, ImportResult } from "../api/types";
+import PageHeader from "../components/PageHeader.vue";
 import { computed, onMounted, ref, watch } from "vue";
-import { getApi, postApi, postFormApi } from "../utils/vue-api";
+import { createWriteIntent } from "../api/write-intent";
+import { getAllPages, getApi, postApi, postFormApi } from "../utils/vue-api";
 import { useRoute } from "vue-router";
+import { publicPath } from "../utils/public-base";
 const route = useRoute();
 
 function todayLocal() {
@@ -9,10 +13,11 @@ function todayLocal() {
   return [now.getFullYear(), String(now.getMonth() + 1).padStart(2, "0"), String(now.getDate()).padStart(2, "0")].join("-");
 }
 
-const dishes = ref<any[]>([]);
-const history = ref<any[]>([]);
-const status = ref<any>({});
-const submitted = ref<any>(null);
+const dishes = ref<Dish[]>([]);
+const history = ref<FeedbackRow[]>([]);
+const status = ref<LearningStatus>({});
+const submitted = ref<LearningResult | null>(null);
+const writeIntent = createWriteIntent();
 const error = ref("");
 const busy = ref(false);
 const mode = ref<"single" | "import">("single");
@@ -26,22 +31,23 @@ const valid = computed(() => Boolean(form.value.dishId && form.value.operatorNam
   && [form.value.plannedQty, form.value.soldQty, form.value.discountSoldQty, form.value.leftoverQty, form.value.revenue].every((value) => value >= 0));
 
 const csvFile = ref<File | null>(null);
-const preview = ref<any>(null);
-const batchResult = ref<any>(null);
+const preview = ref<ImportPreview | null>(null);
+const batchResult = ref<ImportResult | null>(null);
 const importError = ref("");
 const previewing = ref(false);
 const importing = ref(false);
+const importIntent = createWriteIntent();
 const importSafetyConfirmed = ref(false);
 const importOperatorName = ref("");
 
 async function refreshHistory() {
-  [history.value, status.value] = await Promise.all([getApi("/operations/feedback"), getApi("/operations/learning-status")]);
+  [history.value, status.value] = await Promise.all([getAllPages<FeedbackRow>("/operations/feedback"), getApi<LearningStatus>("/operations/learning-status")]);
 }
 onMounted(async () => {
   try {
     const saved = sessionStorage.getItem("foodwise-feedback-draft");
     if (saved) form.value = { ...form.value, ...JSON.parse(saved), safetyConfirmed: false };
-    [dishes.value, history.value, status.value] = await Promise.all([getApi("/dishes"), getApi("/operations/feedback"), getApi("/operations/learning-status")]);
+    [dishes.value, history.value, status.value] = await Promise.all([getAllPages<Dish>("/dishes"), getAllPages<FeedbackRow>("/operations/feedback"), getApi<LearningStatus>("/operations/learning-status")]);
     const requestedDish = Number(route.query.dishId);
     if (dishes.value.some((dish) => dish.id === requestedDish)) form.value.dishId = requestedDish;
     else if (!dishes.value.some((dish) => dish.id === form.value.dishId)) form.value.dishId = dishes.value[0]?.id ?? 0;
@@ -51,7 +57,7 @@ watch(form, (value) => sessionStorage.setItem("foodwise-feedback-draft", JSON.st
 async function submit() {
   if (!valid.value || !form.value.safetyConfirmed) { error.value = "请填写实际记录，核对数量关系并确认食品安全"; return; }
   busy.value = true; error.value = ""; submitted.value = null;
-  try { submitted.value = await postApi("/operations/feedback", form.value); sessionStorage.removeItem("foodwise-feedback-draft"); await refreshHistory(); }
+  try { submitted.value = await postApi<LearningResult>("/operations/feedback", form.value, writeIntent.key(form.value)); writeIntent.complete(); sessionStorage.removeItem("foodwise-feedback-draft"); await refreshHistory(); }
   catch (e) { error.value = e instanceof Error ? e.message : "回传失败"; }
   finally { busy.value = false; }
 }
@@ -63,7 +69,7 @@ async function previewCsv() {
   if (!csvFile.value) return;
   previewing.value = true; importError.value = ""; preview.value = null;
   const body = new FormData(); body.append("file", csvFile.value);
-  try { preview.value = await postFormApi("/operations/import/preview", body); }
+  try { preview.value = await postFormApi<ImportPreview>("/operations/import/preview", body); }
   catch (e) { importError.value = e instanceof Error ? e.message : "预览失败"; }
   finally { previewing.value = false; }
 }
@@ -74,14 +80,14 @@ async function importCsv() {
   body.append("file", csvFile.value);
   body.append("operatorName", importOperatorName.value.trim());
   body.append("safetyConfirmed", "true");
-  try { batchResult.value = await postFormApi("/operations/import", body, true); await refreshHistory(); }
+  try { batchResult.value = await postFormApi<ImportResult>("/operations/import", body, importIntent.key({ content: await csvFile.value.text(), operator: importOperatorName.value })); importIntent.complete(); await refreshHistory(); }
   catch (e) { importError.value = e instanceof Error ? e.message : "导入失败"; }
   finally { importing.value = false; }
 }
 </script>
 
 <template>
-  <div class="view-head"><span class="kicker">经营台账</span><h2>把实际经营结果记下来</h2><p>每个营业日按餐次和菜品填写；已有历史 CSV 时先预览，再批量导入。记录会影响后续预测。</p></div>
+  <PageHeader title="把实际经营结果记下来" description="每个营业日按餐次和菜品填写；已有历史 CSV 时先预览，再批量导入。记录会影响后续预测。" eyebrow="经营台账" /><a class="btn secondary" :href="publicPath('api/v1/operations/export')">导出当前经营台账 CSV</a>
   <div class="method-tabs" role="tablist" aria-label="录入方式"><button type="button" role="tab" :aria-selected="mode === 'single'" @click="mode = 'single'">单条录入</button><button type="button" role="tab" :aria-selected="mode === 'import'" @click="mode = 'import'">CSV 批量导入</button></div>
   <div v-if="mode === 'single'" class="method-guide"><strong>闭餐后核对</strong><span>按真实日期和餐次填写。未提交内容保存在当前浏览器标签页；关闭标签页后不会长期保留。</span></div>
 
@@ -135,5 +141,5 @@ async function importCsv() {
 
 <style scoped>
 .method-tabs{display:inline-flex;gap:4px;padding:4px;margin-bottom:16px;border:1px solid #d3e3ef;border-radius:8px;background:#edf4fa}.method-tabs button{min-height:42px;padding:8px 16px;border:0;border-radius:5px;background:transparent;color:#426783;font-size:14px;font-weight:700;cursor:pointer}.method-tabs button[aria-selected=true]{background:#fff;color:#236bb0;box-shadow:0 1px 5px rgba(28,76,117,.14)}.history-panel td small{display:block;color:#647f96;margin-top:3px}.import-operator{max-width:400px;margin:12px 0}
-.view-head{margin-bottom:20px}.kicker{font-size:12px;color:#3478c9;font-weight:700}.view-head h2{font-size:28px;margin:8px 0}.view-head p,.helper,.side-note p{color:#5f7890;font-size:14px;line-height:1.7}.method-guide{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;margin-bottom:18px;border:1px solid #cfe3f3;border-radius:8px;background:#f1f8ff;font-size:14px;line-height:1.7;color:#446986}.method-guide strong{flex:none;color:#245e97}.feedback-grid{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:16px;margin-bottom:16px}.panel{background:#fff;border:1px solid #dce8f2;border-radius:8px;padding:22px;margin-bottom:16px}.panel h3{margin:6px 0 12px;font-size:18px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}label{display:block;font-size:14px;color:#486680;font-weight:600}input,select,textarea{display:block;width:100%;box-sizing:border-box;margin-top:7px;padding:10px 11px;border:1px solid #cbdfee;border-radius:8px;background:#fff;color:#29445e;font-size:14px}input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #3478c9;outline-offset:1px}.wide{margin-top:14px}.check{font-size:13px;color:#416b89;line-height:1.7}.check.invalid,.error{color:#b7433d}.checkbox{display:flex;align-items:flex-start;gap:8px;margin:12px 0;font-size:14px;line-height:1.5}.checkbox input{width:auto;margin:3px 0 0}.btn{border:0;border-radius:8px;padding:11px 16px;font-weight:700;cursor:pointer;font-size:14px}.primary{background:#3478c9;color:#fff}.secondary{border:1px solid #bcd6ea;background:#eef6ff;color:#286daf}.btn:disabled{opacity:.45;cursor:not-allowed}.success{color:#16734d;font-size:14px}.side-note ol{padding-left:20px;font-size:14px;line-height:1.8;color:#496780}.side-note li{margin-bottom:10px}.import-actions{display:flex;align-items:end;gap:12px;margin:16px 0}.import-actions label{flex:1}.csv-header{display:block;overflow-x:auto;padding:12px;border-radius:8px;background:#f1f6fb;color:#254d70;font-size:12px;white-space:nowrap}.preview-box{padding:14px 16px;margin:14px 0;background:#f3f9fe;border:1px solid #d5e8f6;border-radius:8px;font-size:13px;color:#476984;overflow-wrap:anywhere}.preview-box strong{font-size:14px}.preview-box p{line-height:1.6}.preview-box ul{padding-left:19px}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:13px;min-width:660px}th{text-align:left;background:#f2f7fc;padding:11px;color:#526f88}td{padding:12px;border-top:1px solid #e4edf5}.history-panel{margin-top:16px}@media(max-width:800px){.feedback-grid,.form-grid{grid-template-columns:1fr}.import-actions,.method-guide{display:block}.import-actions button{margin-top:10px}.side-note{margin-top:0}}
+.view-head p,.helper,.side-note p{color:#5f7890;font-size:14px;line-height:1.7}.method-guide{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;margin-bottom:18px;border:1px solid #cfe3f3;border-radius:8px;background:#f1f8ff;font-size:14px;line-height:1.7;color:#446986}.method-guide strong{flex:none;color:#245e97}.feedback-grid{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:16px;margin-bottom:16px}.panel h3{margin:6px 0 12px;font-size:18px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}label{display:block;font-size:14px;color:#486680;font-weight:600}input,select,textarea{display:block;width:100%;box-sizing:border-box;margin-top:7px;padding:10px 11px;border:1px solid #cbdfee;border-radius:8px;background:#fff;color:#29445e;font-size:14px}input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #286daf;outline-offset:1px}.wide{margin-top:14px}.check{font-size:13px;color:#416b89;line-height:1.7}.check.invalid,.error{color:#b7433d}.checkbox{display:flex;align-items:flex-start;gap:8px;margin:12px 0;font-size:14px;line-height:1.5}.checkbox input{width:auto;margin:3px 0 0}.btn{border:0;border-radius:8px;padding:11px 16px;font-weight:700;cursor:pointer;font-size:14px}.primary{background:#286daf;color:#fff}.secondary{border:1px solid #bcd6ea;background:#eef6ff;color:#286daf}.btn:disabled{opacity:.45;cursor:not-allowed}.success{color:#16734d;font-size:14px}.side-note ol{padding-left:20px;font-size:14px;line-height:1.8;color:#496780}.side-note li{margin-bottom:10px}.import-actions{display:flex;align-items:end;gap:12px;margin:16px 0}.import-actions label{flex:1}.csv-header{display:block;overflow-x:auto;padding:12px;border-radius:8px;background:#f1f6fb;color:#254d70;font-size:12px;white-space:nowrap}.preview-box{padding:14px 16px;margin:14px 0;background:#f3f9fe;border:1px solid #d5e8f6;border-radius:8px;font-size:13px;color:#476984;overflow-wrap:anywhere}.preview-box strong{font-size:14px}.preview-box p{line-height:1.6}.preview-box ul{padding-left:19px}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:13px;min-width:660px}th{text-align:left;background:#f2f7fc;padding:11px;color:#526f88}td{padding:12px;border-top:1px solid #e4edf5}.history-panel{margin-top:16px}@media(max-width:800px){.feedback-grid,.form-grid{grid-template-columns:1fr}.import-actions,.method-guide{display:block}.import-actions button{margin-top:10px}.side-note{margin-top:0}}
 </style>

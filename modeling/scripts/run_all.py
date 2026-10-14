@@ -30,6 +30,8 @@ def run_step(name):
         raise RuntimeError(name + " failed with exit " + str(r.returncode))
 
 def main():
+    if "--historical" not in sys.argv:
+        raise SystemExit("Historical derived-label pipeline. Use verify_current.py for current checks; explicit --historical required to regenerate old artifacts.")
     t0 = time.time()
     sep = "=" * 70
     print(sep)

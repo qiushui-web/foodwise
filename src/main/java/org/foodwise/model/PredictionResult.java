@@ -20,6 +20,15 @@ public record PredictionResult(
         List<Factor> factors,
         IntelligentAdvice advice
 ) {
+    @com.fasterxml.jackson.annotation.JsonProperty
+    public String intervalMethod() { return "heuristic"; }
+
+    @com.fasterxml.jackson.annotation.JsonProperty
+    public boolean intervalCalibrated() { return false; }
+
+    @com.fasterxml.jackson.annotation.JsonProperty
+    public String confidenceKind() { return "heuristic_score_not_accuracy"; }
+
     public PredictionResult(long dishId, String dishName, int predictedLow, int predictedMid,
                             int predictedHigh, int firstBatch, int replenishQty, int stopHour,
                             int stopMinute, BigDecimal confidence, String soldOutRisk,

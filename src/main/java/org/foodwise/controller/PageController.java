@@ -3,6 +3,7 @@ package org.foodwise.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
@@ -20,6 +21,15 @@ public class PageController {
     public String login(Model model) {
         model.addAttribute("pageTitle", "运营登录");
         return "login";
+    }
+
+    /**
+     * Demo mode has no Spring Security login filter. Keep the same form usable
+     * locally; when security is enabled, the filter handles this path first.
+     */
+    @PostMapping("/login")
+    public String demoLogin() {
+        return "redirect:/app/dashboard";
     }
 
     @GetMapping("/stalls")

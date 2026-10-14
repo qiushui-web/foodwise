@@ -1,0 +1,152 @@
+[
+  {
+    "original": "docs/aic_finalize_qa.py",
+    "archived": "docs/archive/20261013/docs/aic_finalize_qa.py",
+    "sha256": "c2924492804ccea635bf9c2700c23a5596317fa133fb08e19446e161d3ad9db9",
+    "status": "historical-not-runtime"
+  },
+  {
+    "original": "docs/aic_finish.py",
+    "archived": "docs/archive/20261013/docs/aic_finish.py",
+    "sha256": "5d38332fe26082d5f158e177d0f2098e45f3b22d280ccf0a2824b8b8de40ce4b",
+    "status": "historical-not-runtime"
+  },
+  {
+    "original": "docs/aic_polish_round2.py",
+    "archived": "docs/archive/20261013/docs/aic_polish_round2.py",
+    "sha256": "bc3c0304c5c85e9e7a59914cf5031f601f848948f1dbbf58dd926b550bcd0529",
+    "status": "historical-not-runtime"
+  },
+  {
+    "original": "docs/aic_restructure_safe.py",
+    "archived": "docs/archive/20261013/docs/aic_restructure_safe.py",
+    "sha256": "52d8a52c620d27b7732d05e58198acfb8e19ca1540dc32936b9378ecca41d71f",
+    "status": "historical-not-runtime"
+  },
+  {
+    "original": "docs/compact_plan.py",
+    "archived": "docs/archive/20261013/docs/compact_plan.py",
+    "sha256": "839b90cdb688c5d21688b07efad45d10f6829ec0b31fb2c83cdc2fbbe5ce53ea",
+    "status": "historical-not-runtime"
+  },
+  {
+    "original": "docs/create_visuals.py",
+    "archived": "docs/archive/20261013/docs/create_visuals.py",
+    "sha256": "6c26a0e9f5314d42aae0f91f6e33a5b43a6c1f4ff12561cc2e95534f55689dcd",
+    "status": "historical-not-runtime"
+  },
+  {
+    "original": "docs/expand_plan_from_original.py",
+    "archived": "docs/archive/20261013/docs/expand_plan_from_original.py",
+    "sha256": "7a2583cc0034242aa76bfb1b40ae6637f8098e4c2fb91ddee9d3691c9b8e31e5",
+    "status": "historical-not-runtime"
+  },
+  {
+    "original": "docs/finalize_plan.py",
+    "archived": "docs/archive/20261013/docs/finalize_plan.py",
+    "sha256": "afc8d23e82e26870a370474f40b7f4181c29d5d5e49a8d1bebafe4b8d67c3c7d",
+    "status": "historical-not-runtime"
+  },
+  {
+    "original": "docs/final_review_revision.py",
+    "archived": "docs/archive/20261013/docs/final_review_revision.py",
+    "sha256": "aaf485567c900e13861a939a846e9cf249f05ec82400fa4faf8fff03b6e7cbc9",
+    "status": "historical-not-runtime"
+  },
+  {
+    "original": "docs/polish_plan.py",
+    "archived": "docs/archive/20261013/docs/polish_plan.py",
+    "sha256": "4d5d66c755d0573c76484ecab226d8e4f689e2015ac9189a80ec5aba5cd12006",
+    "status": "historical-not-runtime"
+  },
+  {
+    "original": "docs/replace_plan_figures.py",
+    "archived": "docs/archive/20261013/docs/replace_plan_figures.py",
+    "sha256": "14b028c32f8661a77ac3521c7e2bb0c8cce3bc41ea63d5ba11b779254dede9a9",
+    "status": "historical-not-runtime"
+  },
+  {
+    "original": "docs/restructure_plan.py",
+    "archived": "docs/archive/20261013/docs/restructure_plan.py",
+    "sha256": "6abefa76194b58b2cd5a88db09b1f053d5b804f16979df3c80fb325cc3df58a0",
+    "status": "historical-not-runtime"
+  },
+  {
+    "original": "docs/revise_plan_figures.py",
+    "archived": "docs/archive/20261013/docs/revise_plan_figures.py",
+    "sha256": "923ff8c222a8185132a2448e264dfe31452d393bbd25373c0fdce75f98873572",
+    "status": "historical-not-runtime"
+  },
+  {
+    "original": "docs/safe_polish_plan.py",
+    "archived": "docs/archive/20261013/docs/safe_polish_plan.py",
+    "sha256": "5ec54d87597bb17313c0c293b4ae16d90f4eb029059d8d2192a3ee17fe20b116",
+    "status": "historical-not-runtime"
+  },
+  {
+    "original": "deploy/12_install_crosscheck.py",
+    "archived": "docs/archive/20261013/deploy/12_install_crosscheck.py",
+    "sha256": "354e2a4ab55f1a3bcd57535ac8eb5eec1af3391ce853b9df411e2184bbe1fe81",
+    "status": "historical-not-runtime"
+  },
+  {
+    "original": "deploy/13_frontend_decision.py",
+    "archived": "docs/archive/20261013/deploy/13_frontend_decision.py",
+    "sha256": "1da7eb0021c7ad0b1cf639c92ddd1bd2f1e37d7c307cf77d23ddcd72308b31e5",
+    "status": "historical-not-runtime"
+  },
+  {
+    "original": "deploy/apply_pure_java.py",
+    "archived": "docs/archive/20261013/deploy/apply_pure_java.py",
+    "sha256": "0eb433a50c81be60ea092c6382a703375c164526ae96af18b968ae29ab947aa4",
+    "status": "historical-not-runtime"
+  },
+  {
+    "original": "deploy/fix_chart_vars.py",
+    "archived": "docs/archive/20261013/deploy/fix_chart_vars.py",
+    "sha256": "af1d3472b1473146ed6d9fdf8b39b305bc888121b0c8254360ed174d592f9737",
+    "status": "historical-not-runtime"
+  },
+  {
+    "original": "deploy/inspect_uwaste.py",
+    "archived": "docs/archive/20261013/deploy/inspect_uwaste.py",
+    "sha256": "3f5d78c4e491deaab10eb8884fa64b5757e1dadaa6d153f534f046a642cc5440",
+    "status": "historical-not-runtime"
+  },
+  {
+    "original": "deploy/patch_java_frontend.py",
+    "archived": "docs/archive/20261013/deploy/patch_java_frontend.py",
+    "sha256": "185ae577f77e3cc91fff954c84ba13113699eaa26c1a782e605c823e58212e4b",
+    "status": "historical-not-runtime"
+  },
+  {
+    "original": "src/main/java/org/foodwise/service/EnhancedPredictionService.java",
+    "archived": "docs/archive/20261013/src/main/java/org/foodwise/service/EnhancedPredictionService.java",
+    "sha256": "b92fa8967fc9208fbd97328d92cd5d2f819f8704efac11c56adeeb81784fdc67",
+    "status": "historical-not-runtime"
+  },
+  {
+    "original": "src/main/resources/static/css/app.css",
+    "archived": "docs/archive/20261013/styles/app.css",
+    "sha256": "06f658b91727f83877e6386fe412c35f6e95e0e40ba41803785c0148eca5a676",
+    "status": "merged-into-foodwise-css"
+  },
+  {
+    "original": "src/main/resources/static/css/theme-blue.css",
+    "archived": "docs/archive/20261013/styles/theme-blue.css",
+    "sha256": "39d213cc1bfbd1975ad18817c1cdffdaa9de4b8b6fb2ab1539a49e8ecdf9af2b",
+    "status": "merged-into-foodwise-css"
+  },
+  {
+    "original": "src/main/resources/static/css/visual-enhanced.css",
+    "archived": "docs/archive/20261013/styles/visual-enhanced.css",
+    "sha256": "6333200f93645c5437ce1c6869876d3e98a3520541f43fc93177674dd0b038e9",
+    "status": "merged-into-foodwise-css"
+  },
+  {
+    "original": "AnalyticsService.campusSeries",
+    "archived": "docs/archive/20261013/AnalyticsService-campusSeries.txt",
+    "sha256": "167b2529c8e19b20cb72a77726b154430ecc0ab4cb87ce67bb4a0a086854009d",
+    "status": "historical-unreferenced-method"
+  }
+]

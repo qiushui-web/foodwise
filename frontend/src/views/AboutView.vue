@@ -4,7 +4,7 @@ import { RouterLink } from "vue-router";
 
 <template>
   <div class="about-view">
-    <span class="kicker">使用说明</span>
+    <span class="kicker">食刻高校食堂经营与食品减损管理软件 · V1.0</span>
     <h2>第一次使用食刻有数</h2>
     <p class="lead">这是给食堂经营人员使用的辅助工具：把真实经营台账变成备餐建议，再把执行结果记回台账。下面按实际操作顺序说明。</p>
 
@@ -31,7 +31,7 @@ import { RouterLink } from "vue-router";
 </template>
 
 <style scoped>
-.about-view{padding:32px;background:#fff;border:1px solid #dce8f2;border-radius:12px}.kicker{font-size:11px;color:#3478c9;font-weight:700}.about-view h2{font-size:29px;margin:9px 0}.lead{max-width:780px;font-size:14px;line-height:1.8;color:#536f87}.guide-block{border-top:1px solid #e0ebf3;padding-top:22px;margin-top:24px}.guide-block h3{font-size:18px;margin:0 0 14px;color:#254d72}.guide-block ul{padding-left:20px;margin:0 0 14px;color:#526f86;font-size:13px;line-height:1.9}.guide-block a{font-size:13px;font-weight:700;color:#286daf}.steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.steps article{padding:18px;border:1px solid #d9e8f3;background:#f7fbff;border-radius:10px}.steps b,.steps strong{display:block}.steps b{font-size:12px;color:#3478c9}.steps strong{font-size:15px;margin-top:8px}.steps p,.limits p{color:#58748b;font-size:13px;line-height:1.8}.definitions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.definitions div{padding:12px 15px;background:#f4f8fc;border-radius:8px}.definitions strong,.definitions span{display:block;font-size:13px}.definitions span{margin-top:5px;color:#5c7890}.formula{font-size:13px;font-weight:700;color:#286daf}@media(max-width:700px){.about-view{padding:22px 18px}.steps,.definitions{grid-template-columns:1fr}}
+.about-view{padding:32px;background:#fff;border:1px solid #dce8f2;border-radius:12px}.kicker{font-size:12px;color:#286daf;font-weight:700}.about-view h2{font-size:29px;margin:9px 0}.lead{max-width:780px;font-size:14px;line-height:1.8;color:#536f87}.guide-block{border-top:1px solid #e0ebf3;padding-top:22px;margin-top:24px}.guide-block h3{font-size:18px;margin:0 0 14px;color:#254d72}.guide-block ul{padding-left:20px;margin:0 0 14px;color:#526f86;font-size:13px;line-height:1.9}.guide-block a{font-size:13px;font-weight:700;color:#286daf}.steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.steps article{padding:18px;border:1px solid #d9e8f3;background:#f7fbff;border-radius:10px}.steps b,.steps strong{display:block}.steps b{font-size:12px;color:#286daf}.steps strong{font-size:15px;margin-top:8px}.steps p,.limits p{color:#58748b;font-size:13px;line-height:1.8}.definitions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.definitions div{padding:12px 15px;background:#f4f8fc;border-radius:8px}.definitions strong,.definitions span{display:block;font-size:13px}.definitions span{margin-top:5px;color:#5c7890}.formula{font-size:13px;font-weight:700;color:#286daf}@media(max-width:700px){.about-view{padding:22px 18px}.steps,.definitions{grid-template-columns:1fr}}
 </style>
 <style scoped>
 .photo-credits{columns:2;column-gap:30px}.photo-credits li{break-inside:avoid}@media(max-width:700px){.photo-credits{columns:1}}

@@ -111,10 +111,21 @@ public class FoodwiseRepository {
     }
 
     public List<Integer> recentSales(long dishId) {
-        return jdbcTemplate.queryForList("""
-                SELECT SUM(sold_qty) FROM daily_operation
-                WHERE dish_id = ? GROUP BY business_date ORDER BY business_date DESC LIMIT 7
-                """, Integer.class, dishId);
+        return recentSales(dishId, LocalDate.now(), "全日");
+    }
+
+    public List<Integer> recentSales(long dishId, LocalDate cutoff, String mealPeriod) {
+        return recentSalesObservations(dishId, cutoff, mealPeriod).stream()
+                .map(org.foodwise.prediction.SalesObservation::sold).toList();
+    }
+
+    public List<org.foodwise.prediction.SalesObservation> recentSalesObservations(long dishId, LocalDate cutoff, String mealPeriod) {
+        return jdbcTemplate.query("""
+                SELECT business_date, SUM(sold_qty) AS sold, SUM(prepared_qty) AS prepared FROM daily_operation
+                WHERE dish_id = ? AND business_date <= ? AND (? = '全日' OR meal_period = ?)
+                GROUP BY business_date ORDER BY business_date DESC LIMIT 7
+                """, (rs, index) -> new org.foodwise.prediction.SalesObservation(rs.getDate("business_date").toLocalDate(),
+                rs.getInt("sold"), rs.getInt("prepared")), dishId, cutoff, mealPeriod, mealPeriod);
     }
 
     public Map<String, Object> latestDishOperation(long dishId) {
@@ -545,7 +556,9 @@ public class FoodwiseRepository {
                 "SELECT id FROM model_version WHERE model_key='demand' AND version=?",
                 Long.class, modelVersion);
         String inputJson = "{\"dishId\":" + context.dishId() + ",\"weather\":\"" + json(context.weather())
-                + "\",\"examWeek\":" + context.examWeek() + ",\"campusEvent\":" + context.campusEvent() + "}";
+                + "\",\"examWeek\":" + context.examWeek() + ",\"campusEvent\":" + context.campusEvent()
+                + ",\"targetDate\":\"" + context.targetDate() + "\",\"historyCutoff\":\"" + context.historyCutoff()
+                + "\",\"mealPeriod\":\"" + json(context.mealPeriod()) + "\",\"sourceNature\":\"" + json(context.sourceNature()) + "\"}";
         String outputJson = "{\"predictionId\":" + result.predictionId() + ",\"predictedMid\":"
                 + result.predictedMid() + ",\"firstBatch\":" + result.firstBatch() + ",\"replenishQty\":"
                 + result.replenishQty() + "}";
@@ -556,7 +569,8 @@ public class FoodwiseRepository {
     }
 
     private String json(String value) {
-        return value == null ? "" : value.replace("\\", "\\\\").replace("\"", "\\\"");
+        String encoded = new tools.jackson.databind.ObjectMapper().writeValueAsString(value == null ? "" : value);
+        return encoded.substring(1, encoded.length() - 1);
     }
 
     public Map<String, Object> trialEffectiveness() {

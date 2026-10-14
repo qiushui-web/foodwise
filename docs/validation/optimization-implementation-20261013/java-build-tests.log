@@ -1,0 +1,57 @@
+> Task :compileJava UP-TO-DATE
+
+> Task :frontendBuild
+
+> foodwise-frontend@0.1.0 build
+> vite build
+
+vite v6.4.3 building for production...
+transforming...
+✓ 98 modules transformed.
+rendering chunks...
+computing gzip size...
+../../src/main/resources/static/build/PageHeader.css                       0.34 kB │ gzip:  0.21 kB
+../../src/main/resources/static/build/StallsView.css                       1.85 kB │ gzip:  0.69 kB
+../../src/main/resources/static/build/AboutView.css                        1.92 kB │ gzip:  0.60 kB
+../../src/main/resources/static/build/ReportsView.css                      1.95 kB │ gzip:  0.59 kB
+../../src/main/resources/static/build/AlertsView.css                       2.10 kB │ gzip:  0.71 kB
+../../src/main/resources/static/build/InsightsView.css                     2.17 kB │ gzip:  0.75 kB
+../../src/main/resources/static/build/OffersView.css                       2.47 kB │ gzip:  0.77 kB
+../../src/main/resources/static/build/OrdersView.css                       2.49 kB │ gzip:  0.79 kB
+../../src/main/resources/static/build/LoginView.css                        2.63 kB │ gzip:  0.97 kB
+../../src/main/resources/static/build/PredictionView.css                   2.68 kB │ gzip:  0.87 kB
+../../src/main/resources/static/build/app.css                              2.81 kB │ gzip:  0.99 kB
+../../src/main/resources/static/build/DashboardView.css                    2.88 kB │ gzip:  0.84 kB
+../../src/main/resources/static/build/FeedbackView.css                     3.86 kB │ gzip:  1.19 kB
+../../src/main/resources/static/build/chunks/write-intent-zdXd9Nd-.js      0.15 kB │ gzip:  0.15 kB
+../../src/main/resources/static/build/chunks/dish-photo-vZ2FvkDd.js        0.43 kB │ gzip:  0.35 kB
+../../src/main/resources/static/build/chunks/NotFoundView-BhNKvucr.js      0.45 kB │ gzip:  0.40 kB
+../../src/main/resources/static/build/chunks/PageHeader-AT__A3dd.js        0.50 kB │ gzip:  0.33 kB
+../../src/main/resources/static/build/chunks/LoginView-tBfW9n6J.js         1.56 kB │ gzip:  0.99 kB
+../../src/main/resources/static/build/chunks/AlertsView-uJKnVdLL.js        2.60 kB │ gzip:  1.48 kB
+../../src/main/resources/static/build/chunks/StallsView-w7zd981K.js        3.07 kB │ gzip:  1.65 kB
+../../src/main/resources/static/build/chunks/OrdersView-Bg0hlxwd.js        3.47 kB │ gzip:  1.80 kB
+../../src/main/resources/static/build/chunks/InsightsView-CvBHWFZW.js      4.44 kB │ gzip:  2.20 kB
+../../src/main/resources/static/build/chunks/ReportsView-D4-vx-Sw.js       4.91 kB │ gzip:  2.34 kB
+../../src/main/resources/static/build/chunks/OffersView-B_mknSfK.js        5.06 kB │ gzip:  2.46 kB
+../../src/main/resources/static/build/chunks/PredictionView-Z0Dnu3wi.js    5.50 kB │ gzip:  2.76 kB
+../../src/main/resources/static/build/chunks/DashboardView-v27omYGk.js     6.04 kB │ gzip:  2.71 kB
+../../src/main/resources/static/build/chunks/AboutView-DbOGI6Ml.js         6.33 kB │ gzip:  2.80 kB
+../../src/main/resources/static/build/chunks/FeedbackView-MJhNn9rP.js     13.83 kB │ gzip:  5.38 kB
+../../src/main/resources/static/build/app.js                             112.50 kB │ gzip: 44.58 kB
+✓ built in 837ms
+
+> Task :processResources
+> Task :classes
+> Task :resolveMainClassName
+> Task :bootJar
+> Task :compileTestJava
+> Task :processTestResources UP-TO-DATE
+> Task :testClasses
+2026-10-13T18:43:05.302+08:00  INFO 42436 --- [foodwise] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-10-13T18:43:05.303+08:00  INFO 42436 --- [foodwise] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+> Task :test
+
+BUILD SUCCESSFUL in 18s
+8 actionable tasks: 6 executed, 2 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.5.1/userguide/configuration_cache_enabling.html

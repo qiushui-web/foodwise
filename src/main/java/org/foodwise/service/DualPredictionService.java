@@ -15,12 +15,13 @@ import java.util.Map;
 
 /**
  * 双引擎预测：规则引擎（Java 四因子）与真实 LightGBM 训练模型并行预测，
- * 最终建议 = 0.6 × 训练模型 + 0.4 × 规则（模型不可用时自动降级为纯规则）。
+ * 最终经营建议保持规则结果；派生标签模型仅用于对照，不参与未经验证的融合。
  * 返回的 Map 同时携带两条预测链路的数值与训练模型的逐特征决策归因，
  * 供前端做"训练模型 vs 规则"对比、决策路径可视化与大模型交叉解读，
  * 让"决策来自训练模型"这一点在界面上可核对、可追溯。
  */
 @Service
+@org.springframework.boot.autoconfigure.condition.ConditionalOnProperty(name = "foodwise.prediction.experimental-enabled", havingValue = "true")
 public class DualPredictionService {
 
     private final PredictionService predictionService;
@@ -61,13 +62,12 @@ public class DualPredictionService {
         int ruleMid = rule.predictedMid();
         int lgbmMid = lgbmSold == null ? ruleMid : (int) Math.round(lgbmSold);
 
-        // 3. 集成：训练模型为主（0.6），规则为辅（0.4）；模型不可用则纯规则
-        double ensembleRaw = lgbmSold != null ? 0.6 * lgbmSold + 0.4 * ruleMid : ruleMid;
-        int mid = Math.max(1, (int) Math.round(ensembleRaw));
-        int low = Math.max(1, (int) Math.floor(mid * 0.92));
-        int high = Math.max(mid + 1, (int) Math.ceil(mid * 1.08));
-        int firstBatch = Math.max(1, (int) Math.round(low * 0.82));
-        int replenish = Math.max(0, mid - firstBatch);
+        // This derived-label scenario model is comparison-only until observed-unit validation exists.
+        int mid = rule.predictedMid();
+        int low = rule.predictedLow();
+        int high = rule.predictedHigh();
+        int firstBatch = rule.firstBatch();
+        int replenish = rule.replenishQty();
 
         // 4. 因子列表（规则因子 + 训练模型因子）
         List<PredictionResult.Factor> factors = new ArrayList<>(rule.factors());
@@ -75,7 +75,7 @@ public class DualPredictionService {
             double deltaPct = (lgbmMid - ruleMid) * 100.0 / Math.max(1, ruleMid);
             factors.add(new PredictionResult.Factor(
                     "训练模型 LGBM",
-                    lgbmModel.treeCount() + "棵回归树真实推理，预测 " + lgbmMid + " 份（滚动回测MAPE " + lgbmModel.backtestMape() + "%）",
+                    lgbmModel.treeCount() + "棵回归树场景推理，预测 " + lgbmMid + " 份（派生目标演示，观测销量精度未验证）",
                     BigDecimal.valueOf(deltaPct).setScale(1, RoundingMode.HALF_UP),
                     "lgbm_trained"));
         } else {
@@ -85,11 +85,11 @@ public class DualPredictionService {
                     BigDecimal.ZERO, "lgbm_unavailable"));
         }
 
-        BigDecimal confidence = lgbmSold != null
-                ? BigDecimal.valueOf(90.0).setScale(1, RoundingMode.HALF_UP)
-                : rule.confidence();
+        BigDecimal confidence = rule.confidence();
 
         Map<String, Object> result = new LinkedHashMap<>();
+        result.put("predictionId", rule.predictionId());
+        result.put("comparisonOnly", true);
         result.put("dishId", dishId);
         result.put("dishName", rule.dishName());
         result.put("predictedLow", low);
@@ -100,6 +100,9 @@ public class DualPredictionService {
         result.put("stopHour", rule.stopHour());
         result.put("stopMinute", rule.stopMinute());
         result.put("confidence", confidence);
+        result.put("confidenceKind", "heuristic_score_not_accuracy");
+        result.put("intervalMethod", "heuristic");
+        result.put("intervalCalibrated", false);
         result.put("soldOutRisk", rule.soldOutRisk());
         result.put("leftoverRisk", rule.leftoverRisk());
         result.put("factors", factors);
@@ -108,7 +111,7 @@ public class DualPredictionService {
         result.put("rulePrediction", ruleMid);
         result.put("lgbmPrediction", lgbmSold == null ? null : lgbmMid);
         result.put("modelReady", lgbmModel.isReady());
-        result.put("modelName", "LightGBM 高校真实模型");
+        result.put("modelName", "LightGBM 场景模型（来源与泛化待核验）");
         result.put("modelMape", lgbmModel.backtestMape());
         result.put("trainedRows", lgbmModel.trainedRows());
         result.put("modelTrees", lgbmModel.treeCount());
@@ -137,7 +140,8 @@ public class DualPredictionService {
     }
 
     /**
-     * 按 campus_feature_cols.json 顺序构造 24 维特征（与 Python 训练管道严格一致）。
+     * 按 campus_feature_cols.json 顺序构造 24 维特征。
+     * 字段顺序已检查，日期窗口及缺失值语义仍需与 Python 逐值验收。
      */
     private double[] buildCampusFeatures(Map<String, Object> dish, List<Integer> salesRaw,
                                          String weather, boolean examWeek, boolean campusEvent) {
