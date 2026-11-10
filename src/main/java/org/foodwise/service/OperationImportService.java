@@ -6,11 +6,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.math.BigDecimal;
-import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -23,96 +22,121 @@ public class OperationImportService {
             "business_date", "dish_id", "planned_qty", "prepared_qty", "sold_qty",
             "discount_sold_qty", "leftover_qty", "revenue", "weather");
 
+    private final OperationImportReader reader;
     private final OperationFeedbackService feedbackService;
     private final FoodwiseRepository repository;
 
-    public OperationImportService(OperationFeedbackService feedbackService, FoodwiseRepository repository) {
+    public OperationImportService(OperationFeedbackService feedbackService, FoodwiseRepository repository, OperationImportReader reader) {
+        this.reader = reader;
         this.feedbackService = feedbackService;
         this.repository = repository;
     }
 
-    public Map<String, Object> previewCsv(MultipartFile file) {
-        if (file == null || file.isEmpty()) throw new IllegalArgumentException("请上传非空CSV文件");
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8))) {
-            String headerLine = reader.readLine();
-            if (headerLine == null) throw new IllegalArgumentException("CSV文件缺少表头");
-            List<String> headers = parseLine(stripBom(headerLine)).stream().map(String::trim).toList();
-            List<List<String>> rows = new ArrayList<>();
-            String line;
-            while (rows.size() < 20 && (line = reader.readLine()) != null) {
-                if (!line.isBlank()) rows.add(parseLine(line));
-            }
-            List<String> missing = REQUIRED.stream().filter(name -> !headers.contains(name)).toList();
-            return Map.of("headers", headers, "sampleRows", rows, "sampleCount", rows.size(),
-                    "requiredFields", REQUIRED, "missingFields", missing, "ready", missing.isEmpty());
-        } catch (IOException | RuntimeException exception) {
-            if (exception instanceof IllegalArgumentException illegal) throw illegal;
-            throw new IllegalArgumentException("读取CSV文件失败: " + exception.getMessage(), exception);
-        }
+    public Map<String, Object> preview(MultipartFile file) {
+        var table = reader.read(file);
+        List<String> missing = REQUIRED.stream().filter(name -> !table.headers().contains(name)).toList();
+        return Map.of("headers", table.headers(), "sampleRows", table.rows().stream().limit(20).map(OperationImportReader.DataRow::values).toList(),
+                "sampleCount", Math.min(20, table.rows().size()), "totalRows", table.rows().size(),
+                "format", table.format(), "sheetName", table.sheetName(),
+                "requiredFields", REQUIRED, "missingFields", missing, "ready", missing.isEmpty());
     }
 
+    public Map<String, Object> previewCsv(MultipartFile file) { return preview(file); }
+
     @Transactional
-    public Map<String, Object> importCsv(MultipartFile file, String operatorName, boolean safetyConfirmed) {
+    public Map<String, Object> importData(MultipartFile file, String operatorName, boolean safetyConfirmed,
+                                        String sourceName, String provider, String region, String authorizationReference) {
         if (file == null || file.isEmpty()) {
-            throw new IllegalArgumentException("请上传非空CSV文件");
+            throw new IllegalArgumentException("请上传非空经营数据文件");
         }
         if (!safetyConfirmed) {
             throw new IllegalArgumentException("批量导入前请确认数据对应真实经营记录和食品安全边界");
         }
+        requireSourceDeclaration(sourceName, "来源名称");
+        requireSourceDeclaration(provider, "来源提供方");
+        requireSourceDeclaration(region, "来源地域或范围");
+        requireSourceDeclaration(authorizationReference, "授权或许可引用");
+        requireSourceDeclaration(operatorName, "导入记录人");
+        if (sourceName.trim().length() > 160 || provider.trim().length() > 160 || region.trim().length() > 160
+                || operatorName.trim().length() > 80) throw new IllegalArgumentException("来源字段或记录人超出允许长度");
+
+        var table = reader.read(file);
+        List<String> missing = REQUIRED.stream().filter(name -> !table.headers().contains(name)).toList();
+        if (!missing.isEmpty()) throw new IllegalArgumentException("缺少字段: " + String.join(", ", missing));
+
+        byte[] rawFile;
+        try { rawFile = file.getBytes(); }
+        catch (IOException exception) { throw new IllegalArgumentException("读取数据文件失败: " + exception.getMessage(), exception); }
+        String sourceSha256 = sha256(rawFile);
+        String fileName = file.getOriginalFilename() == null || file.getOriginalFilename().isBlank()
+                ? "operations" : file.getOriginalFilename();
+        long sourceEvidenceId = repository.createSourceEvidence(sourceSha256, fileName, sourceName.trim(),
+                provider.trim(), region.trim(), authorizationReference.trim(), operatorName.trim());
 
         List<String> errors = new ArrayList<>();
         int imported = 0;
         int duplicates = 0;
-        int lineNumber = 1;
-        long batchId = repository.createImportBatch(file.getOriginalFilename(), operatorName);
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8))) {
-            String headerLine = reader.readLine();
-            if (headerLine == null) throw new IllegalArgumentException("CSV文件缺少表头");
-            List<String> headers = parseLine(stripBom(headerLine));
-            Map<String, Integer> positions = new LinkedHashMap<>();
-            for (int i = 0; i < headers.size(); i++) positions.put(headers.get(i).trim(), i);
-            List<String> missing = REQUIRED.stream().filter(name -> !positions.containsKey(name)).toList();
-            if (!missing.isEmpty()) throw new IllegalArgumentException("缺少字段: " + String.join(", ", missing));
-
-            String line;
-            while ((line = reader.readLine()) != null) {
-                lineNumber++;
-                if (line.isBlank()) continue;
-                try {
-                    List<String> values = parseLine(line);
-                    String eventTag = value(values, positions, "event_tag");
-                    LocalDate businessDate = LocalDate.parse(value(values, positions, "business_date"));
-                    long dishId = Long.parseLong(value(values, positions, "dish_id"));
-                    String mealPeriod = defaultValue(value(values, positions, "meal_period"), "未标注");
-                    boolean duplicate = repository.operationExists(businessDate, mealPeriod, dishId);
-                    boolean adopted = Boolean.parseBoolean(defaultValue(value(values, positions, "recommendation_adopted"), "false"));
-                    feedbackService.submit(
-                            businessDate, mealPeriod, dishId,
-                            Integer.parseInt(value(values, positions, "planned_qty")),
-                            Integer.parseInt(value(values, positions, "prepared_qty")),
-                            Integer.parseInt(value(values, positions, "sold_qty")),
-                            Integer.parseInt(value(values, positions, "discount_sold_qty")),
-                            Integer.parseInt(value(values, positions, "leftover_qty")),
-                            new BigDecimal(value(values, positions, "revenue")),
-                            value(values, positions, "weather"), eventTag, adopted,
-                            true, operatorName, "CSV批量导入");
-                    imported++;
-                    String sourceKey = businessDate + ":" + mealPeriod + ":" + dishId;
-                    repository.saveImportRow(batchId, lineNumber, duplicate ? "DUPLICATE_UPDATED" : "IMPORTED",
-                            businessDate, dishId, sourceKey, duplicate ? "同营业日和菜品已有记录，本次已更新" : null);
-                    if (duplicate) duplicates++;
-                } catch (RuntimeException exception) {
-                    errors.add("第" + lineNumber + "行: " + exception.getMessage());
-                    repository.saveImportRow(batchId, lineNumber, "REJECTED", null, null, null, exception.getMessage());
-                }
+        long batchId = repository.createImportBatch(fileName, operatorName, sourceEvidenceId);
+        Map<String, Integer> positions = new LinkedHashMap<>();
+        for (int i = 0; i < table.headers().size(); i++) positions.put(table.headers().get(i), i);
+        for (var row : table.rows()) {
+            int lineNumber = row.number();
+            try {
+                List<String> values = row.values();
+                String eventTag = value(values, positions, "event_tag");
+                LocalDate businessDate = LocalDate.parse(value(values, positions, "business_date"));
+                long dishId = new BigDecimal(value(values, positions, "dish_id")).longValueExact();
+                String mealPeriod = defaultValue(value(values, positions, "meal_period"), "未标注");
+                boolean duplicate = repository.operationExists(businessDate, mealPeriod, dishId);
+                boolean adopted = parseBoolean(value(values, positions, "recommendation_adopted"));
+                feedbackService.submit(
+                        businessDate, mealPeriod, dishId,
+                        new BigDecimal(value(values, positions, "planned_qty")).intValueExact(),
+                        new BigDecimal(value(values, positions, "prepared_qty")).intValueExact(),
+                        new BigDecimal(value(values, positions, "sold_qty")).intValueExact(),
+                        new BigDecimal(value(values, positions, "discount_sold_qty")).intValueExact(),
+                        new BigDecimal(value(values, positions, "leftover_qty")).intValueExact(),
+                        new BigDecimal(value(values, positions, "revenue")),
+                        value(values, positions, "weather"), eventTag, adopted,
+                        true, operatorName, table.format() + "批量导入", sourceEvidenceId, lineNumber);
+                imported++;
+                String sourceKey = businessDate + ":" + mealPeriod + ":" + dishId;
+                repository.saveImportRow(batchId, lineNumber, duplicate ? "DUPLICATE_UPDATED" : "IMPORTED",
+                        businessDate, dishId, sourceKey, duplicate ? "同营业日和菜品已有记录，本次已更新" : null);
+                if (duplicate) duplicates++;
+            } catch (RuntimeException exception) {
+                errors.add("第" + lineNumber + "行: " + exception.getMessage());
+                repository.saveImportRow(batchId, lineNumber, "REJECTED", null, null, null, exception.getMessage());
             }
-        } catch (IOException exception) {
-            throw new IllegalArgumentException("读取CSV文件失败: " + exception.getMessage(), exception);
         }
         int totalRows = imported + errors.size();
         repository.completeImportBatch(batchId, totalRows, imported, errors.size(), duplicates);
-        return Map.of("batchId", batchId, "imported", imported, "rejected", errors.size(),
+        return Map.of("batchId", batchId, "sourceEvidenceId", sourceEvidenceId, "sourceSha256", sourceSha256,
+                "sourceVerificationStatus", "DECLARED_UNVERIFIED", "imported", imported, "rejected", errors.size(),
                 "duplicates", duplicates, "errors", errors, "totalRows", totalRows);
+    }
+
+    @Transactional
+    public Map<String, Object> importCsv(MultipartFile file, String operatorName, boolean safetyConfirmed,
+                                          String sourceName, String provider, String region, String authorizationReference) {
+        return importData(file, operatorName, safetyConfirmed, sourceName, provider, region, authorizationReference);
+    }
+
+    /** Compatibility for internal callers; it remains explicitly unverified. */
+    @Transactional
+    public Map<String, Object> importCsv(MultipartFile file, String operatorName, boolean safetyConfirmed) {
+        return importData(file, operatorName, safetyConfirmed, "未登记来源（兼容调用）", "待核验提供方",
+                "待核验地域", "授权引用待核验");
+    }
+
+    private void requireSourceDeclaration(String value, String label) {
+        if (value == null || value.isBlank()) throw new IllegalArgumentException("请填写" + label + "；未知时请明确填写“待核验”，不能留空");
+        if (value.trim().length() > 300) throw new IllegalArgumentException(label + "不能超过300个字符");
+    }
+
+    private String sha256(byte[] content) {
+        try { return java.util.HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(content)); }
+        catch (NoSuchAlgorithmException impossible) { throw new IllegalStateException("SHA-256不可用", impossible); }
     }
 
     private String value(List<String> values, Map<String, Integer> positions, String name) {
@@ -124,29 +148,11 @@ public class OperationImportService {
         return value == null || value.isBlank() ? fallback : value;
     }
 
-    private String stripBom(String value) {
-        return value.startsWith("\uFEFF") ? value.substring(1) : value;
-    }
-
-    private List<String> parseLine(String line) {
-        List<String> fields = new ArrayList<>();
-        StringBuilder field = new StringBuilder();
-        boolean quoted = false;
-        for (int i = 0; i < line.length(); i++) {
-            char c = line.charAt(i);
-            if (c == '"') {
-                if (quoted && i + 1 < line.length() && line.charAt(i + 1) == '"') {
-                    field.append('"');
-                    i++;
-                } else quoted = !quoted;
-            } else if (c == ',' && !quoted) {
-                fields.add(field.toString());
-                field.setLength(0);
-            } else field.append(c);
-        }
-        if (quoted) throw new IllegalArgumentException("CSV引号未闭合");
-        fields.add(field.toString());
-        return fields;
+    private boolean parseBoolean(String value) {
+        return switch (value.trim().toLowerCase(java.util.Locale.ROOT)) {
+            case "", "false", "否", "0" -> false;
+            case "true", "是", "1" -> true;
+            default -> throw new IllegalArgumentException("是否采用建议须填写true/false、是/否或1/0");
+        };
     }
 }
-

@@ -33,12 +33,25 @@ public class OperationFeedbackService {
                                           int leftoverQty, BigDecimal revenue, String weather,
                                           String eventTag, boolean recommendationAdopted,
                                           boolean safetyConfirmed, String operatorName, String note) {
+        return submit(businessDate, mealPeriod, dishId, plannedQty, preparedQty, soldQty, discountSoldQty,
+                leftoverQty, revenue, weather, eventTag, recommendationAdopted, safetyConfirmed,
+                operatorName, note, null, null);
+    }
+
+    @Transactional(propagation = org.springframework.transaction.annotation.Propagation.NESTED)
+    public OperationLearningResult submit(LocalDate businessDate, String mealPeriod, long dishId, int plannedQty,
+                                          int preparedQty, int soldQty, int discountSoldQty,
+                                          int leftoverQty, BigDecimal revenue, String weather,
+                                          String eventTag, boolean recommendationAdopted,
+                                          boolean safetyConfirmed, String operatorName, String note,
+                                          Long sourceEvidenceId, Integer sourceRowNo) {
         if (businessDate == null || businessDate.isAfter(LocalDate.now())) {
             throw new IllegalArgumentException("营业日期不能为空，也不能晚于今天");
         }
-        if (!List.of("早餐", "午餐", "晚餐", "未标注").contains(mealPeriod)) {
-            throw new IllegalArgumentException("餐次必须是早餐、午餐或晚餐");
+        if (!List.of("早餐", "午餐", "晚餐", "全日", "未标注").contains(mealPeriod)) {
+            throw new IllegalArgumentException("餐次必须是早餐、午餐、晚餐或全日");
         }
+        repository.validateMealScope(businessDate, mealPeriod, dishId);
         if (!safetyConfirmed) {
             throw new IllegalArgumentException("请先确认回传数据对应当餐经营记录和食品安全边界");
         }
@@ -61,7 +74,7 @@ public class OperationFeedbackService {
         FoodwiseRepository.OperationSaveResult saved = repository.upsertOperation(
                 businessDate, mealPeriod, dishId, plannedQty, preparedQty, soldQty, discountSoldQty,
                 leftoverQty, revenue.setScale(2, RoundingMode.HALF_UP), weather,
-                eventTag, recommendationAdopted);
+                eventTag, recommendationAdopted, sourceEvidenceId, sourceRowNo);
         repository.saveOperationFeedback(saved.operationId(), operatorName, safetyConfirmed, note,
                 saved.updated() ? "修正" : "新增");
 

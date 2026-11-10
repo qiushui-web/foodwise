@@ -22,6 +22,23 @@ class OperationCacheTests {
     @Autowired PlatformTransactionManager transactions;
     @Autowired org.foodwise.service.OperationImportService importer;
     @Autowired org.springframework.jdbc.core.JdbcTemplate jdbc;
+    @Autowired org.foodwise.service.FoodwiseService foodwise;
+
+    @Test void onboardingRefreshesListsAfterCommitButNotRollback() {
+        caches.getCache("dishes").clear();
+        var before = foodwise.getDishes();
+        var request = new org.foodwise.service.FoodwiseService.OnboardingRequest(
+                "构造验收学校", "CACHE-TEST", "synthetic only", "test", "1 day",
+                "构造档口", "套餐", "test", "test", "构造菜品", "套餐",
+                new BigDecimal("10"), new BigDecimal("6"), 20, "份", "test");
+        new TransactionTemplate(transactions).executeWithoutResult(status -> {
+            foodwise.onboard(request);
+            status.setRollbackOnly();
+        });
+        assertSame(before, foodwise.getDishes());
+        foodwise.onboard(request);
+        assertEquals(before.size() + 1, foodwise.getDishes().size());
+    }
 
     @Test
     void mixedCsvCommitsAcceptedRowAndReportsRejectedRow() {

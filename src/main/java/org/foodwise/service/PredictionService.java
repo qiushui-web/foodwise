@@ -89,21 +89,23 @@ public class PredictionService implements PredictionEngine {
 
     @org.springframework.transaction.annotation.Transactional
     public PredictionResult predict(long dishId, String weather, boolean examWeek, boolean campusEvent) {
-        return calculateAndSave(new PredictionContext(dishId, weather, examWeek, campusEvent));
+        var context = repository.captureLedgerBoundary(new PredictionContext(dishId, weather, examWeek, campusEvent));
+        return calculateAndSave(context, repository.ledgerHistory(context));
     }
 
-    private PredictionResult calculateAndSave(PredictionContext context) {
+    private PredictionResult calculateAndSave(PredictionContext context, FoodwiseRepository.LedgerHistory ledger) {
         long dishId = context.dishId(); String weather = context.weather();
         boolean examWeek = context.examWeek(); boolean campusEvent = context.campusEvent();
         String traceId = context.traceId(); String idempotencyKey = context.idempotencyKey();
         String operatorName = context.operatorName();
         DishDetail dish = repository.dishDto(dishId);
-        var observations = repository.recentSalesObservations(dishId, context.historyCutoff(), context.mealPeriod());
+        var observations = ledger.observations();
+        if (observations.isEmpty()) throw new IllegalArgumentException("截至本次预测时刻，没有已留存的所选餐次台账；现在补录的记录不能用于更早的预测。");
         var features = org.foodwise.prediction.FeatureBuilder.build(observations);
         double weighted = features.weightedDemand();
 
-        // 从动态天气因子缓存获取系数，优先使用外部更新的因子，其次查询品类系数表，最后降级默认值
-        double weatherFactor = getDynamicWeatherFactor(dish, weather, context.historyCutoff().equals(LocalDate.now()));
+        // Unversioned feedback coefficients cannot be replayed at an earlier cutoff.
+        double weatherFactor = getDynamicWeatherFactor(dish, weather, false);
 
         double calendarFactor = examWeek ? 0.94 : 1.00;
         double eventFactor = campusEvent ? 1.08 : 1.00;
@@ -154,7 +156,7 @@ public class PredictionService implements PredictionEngine {
                 advice
         );
         repository.savePredictionSnapshot(predictionId, modelVersion(),
-                context, result);
+                context.withSelectedRevisions(ledger.revisionIds()), result);
         return result;
     }
 
@@ -171,9 +173,18 @@ public class PredictionService implements PredictionEngine {
     @Override
     @org.springframework.transaction.annotation.Transactional
     public PredictionEngineResult predict(PredictionContext context) {
+        context = repository.captureLedgerBoundary(context);
+        var ledger = repository.ledgerHistory(context);
+        var history = ledger.observations();
         return new PredictionEngineResult(key(), modelVersion(),
-                calculateAndSave(context),
-                java.time.Instant.now());
+                calculateAndSave(context, ledger),
+                java.time.Instant.now(), context.targetDate(), context.historyCutoff(),
+                context.mealPeriod(), context.sourceNature(), history.isEmpty() ? null : history.get(0).date(), history.size(),
+                context.predictionCutoffAt(), ledger.revisionIds(), context.publicationWatermark());
+    }
+
+    public Map<String, Object> replayPredictionInputs(long predictionId) {
+        return repository.replayPredictionInputs(predictionId);
     }
 
     /**

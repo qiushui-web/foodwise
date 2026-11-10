@@ -1,0 +1,375 @@
+{
+  "moves": [
+    {
+      "from": "项目全景与计划书维护手册.md",
+      "to": "项目代码/docs/archive/workspace_20261109/项目全景与计划书维护手册_历史记录.md",
+      "sha256": "45c15db8a79dad515979ae5b44b62b8454396c6b96524208171858de0b953af3",
+      "bytes": 29931
+    },
+    {
+      "from": "计划书/scripts/plan_v3_abstract.py",
+      "to": "项目代码/docs/archive/workspace_20261109/计划书旧修稿/scripts/plan_v3_abstract.py",
+      "sha256": "2f184cc9360847887c1d0e2b64e1cf2e84f738e202c3e5753c6b5e419013b93f",
+      "bytes": 2953
+    },
+    {
+      "from": "计划书/scripts/plan_v3_fix_table.py",
+      "to": "项目代码/docs/archive/workspace_20261109/计划书旧修稿/scripts/plan_v3_fix_table.py",
+      "sha256": "268ae12987b88708e6d2169b7a7cabf3592ba171373c3da07fd52196773336d5",
+      "bytes": 1241
+    },
+    {
+      "from": "计划书/scripts/plan_v3_rewrite.py",
+      "to": "项目代码/docs/archive/workspace_20261109/计划书旧修稿/scripts/plan_v3_rewrite.py",
+      "sha256": "3ab8f26e20b54dba8e98f53daf202a2c6873d73ef4ea31ee0176e1911fab27e0",
+      "bytes": 13767
+    },
+    {
+      "from": "计划书/scripts/plan_v3_sync_toc.py",
+      "to": "项目代码/docs/archive/workspace_20261109/计划书旧修稿/scripts/plan_v3_sync_toc.py",
+      "sha256": "aca071f5514e30a3cd165941be577556afcf07aec2709200c738028bf2576a3b",
+      "bytes": 1636
+    },
+    {
+      "from": "计划书/_render/食刻有数_AIC算法创新赛计划书_竞赛适配完善版.pdf",
+      "to": "项目代码/docs/archive/workspace_20261109/计划书旧修稿/_render/食刻有数_AIC算法创新赛计划书_竞赛适配完善版.pdf",
+      "sha256": "85dbaf1d7bcf2546cb5b88dbc8fc304fea233103e6f9cc618ec6f08cc7d8f568",
+      "bytes": 3734954
+    },
+    {
+      "from": "计划书/_render/pages/p02.png",
+      "to": "项目代码/docs/archive/workspace_20261109/计划书旧修稿/_render/pages/p02.png",
+      "sha256": "e78a0e3729c936ad4772032ba50fbc4cb652c3f23d94c1570b951ceb69df9ada",
+      "bytes": 243937
+    },
+    {
+      "from": "计划书/_render/pages/p03.png",
+      "to": "项目代码/docs/archive/workspace_20261109/计划书旧修稿/_render/pages/p03.png",
+      "sha256": "a3857e769dfe631340e2a25bb3af91e838097468ed87be3666879d0084bece73",
+      "bytes": 179471
+    },
+    {
+      "from": "计划书/_render/pages/p04.png",
+      "to": "项目代码/docs/archive/workspace_20261109/计划书旧修稿/_render/pages/p04.png",
+      "sha256": "cb9b00fb35b10b6c4111092da7cc526dd2f07f3076a6e64ec2b75af038283212",
+      "bytes": 144006
+    },
+    {
+      "from": "计划书/_render/pages/p19.png",
+      "to": "项目代码/docs/archive/workspace_20261109/计划书旧修稿/_render/pages/p19.png",
+      "sha256": "a35a9cb01df8b70f1e16489691d77c18905b222e4d7f9e4d856797289a77bd02",
+      "bytes": 288346
+    },
+    {
+      "from": "计划书/_render/pages/p20.png",
+      "to": "项目代码/docs/archive/workspace_20261109/计划书旧修稿/_render/pages/p20.png",
+      "sha256": "25a4b68d3ffd2eb0370cdf6f60b243ff3591c1fb1936961041ad0ca899515ad8",
+      "bytes": 257896
+    },
+    {
+      "from": "计划书/_render/pages/p21.png",
+      "to": "项目代码/docs/archive/workspace_20261109/计划书旧修稿/_render/pages/p21.png",
+      "sha256": "8b00ddaa3a62a4cb3551ab28679d7c820f59cf434b3dbf0fbd0637e537ade5dd",
+      "bytes": 262763
+    },
+    {
+      "from": "计划书/_render/pages/p25.png",
+      "to": "项目代码/docs/archive/workspace_20261109/计划书旧修稿/_render/pages/p25.png",
+      "sha256": "a7717288e021d463168ed69af1e72c7c4e4779f122bc5d2ec4868ac15604a434",
+      "bytes": 198072
+    },
+    {
+      "from": "计划书/_render/pages/p26.png",
+      "to": "项目代码/docs/archive/workspace_20261109/计划书旧修稿/_render/pages/p26.png",
+      "sha256": "05d622d79758f3923dbaeec6a7753a35c46bf1112ad94fecadb7690ad17f0683",
+      "bytes": 269970
+    },
+    {
+      "from": "计划书/_render/pages/p44.png",
+      "to": "项目代码/docs/archive/workspace_20261109/计划书旧修稿/_render/pages/p44.png",
+      "sha256": "707c0c8f9960de9b8440ce79e9216d5f985e2f6162e25705df61cdaa1b5b58ac",
+      "bytes": 242915
+    },
+    {
+      "from": "计划书/_render/pages/p46.png",
+      "to": "项目代码/docs/archive/workspace_20261109/计划书旧修稿/_render/pages/p46.png",
+      "sha256": "2f258a1892ec0f70bb012c49c2de66273e7e505f3d5043c68ecca4a730fd3c12",
+      "bytes": 232630
+    },
+    {
+      "from": "计划书/图表示意总览_20261028.png",
+      "to": "计划书/计划书照片/图表/图表示意总览_20261028.png",
+      "sha256": "dd195671151a3adb21acf093262aa15d80566617d932802fbf9a75cd7165b45f",
+      "bytes": 977686
+    },
+    {
+      "from": "计划书/图表作图方案_整合优化版_20261027.md",
+      "to": "计划书/计划书版本/图表作图方案_整合优化版_20261027.md",
+      "sha256": "1894301571cf763ce8960fc8590b375228a892099427941113342012d1a69c07",
+      "bytes": 24602,
+      "after_edit_sha256": "5d8b8ae225331e383bedc59f05abb593940880976b45d1472b4a30fc5b32b186",
+      "edit_note": "位置调整后将图表说明中的评审视角改为读者与应用表述。"
+    },
+    {
+      "from": "PPT/PPT照片.zip",
+      "to": "PPT/PPT版本/历史资料/资源包/PPT照片.zip",
+      "sha256": "8b49a09038d8656668acfef2231d28f3641233a11f8d05fa05513024c06ac761",
+      "bytes": 95077758
+    },
+    {
+      "from": "软著资料/问津智能咨询.pdf",
+      "to": "软著资料/参考资料/问津智能咨询.pdf",
+      "sha256": "6d838cd4e05d6ca7cc3f7293df999295c5ed04d21388f10be7dc3c04e716aecd",
+      "bytes": 377086
+    },
+    {
+      "from": "软著资料/e650e064ebd995592f6992760a7eb89d.jpg",
+      "to": "软著资料/原始附件/e650e064ebd995592f6992760a7eb89d.jpg",
+      "sha256": "58749abf1db55a39eafbca0614f8e7c6f06bacea1043644039bd810096636c17",
+      "bytes": 796780
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_商业计划书_双赛适配版_20261104.docx",
+      "to": "计划书/计划书版本/食刻有数_商业计划书_20261104.docx",
+      "sha256": "3379a5969c865e03a72f53d2d105d10355959633429e554aba702c4a8f249b74",
+      "bytes": 4881739
+    },
+    {
+      "from": "PPT/PPT版本/食刻有数_比赛展示版_蓝色主题_20261106.pptx",
+      "to": "PPT/PPT版本/食刻有数_产品介绍_蓝白版_20261106.pptx",
+      "sha256": "7ae431b3eddecade94cdf4795e611b748c6a80ff162865764f95a808b0ca1208",
+      "bytes": 23858111
+    },
+    {
+      "from": "PPT/PPT版本/食刻有数_比赛提交版_20261104.pptx",
+      "to": "PPT/PPT版本/历史资料/食刻有数_展示稿_20261104.pptx",
+      "sha256": "30b6124d2a5001122f8bcb8038da818ec3186d0c446218a18c68e0bd5fdb5e3a",
+      "bytes": 4714493
+    },
+    {
+      "from": "项目代码/docs/AIC计划书终审问题与优化方案.md",
+      "to": "项目代码/docs/archive/workspace_20261109/历史方案/AIC计划书终审问题与优化方案.md",
+      "sha256": "aab7728f76f6332621214488224f29c034fd4da7b0943e4c223118873c59b991",
+      "bytes": 7160
+    },
+    {
+      "from": "项目代码/docs/AIC终审验收记录.json",
+      "to": "项目代码/docs/archive/workspace_20261109/历史方案/AIC终审验收记录.json",
+      "sha256": "eb3625ed4dc3b6aae551d5de11dc769c825db54783efaf36180a8a5b927f1e7c",
+      "bytes": 1368
+    },
+    {
+      "from": "项目代码/docs/食刻有数_AIC计划书重构总设计方案.md",
+      "to": "项目代码/docs/archive/workspace_20261109/历史方案/食刻有数_AIC计划书重构总设计方案.md",
+      "sha256": "024842a3a268c8e1176aa577c959ca0058e87a18852fc07bc1b3e7f12c9c3dd4",
+      "bytes": 15211
+    },
+    {
+      "from": "项目代码/docs/挑战杯申报材料清单_20261027.md",
+      "to": "项目代码/docs/archive/workspace_20261109/历史方案/挑战杯申报材料清单_20261027.md",
+      "sha256": "93efd28a5add7faba7c9fea173116d62645f2de7e8180c48c99c1f8b854dec29",
+      "bytes": 6726
+    },
+    {
+      "from": "项目代码/docs/挑战杯省奖冲优与技术创新方案_20261027.md",
+      "to": "项目代码/docs/archive/workspace_20261109/历史方案/挑战杯省奖冲优与技术创新方案_20261027.md",
+      "sha256": "bd005672dbedc7722eb8763c4613d334242ab715572ab49b7b78d84d3dd6a3a4",
+      "bytes": 55550
+    },
+    {
+      "from": "项目代码/docs/计划书结构简化方案.md",
+      "to": "项目代码/docs/archive/workspace_20261109/历史方案/计划书结构简化方案.md",
+      "sha256": "b5a35e8ccd26eda8f68b26c3a78f27d794cb21b9b1c5a4b92ffaecb7a4cb163d",
+      "bytes": 5438
+    },
+    {
+      "from": "项目代码/docs/计划书精简实施清单.md",
+      "to": "项目代码/docs/archive/workspace_20261109/历史方案/计划书精简实施清单.md",
+      "sha256": "3df415cad4ff8fcd55c2e242fc34133ded9503c9f84eed60578ef3d468593900",
+      "bytes": 1733
+    },
+    {
+      "from": "项目代码/docs/计划书三轮评审记录.md",
+      "to": "项目代码/docs/archive/workspace_20261109/历史方案/计划书三轮评审记录.md",
+      "sha256": "b2c9309e1866ce7b716295cb360bf843f6a38ddbf069c35f98626e960156c306",
+      "bytes": 5677
+    },
+    {
+      "from": "项目代码/docs/竞赛定位与产品精简实施方案_20261018.md",
+      "to": "项目代码/docs/archive/workspace_20261109/历史方案/竞赛定位与产品精简实施方案_20261018.md",
+      "sha256": "308d9974a7bbbf389a7cdc598ba0e9f6db2baf9e9675cc609a1f7ad89fc344ca",
+      "bytes": 10643
+    },
+    {
+      "from": "项目代码/docs/项目现状分析与目标模式提示词.md",
+      "to": "项目代码/docs/archive/workspace_20261109/历史方案/项目现状分析与目标模式提示词.md",
+      "sha256": "8379aabd0a610a9ce83944489d10f7f8375dfeb9f0a54f4f6fc05e7e7bd2d4de",
+      "bytes": 13172
+    },
+    {
+      "from": "计划书/计划书版本/图表作图方案_20261027_绘制前.docx",
+      "to": "计划书/历史版本/整理前版本/图表作图方案_20261027_绘制前.docx",
+      "sha256": "8f15506568b16e6275ab5de95a6919ae5b821b8bc4baf0e3b34eb8ca05b46d0d",
+      "bytes": 52739
+    },
+    {
+      "from": "计划书/计划书版本/计划书pro10.docx",
+      "to": "计划书/历史版本/整理前版本/计划书pro10.docx",
+      "sha256": "555a0530eb457f0c567894c78f85b3503571ec88bf962f0eb90e67991d35d139",
+      "bytes": 28407790
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_AIC算法创新赛计划书_全面核查修订版.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_AIC算法创新赛计划书_全面核查修订版.docx",
+      "sha256": "7edb283c3c914d25498a17a2cc2b113bd897b82a923c78b53b9fbfad0c1057e9",
+      "bytes": 3421854
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_AIC算法创新赛计划书_内容充实与视觉统一版.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_AIC算法创新赛计划书_内容充实与视觉统一版.docx",
+      "sha256": "73578d8bc4fdd8cc79caab9d7adee85aa7067273107220fc27b56bd67aee75c1",
+      "bytes": 4470815
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_AIC算法创新赛计划书_图文表达优化版.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_AIC算法创新赛计划书_图文表达优化版.docx",
+      "sha256": "b88d3246c9bd3225a7f08c9cd7be7e1f639a81749ec78505bac30cb689e102a2",
+      "bytes": 6615043
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_AIC算法创新赛计划书_图表精修版.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_AIC算法创新赛计划书_图表精修版.docx",
+      "sha256": "33b41c3a0b0f9dfcfab329d74b053661a91652eacc83665794694fec0bcc60da",
+      "bytes": 15579982
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_AIC算法创新赛计划书_最新项目同步重构版.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_AIC算法创新赛计划书_最新项目同步重构版.docx",
+      "sha256": "b2f5c7086fdb37ef599cddccb599032d2767867c4737e9cf8227ecbfb6e26a34",
+      "bytes": 5461587
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_AIC算法创新赛计划书_竞赛适配完善版.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_AIC算法创新赛计划书_竞赛适配完善版.docx",
+      "sha256": "df55cbccb440d91b4d46919fea8645297908be329fd8fa219237c25f4f3f31b5",
+      "bytes": 7734826
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_AIC算法创新赛计划书_竞赛适配完善版_20261027改前备份.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_AIC算法创新赛计划书_竞赛适配完善版_20261027改前备份.docx",
+      "sha256": "2728ecb02553d0b53c535dd61e7b72c571db0b52deba3ef81188f43282e77e2b",
+      "bytes": 7470318
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_AIC算法创新赛计划书_竞赛适配完善版_v2定稿_20261027.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_AIC算法创新赛计划书_竞赛适配完善版_v2定稿_20261027.docx",
+      "sha256": "df55cbccb440d91b4d46919fea8645297908be329fd8fa219237c25f4f3f31b5",
+      "bytes": 7734826
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_AIC算法创新赛计划书_竞赛适配完善版_v3改前备份_20261027.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_AIC算法创新赛计划书_竞赛适配完善版_v3改前备份_20261027.docx",
+      "sha256": "82f384e81983cb7bd4705f215f26150183e3518ce7cc50b1fe7f7cf1bcfccda3",
+      "bytes": 7732365
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_AIC算法创新赛计划书_终审优化版.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_AIC算法创新赛计划书_终审优化版.docx",
+      "sha256": "5c0766167719721008d244609d9832c100dad8ad5b4da8fc3a5b45b5e0fcffdf",
+      "bytes": 27279193
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_AIC算法创新赛计划书_融合完善版.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_AIC算法创新赛计划书_融合完善版.docx",
+      "sha256": "22bade97dc3dbe3c51007a74177910ea9213612cc6762be467141f7d0f11e9c6",
+      "bytes": 7469096
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_AIC算法创新赛计划书_补图完善版.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_AIC算法创新赛计划书_补图完善版.docx",
+      "sha256": "a3a5119a5e19ada2041619b0a9a9863b6a4c3cb6c82eb4f06c5a46b8baf9d31b",
+      "bytes": 8013748
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_AIC算法创新赛计划书_视觉强化版.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_AIC算法创新赛计划书_视觉强化版.docx",
+      "sha256": "6df1ddd15b7ecda28e970106a8dba3dfbfddc87613ad602ece71edcb4ad8374d",
+      "bytes": 4466320
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_AIC算法创新赛计划书_视觉重设计版.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_AIC算法创新赛计划书_视觉重设计版.docx",
+      "sha256": "5406e3bb05bdf7b96d1ce1dd701e88ab62683b2a4d0e39619a5f09774efffd45",
+      "bytes": 3606573
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_AIC算法创新赛计划书_重构版.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_AIC算法创新赛计划书_重构版.docx",
+      "sha256": "2a58fd2cb20b08f8eb385a62236062cbf3d0489d49665a5f3af23f52bdb7a957",
+      "bytes": 28592593
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_商业计划书_10章精简规划版.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_商业计划书_10章精简规划版.docx",
+      "sha256": "8ef0edb7d1e7ded5b90c123579864717cbc06f4ce223090d4bd37b8791ac26ae",
+      "bytes": 28595009
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_商业计划书_70页参赛版.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_商业计划书_70页参赛版.docx",
+      "sha256": "f1ecb8c0a847906c64c2ebd523c5193de59faf7240a3d46a1fa274dc5757bdee",
+      "bytes": 28593227
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_商业计划书_扩充修订版.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_商业计划书_扩充修订版.docx",
+      "sha256": "1e5d480761b961d3c14915bce6a9b71dbd89295d680c55e260ea27ac853facd3",
+      "bytes": 28715471
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_商业计划书_排版优化版.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_商业计划书_排版优化版.docx",
+      "sha256": "43955ee1063deefacf3db27d671242643e4e2c89bbae7343bdbd4a7a3c0f1ff8",
+      "bytes": 28596092
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_商业计划书_最终统一版.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_商业计划书_最终统一版.docx",
+      "sha256": "c87291d7738b7c6e1d5f0a618b9894468040bc1315ccac3e5feb4afa08c20160",
+      "bytes": 28595205
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_商业计划书_省国奖评审版.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_商业计划书_省国奖评审版.docx",
+      "sha256": "3a990430b7adf5bceeca2fa277d3d4744f95902342631bd873d49342dcd77f90",
+      "bytes": 1296460
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_商业计划书_省赛评委优化版.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_商业计划书_省赛评委优化版.docx",
+      "sha256": "8622f9062c005663aaa3e595af00b52a463364257d0cd46a1a351a5ea6e4dd19",
+      "bytes": 326242
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_商业计划书_重写版.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_商业计划书_重写版.docx",
+      "sha256": "2a85c2d429f21fa6cb7fb1eb4de784d3d0f530c36fe0028bd4f7320377a25e23",
+      "bytes": 3054899
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_计划书_整合优化版_20261027.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_计划书_整合优化版_20261027.docx",
+      "sha256": "0157a8fc2267defd651f03b01b5faf5142ec7b28c6f69cb39137738be444241e",
+      "bytes": 4923369
+    },
+    {
+      "from": "计划书/计划书版本/食刻有数_计划书_整合优化版_20261027_插图上版.docx",
+      "to": "计划书/历史版本/整理前版本/食刻有数_计划书_整合优化版_20261027_插图上版.docx",
+      "sha256": "8be881a0ca6958b6eb68e0303c77ef949bed1dc58fb9bd11e4bff19ce1d485b4",
+      "bytes": 3286653
+    }
+  ],
+  "move_operations": 48,
+  "files": 61,
+  "note": "位置与展示名称调整；Office正文及图片保持原样。"
+}

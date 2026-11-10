@@ -1,0 +1,1 @@
+﻿business_date,stall_id,dish_id,meal_period,prediction_id,model_version,cutoff_at,plan_id,reference_qty,constrained_qty,operator_qty,prepared_qty,sold_qty,leftover_qty,stockout_at,supply_censored,event,override_reason,source_id,reviewer

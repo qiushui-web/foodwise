@@ -64,6 +64,7 @@ public final class DtoMappers {
                 nullableDecimal(rs, "price"),
                 nullableDecimal(rs, "unit_cost"),
                 rs.getInt("prep_minutes"),
+                rs.getString("quantity_unit"),
                 rs.getBoolean("active"),
                 Objects.requireNonNullElse(rs.getString("color"), ""),
                 rs.getString("stall_name"),
@@ -167,7 +168,8 @@ public final class DtoMappers {
                 rs.getInt("leftover_qty"),
                 nullableDecimal(rs, "revenue"),
                 nullableDate(rs, "business_date"),
-                rs.getBoolean("recommendation_adopted")
+                rs.getBoolean("recommendation_adopted"),
+                rs.getString("meal_period")
         );
     }
 

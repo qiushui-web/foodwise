@@ -1,0 +1,10 @@
+{
+  "action": "backup",
+  "file": "foodwise-pilot.mv.db",
+  "sha256": "3D0F2F883CF61E4B041109B2FC3BC1E5E9AAF15D1454482B374C37E232EBE17C",
+  "bytes": 225280,
+  "completedAt": "2026-10-16T02:58:39.2887048Z",
+  "elapsedMs": 116,
+  "verified": true,
+  "scope": "offline H2 copy; application restart/readback required"
+}

@@ -29,12 +29,17 @@ def number(value):
     return parsed
 
 
-def validate_observations(rows, sources, as_of):
+def validate_observations(rows, sources, as_of, revision_history=False):
     cutoff = timestamp(as_of)
     registry = defaultdict(list)
     for source in sources:
         registry[source.get('source_id', '')].append(source)
-    keys = Counter(tuple(r.get(k, '') for k in KEY) for r in rows)
+    identity_fields = KEY + ['observation_id', 'revision_at'] if revision_history else KEY
+    keys = Counter(tuple(r.get(k, '') for k in identity_fields) for r in rows)
+    observation_entities, entity_observations = defaultdict(set), defaultdict(set)
+    for row in rows:
+        observation_entities[row.get('observation_id', '')].add(tuple(row.get(k, '') for k in KEY))
+        entity_observations[tuple(row.get(k, '') for k in KEY)].add(row.get('observation_id', ''))
     units = defaultdict(set)
     for row in rows:
         units[tuple(row.get(k, '') for k in KEY[:3])].add(row.get('unit', ''))
@@ -44,8 +49,20 @@ def validate_observations(rows, sources, as_of):
         key = tuple(row.get(k, '') for k in KEY)
         if any(not value.strip() for value in key):
             reasons.append('MISSING_PRIMARY_KEY')
-        if keys[key] != 1:
+        if keys[tuple(row.get(k, '') for k in identity_fields)] != 1:
             reasons.append('DUPLICATE_PRIMARY_KEY')
+        if revision_history:
+            if not row.get('observation_id', '').strip():
+                reasons.append('MISSING_OBSERVATION_ID')
+            if len(observation_entities[row.get('observation_id', '')]) != 1 or len(entity_observations[key]) != 1:
+                reasons.append('UNSTABLE_OBSERVATION_ID')
+            try:
+                available = timestamp(row.get('available_at', ''))
+                revised = timestamp(row.get('revision_at', ''))
+                if revised < available or revised > cutoff or available > cutoff:
+                    reasons.append('INVALID_REVISION_AVAILABILITY')
+            except (ValueError, TypeError):
+                reasons.append('INVALID_REVISION_AVAILABILITY')
         if len(units[key[:3]]) != 1:
             reasons.append('ENTITY_UNIT_CHANGED')
         if row.get('unit') not in {'portion', 'kg'}:
@@ -123,7 +140,7 @@ def validate_observations(rows, sources, as_of):
         'accepted_fraction': len(accepted)/len(rows) if rows else None,
         'reason_counts': dict(sorted(reason_counts.items())),
         'censored_accepted_rows': sum(r['supply_censored'] for r in accepted),
-        'training_ready': False,
+        'training_ready': False, 'revision_history': revision_history,
         'limitation': 'Schema admission only; manual source evidence, coverage, temporal splits and feature availability still required.'}}
 
 
@@ -210,11 +227,12 @@ def main():
     parser.add_argument('--sources', type=Path, required=True)
     parser.add_argument('--forecasts', type=Path, help='Optional forecast snapshots, separate from outcomes')
     parser.add_argument('--as-of', required=True, help='Timezone-aware audit snapshot time')
+    parser.add_argument('--revision-history', action='store_true', help='Admit immutable versions with stable observation_id and availability timestamps')
     parser.add_argument('--output', type=Path, required=True, help='New directory; existing output is never overwritten')
     args = parser.parse_args()
     rows, fields = read_csv(args.observations)
     sources, _ = read_csv(args.sources)
-    result = validate_observations(rows, sources, args.as_of)
+    result = validate_observations(rows, sources, args.as_of, args.revision_history)
     forecast_result, forecast_fields = None, []
     if args.forecasts:
         forecasts, forecast_fields = read_csv(args.forecasts)

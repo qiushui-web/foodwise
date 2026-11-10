@@ -21,6 +21,7 @@ public record OperationRow(
     int leftoverQty,
     BigDecimal revenue,
     LocalDate businessDate,
-    boolean recommendationAdopted
+    boolean recommendationAdopted,
+    String mealPeriod
 ) {}
 

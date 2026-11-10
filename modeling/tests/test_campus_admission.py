@@ -65,6 +65,16 @@ class CampusAdmissionTests(unittest.TestCase):
         self.assertEqual(2, result['summary']['quarantined_rows'])
         self.assertEqual(2, result['summary']['reason_counts']['DUPLICATE_PRIMARY_KEY'])
 
+    def test_revision_mode_preserves_versions_and_rejects_conflicting_identity(self):
+        row, source = self.sample(observation_id='obs-1', available_at='2026-10-12T21:00:00+08:00', revision_at='2026-10-12T21:00:00+08:00')
+        revision = dict(row, revision_at='2026-10-13T08:00:00+08:00', sold_regular_qty='71', closing_qty='14')
+        result = admission.validate_observations([row, revision], [source], '2026-10-13T10:00:00+08:00', True)
+        self.assertEqual(2, len(result['accepted']))
+        conflict = dict(revision, observation_id='another-id')
+        result = admission.validate_observations([row, conflict], [source], '2026-10-13T10:00:00+08:00', True)
+        self.assertEqual(2, len(result['quarantined']))
+        self.assertIn('UNSTABLE_OBSERVATION_ID', result['quarantined'][0]['reason_codes'])
+
     def test_stockout_is_observed_sales_with_supply_censoring(self):
         result = self.check(stockout_at='2026-10-12T12:30:00+08:00')
         self.assertEqual('80', result['accepted'][0]['net_sold_qty'])

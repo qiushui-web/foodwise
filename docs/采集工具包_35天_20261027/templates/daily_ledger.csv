@@ -1,0 +1,1 @@
+business_date,week_index,condition,stall_id,dish_id,meal_period,weekday,weather,exam_week,campus_event,price,unit_cost,discount_ratio,salvage_ratio,shortage_lambda,suggested_qty,interval_low,interval_high,engine,adopted,prepared_qty,sold_qty,discounted_qty,leftover_qty,waste_qty,stockout_minutes,censored,revision_of,source_id,note

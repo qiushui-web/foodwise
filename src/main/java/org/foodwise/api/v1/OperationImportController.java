@@ -34,17 +34,22 @@ public class OperationImportController {
     @PostMapping(value = "/import/preview", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ApiResponse<Map<String, Object>> preview(@RequestPart("file") MultipartFile file,
                                                      HttpServletRequest request) {
-        return ApiResponse.success(importService.previewCsv(file), ApiTrace.id(request));
+        return ApiResponse.success(importService.preview(file), ApiTrace.id(request));
     }
 
     @PostMapping(value = "/import", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @org.springframework.transaction.annotation.Transactional
-    public ApiResponse<Map<String, Object>> importCsv(@RequestPart("file") MultipartFile file,
+    public ApiResponse<Map<String, Object>> importData(@RequestPart("file") MultipartFile file,
                                                        @RequestParam String operatorName,
                                                        @RequestParam boolean safetyConfirmed,
+                                                       @RequestParam String sourceName,
+                                                       @RequestParam String provider,
+                                                       @RequestParam String region,
+                                                       @RequestParam String authorizationReference,
                                                        HttpServletRequest request) {
         idempotency.reserve(request, "operations.import");
-        Map<String, Object> result = importService.importCsv(file, operatorName, safetyConfirmed);
+        Map<String, Object> result = importService.importData(file, operatorName, safetyConfirmed,
+                sourceName, provider, region, authorizationReference);
         audit.record(request, "operations.import", "operation_import", String.valueOf(result.getOrDefault("batchId", "unknown")));
         return ApiResponse.success(result, ApiTrace.id(request));
     }

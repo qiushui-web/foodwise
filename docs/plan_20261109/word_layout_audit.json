@@ -1,0 +1,614 @@
+{
+  "pages": 45,
+  "splitRows": [],
+  "headings": [
+    {
+      "physical": 2,
+      "page": 2,
+      "title": "摘　要"
+    },
+    {
+      "physical": 3,
+      "page": 3,
+      "title": "目　录"
+    },
+    {
+      "physical": 5,
+      "page": 1,
+      "title": "第一章 项目概述与价值定位"
+    },
+    {
+      "physical": 5,
+      "page": 1,
+      "title": "1.1 从一餐备餐切入"
+    },
+    {
+      "physical": 5,
+      "page": 1,
+      "title": "1.2 服务对象与价值分工"
+    },
+    {
+      "physical": 6,
+      "page": 2,
+      "title": "1.3 创新主张与当前基础"
+    },
+    {
+      "physical": 6,
+      "page": 2,
+      "title": "1.4 项目阶段与本轮目标"
+    },
+    {
+      "physical": 7,
+      "page": 3,
+      "title": "第二章 经营场景与需求分析"
+    },
+    {
+      "physical": 7,
+      "page": 3,
+      "title": "2.1 高校档口的经营约束"
+    },
+    {
+      "physical": 7,
+      "page": 3,
+      "title": "2.2 三类问题与产品响应"
+    },
+    {
+      "physical": 8,
+      "page": 4,
+      "title": "2.3 最小数据与低负担使用"
+    },
+    {
+      "physical": 8,
+      "page": 4,
+      "title": "2.4 政策背景与进入条件"
+    },
+    {
+      "physical": 9,
+      "page": 5,
+      "title": "第三章 产品方案与页面设计"
+    },
+    {
+      "physical": 9,
+      "page": 5,
+      "title": "3.1 以经营任务组织页面"
+    },
+    {
+      "physical": 9,
+      "page": 5,
+      "title": "3.2 建档与经营数据回传"
+    },
+    {
+      "physical": 10,
+      "page": 6,
+      "title": "3.3 从历史参考到可执行计划"
+    },
+    {
+      "physical": 12,
+      "page": 8,
+      "title": "3.4 当餐剩余处理与订单核销"
+    },
+    {
+      "physical": 12,
+      "page": 8,
+      "title": "3.5 经营预警与复盘"
+    },
+    {
+      "physical": 13,
+      "page": 9,
+      "title": "3.6 经营参谋与智能体设计"
+    },
+    {
+      "physical": 15,
+      "page": 11,
+      "title": "第四章 数据基础与备餐建模"
+    },
+    {
+      "physical": 15,
+      "page": 11,
+      "title": "4.1 数据来源与用途"
+    },
+    {
+      "physical": 16,
+      "page": 12,
+      "title": "4.2 记录单位与质量控制"
+    },
+    {
+      "physical": 16,
+      "page": 12,
+      "title": "4.3 预测时点与售罄截断"
+    },
+    {
+      "physical": 17,
+      "page": 13,
+      "title": "4.4 基线、分位模型与时间验证"
+    },
+    {
+      "physical": 18,
+      "page": 14,
+      "title": "4.5 从需求分布到备餐数量"
+    },
+    {
+      "physical": 18,
+      "page": 14,
+      "title": "4.6 技术架构与智能交互"
+    },
+    {
+      "physical": 20,
+      "page": 16,
+      "title": "第五章 验证结果与创新评价"
+    },
+    {
+      "physical": 20,
+      "page": 16,
+      "title": "5.1 分开回答三类验证问题"
+    },
+    {
+      "physical": 20,
+      "page": 16,
+      "title": "5.2 公开销量回测的已有发现"
+    },
+    {
+      "physical": 21,
+      "page": 17,
+      "title": "5.3 四类情景中的策略取舍"
+    },
+    {
+      "physical": 23,
+      "page": 19,
+      "title": "5.4 新一轮实验与应用门槛"
+    },
+    {
+      "physical": 23,
+      "page": 19,
+      "title": "5.5 可核验的创新与局限"
+    },
+    {
+      "physical": 24,
+      "page": 20,
+      "title": "第六章 市场切入与竞争分析"
+    },
+    {
+      "physical": 24,
+      "page": 20,
+      "title": "6.1 从可服务档口判断市场"
+    },
+    {
+      "physical": 24,
+      "page": 20,
+      "title": "6.2 替代方案与差异化"
+    },
+    {
+      "physical": 25,
+      "page": 21,
+      "title": "6.3 验证渠道与推广顺序"
+    },
+    {
+      "physical": 26,
+      "page": 22,
+      "title": "第七章 商业模式与单位经济"
+    },
+    {
+      "physical": 26,
+      "page": 22,
+      "title": "7.1 付费对象与服务内容"
+    },
+    {
+      "physical": 26,
+      "page": 22,
+      "title": "7.2 客户价值怎样核对"
+    },
+    {
+      "physical": 27,
+      "page": 23,
+      "title": "7.3 团队侧的单位经济"
+    },
+    {
+      "physical": 27,
+      "page": 23,
+      "title": "7.4 试用、收费与复制条件"
+    },
+    {
+      "physical": 28,
+      "page": 24,
+      "title": "第八章 服务交付与组织保障"
+    },
+    {
+      "physical": 28,
+      "page": 24,
+      "title": "8.1 准入、建档和培训"
+    },
+    {
+      "physical": 28,
+      "page": 24,
+      "title": "8.2 职责和权限"
+    },
+    {
+      "physical": 29,
+      "page": 25,
+      "title": "8.3 异常处理与日常复核"
+    },
+    {
+      "physical": 30,
+      "page": 26,
+      "title": "第九章 财务情景与风险管理"
+    },
+    {
+      "physical": 30,
+      "page": 26,
+      "title": "9.1 预测口径与投入"
+    },
+    {
+      "physical": 30,
+      "page": 26,
+      "title": "9.2 盈亏平衡与现金安排"
+    },
+    {
+      "physical": 31,
+      "page": 27,
+      "title": "9.3 单因素敏感性"
+    },
+    {
+      "physical": 32,
+      "page": 28,
+      "title": "9.4 主要风险与应对"
+    },
+    {
+      "physical": 33,
+      "page": 29,
+      "title": "第十章 实施路线与社会价值"
+    },
+    {
+      "physical": 33,
+      "page": 29,
+      "title": "10.1 按证据推进应用"
+    },
+    {
+      "physical": 33,
+      "page": 29,
+      "title": "10.2 大挑战杯与三创赛共用论证"
+    },
+    {
+      "physical": 34,
+      "page": 30,
+      "title": "10.3 社会价值与评价"
+    },
+    {
+      "physical": 34,
+      "page": 30,
+      "title": "10.4 近期工作重点"
+    },
+    {
+      "physical": 35,
+      "page": 31,
+      "title": "附录A 产品界面与操作索引"
+    },
+    {
+      "physical": 44,
+      "page": 40,
+      "title": "附录B 数据与证据口径"
+    },
+    {
+      "physical": 45,
+      "page": 41,
+      "title": "参考文献与来源"
+    }
+  ],
+  "pdfGenerated": false,
+  "explanations": [
+    {
+      "captionPage": 6,
+      "page": 6,
+      "text": "经营者保留最终决定权；回传记录经过确认后才进入后续分析。限时优惠只处理当餐经确认的可售余量。"
+    },
+    {
+      "captionPage": 9,
+      "page": 9,
+      "text": "总览帮助负责人定位当天任务和最近经营记录；图中数值为本地构造演示数据。"
+    },
+    {
+      "captionPage": 10,
+      "page": 10,
+      "text": "页面保留日期、餐次、实际数量和状态；录入表单特写见附录A，便于核对字段。"
+    },
+    {
+      "captionPage": 11,
+      "page": 11,
+      "text": "页面将备餐参考、依据和人工确认分开；操作特写见附录A，不把经验范围解释为校园预测精度。"
+    },
+    {
+      "captionPage": 11,
+      "page": 11,
+      "text": "库存和产能是单菜品分配快照；跨菜品资源统一优化属于扩展工作。建议不会自动控制设备。"
+    },
+    {
+      "captionPage": 12,
+      "page": 12,
+      "text": "图中餐品照片是页面素材，不作为现场拍摄证明；安全判断由档口与食堂管理流程完成。"
+    },
+    {
+      "captionPage": 13,
+      "page": 13,
+      "text": "本图保留原页面演示说明；其中变化是本地记录对照，不能推断真实经营改善。"
+    },
+    {
+      "captionPage": 14,
+      "page": 14,
+      "text": "实线为当前可复核的读取、计算与解释关系；自然语言适配作为可选扩展，经营写操作继续由人工页面完成。"
+    },
+    {
+      "captionPage": 17,
+      "page": 17,
+      "text": "未售罄时销量可以更接近完整需求；售罄后销量只能提供需求下界。示意曲线不代表实测需求。"
+    },
+    {
+      "captionPage": 18,
+      "page": 18,
+      "text": "图示为拟实施方案，尚非已完成结果。所有方法使用相同测试日期，按日期块进行配对比较。"
+    },
+    {
+      "captionPage": 19,
+      "page": 19,
+      "text": "公开研究经评估后才形成可选产物；日常计划使用的规则和输入须可追溯，不将冻结报告等同现场训练。"
+    },
+    {
+      "captionPage": 22,
+      "page": 22,
+      "text": "点为20个种子的均值，横线为跨种子P5—P95经验分位，不是置信区间。数值按冻结实验的regret/100口径展示；情景和成本为设定，不代表现场经营。"
+    },
+    {
+      "captionPage": 27,
+      "page": 27,
+      "text": "单位为元/档口·年，数值为规划：收入2200、可变成本850、贡献毛利1350；贡献毛利尚需覆盖固定费用。"
+    },
+    {
+      "captionPage": 29,
+      "page": 29,
+      "text": "横向为营业前、营业中与闭餐后，纵向区分负责人、当班人员和团队。异常先停止相关动作，再核对与恢复。"
+    },
+    {
+      "captionPage": 31,
+      "page": 31,
+      "text": "所有数值为规划，单位万元。固定与可变成本合计后再计算营业利润；负利润保留显示，不以累计利润代替现金流。"
+    },
+    {
+      "captionPage": 35,
+      "page": 35,
+      "text": "查看订单与核销状态，防止重复领取和数量重复扣减。"
+    },
+    {
+      "captionPage": 36,
+      "page": 36,
+      "text": "从异常清单定位需要人工处理的记录。"
+    },
+    {
+      "captionPage": 36,
+      "page": 36,
+      "text": "核对服务对象、菜品和主数据；菜品照片为同类菜品示意。"
+    },
+    {
+      "captionPage": 37,
+      "page": 37,
+      "text": "填写学校与档口信息；授权材料引用仍需核验。"
+    },
+    {
+      "captionPage": 37,
+      "page": 37,
+      "text": "查看最近有记录营业日，区别于实时监测。"
+    },
+    {
+      "captionPage": 38,
+      "page": 38,
+      "text": "核对展示数据、参考与公开研究口径，不据此宣称校园模型精度。"
+    },
+    {
+      "captionPage": 38,
+      "page": 38,
+      "text": "按当前台账查看剩余结构，具体去向回到经营记录核对。"
+    },
+    {
+      "captionPage": 39,
+      "page": 39,
+      "text": "集中说明输入要求与日常使用顺序。"
+    },
+    {
+      "captionPage": 39,
+      "page": 39,
+      "text": "区分构造演示、外部数据和现场研究范围。"
+    },
+    {
+      "captionPage": 40,
+      "page": 40,
+      "text": "展示账号入口，实际权限以运行配置与验证为准。"
+    },
+    {
+      "captionPage": 41,
+      "page": 41,
+      "text": "放大参考范围、成本依据与人工确认位置。"
+    },
+    {
+      "captionPage": 42,
+      "page": 42,
+      "text": "核对字段与数量关系；该图为原生操作区域，保持原比例。"
+    },
+    {
+      "captionPage": 42,
+      "page": 42,
+      "text": "放大记录对比；其中比例属于演示台账。"
+    },
+    {
+      "captionPage": 43,
+      "page": 43,
+      "text": "核对学校、档口、菜品等字段，不替代现场准入。"
+    }
+  ],
+  "bodyFonts": [
+    {
+      "style": "正文",
+      "line": 18.0,
+      "bold": 0,
+      "eastAsia": "宋体",
+      "size": 12.0
+    },
+    {
+      "style": "正文",
+      "line": 18.0,
+      "bold": 0,
+      "eastAsia": "宋体",
+      "size": 12.0
+    },
+    {
+      "style": "正文",
+      "line": 18.0,
+      "bold": 0,
+      "eastAsia": "宋体",
+      "size": 12.0
+    }
+  ],
+  "captions": [
+    {
+      "page": 6,
+      "imagePage": 6,
+      "caption": "图1-1  备餐经营的连续使用关系"
+    },
+    {
+      "page": 9,
+      "imagePage": 9,
+      "caption": "图3-1  经营总览页面"
+    },
+    {
+      "page": 10,
+      "imagePage": 10,
+      "caption": "图3-2  经营数据回传页面"
+    },
+    {
+      "page": 11,
+      "imagePage": 11,
+      "caption": "图3-3  备餐计划页面"
+    },
+    {
+      "page": 11,
+      "imagePage": 11,
+      "caption": "图3-4  备餐条件与人工确认关系"
+    },
+    {
+      "page": 12,
+      "imagePage": 12,
+      "caption": "图3-5  限时优惠与剩余处理页面"
+    },
+    {
+      "page": 13,
+      "imagePage": 13,
+      "caption": "图3-6  经营复盘报告页面"
+    },
+    {
+      "page": 14,
+      "imagePage": 14,
+      "caption": "图3-7  经营参谋的读取与解释范围"
+    },
+    {
+      "page": 17,
+      "imagePage": 17,
+      "caption": "图4-1  销量可观测性与售罄关系"
+    },
+    {
+      "page": 18,
+      "imagePage": 18,
+      "caption": "图4-2  新一轮销量研究的时间切分"
+    },
+    {
+      "page": 19,
+      "imagePage": 19,
+      "caption": "图4-3  产品运行与离线研究的分层关系"
+    },
+    {
+      "page": 22,
+      "imagePage": 22,
+      "caption": "图5-1  四类仿真情景下的额外损失"
+    },
+    {
+      "page": 27,
+      "imagePage": 27,
+      "caption": "图7-1  第二年单档口收入与交付成本情景"
+    },
+    {
+      "page": 29,
+      "imagePage": 29,
+      "caption": "图8-1  一次营业任务的责任交接"
+    },
+    {
+      "page": 31,
+      "imagePage": 31,
+      "caption": "图9-1  三年收入、成本与利润情景"
+    },
+    {
+      "page": 35,
+      "imagePage": 35,
+      "caption": "图A-1  订单核销"
+    },
+    {
+      "page": 36,
+      "imagePage": 36,
+      "caption": "图A-2  经营预警中心"
+    },
+    {
+      "page": 36,
+      "imagePage": 36,
+      "caption": "图A-3  档口与菜品"
+    },
+    {
+      "page": 37,
+      "imagePage": 37,
+      "caption": "图A-4  首次建档"
+    },
+    {
+      "page": 37,
+      "imagePage": 37,
+      "caption": "图A-5  营业概况"
+    },
+    {
+      "page": 38,
+      "imagePage": 38,
+      "caption": "图A-6  需求分析"
+    },
+    {
+      "page": 38,
+      "imagePage": 38,
+      "caption": "图A-7  剩余分析"
+    },
+    {
+      "page": 39,
+      "imagePage": 39,
+      "caption": "图A-8  服务说明"
+    },
+    {
+      "page": 39,
+      "imagePage": 39,
+      "caption": "图A-9  数据来源与验证说明"
+    },
+    {
+      "page": 40,
+      "imagePage": 40,
+      "caption": "图A-10  登录入口"
+    },
+    {
+      "page": 41,
+      "imagePage": 41,
+      "caption": "图A-11  备餐建议操作特写"
+    },
+    {
+      "page": 42,
+      "imagePage": 42,
+      "caption": "图A-12  经营记录表单特写"
+    },
+    {
+      "page": 42,
+      "imagePage": 42,
+      "caption": "图A-13  复盘记录对照特写"
+    },
+    {
+      "page": 43,
+      "imagePage": 43,
+      "caption": "图A-14  建档信息特写"
+    }
+  ]
+}

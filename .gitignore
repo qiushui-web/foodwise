@@ -40,9 +40,14 @@ out/
 frontend/node_modules/
 .playwright-cli/
 output/
+.local-validation/
 
 # Large local datasets and derived training artifacts
 data/raw/*.parquet
+data/runtime/
+data/pilot/
+data/backups/
+data/restore-check/
 modeling/data/02_processed/
 modeling/data/03_output/
 *.zip
@@ -72,3 +77,21 @@ PPT/
 # Browser runs are reproducible; final evidence is stored in docs/validation.
 frontend/test-results/
 frontend/playwright-report/
+
+# Local document previews and rejected visual drafts; retain source and final evidence.
+frontend/output/
+docs/aic_assets/rejected_candidates/
+docs/aic_assets/review/
+docs/plan_*/pages/
+docs/plan_*/render/
+docs/plan_*/*contact*.jpg
+docs/plan_*/*contact*.png
+docs/plan_*/preview_*/
+docs/plan_*/~$*
+.env
+.env.*
+!.env.example
+
+# Word design review snapshots are local working artifacts.
+docs/plan_*_review/*.png
+docs/plan_*_review/*.jpg

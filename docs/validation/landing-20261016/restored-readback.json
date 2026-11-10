@@ -1,0 +1,30 @@
+{
+  "stage": "restored",
+  "checks": [
+    {
+      "path": "/dishes",
+      "equal": true
+    },
+    {
+      "path": "/stalls",
+      "equal": true
+    },
+    {
+      "path": "/orders",
+      "equal": true
+    },
+    {
+      "path": "/operations/feedback",
+      "equal": true
+    },
+    {
+      "path": "/preparation-plans/5",
+      "equal": true
+    },
+    {
+      "path": "/predictions/3/replay",
+      "equal": true
+    }
+  ],
+  "dataNature": "isolated synthetic acceptance; no field evidence"
+}

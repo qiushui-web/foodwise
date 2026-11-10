@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'org.foodwise'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0'
 description = '食刻有数 - 高校食堂精细化经营与食品减损平台'
 
 java {
@@ -32,6 +32,8 @@ dependencies {
     implementation 'org.flywaydb:flyway-core:10.20.1'
     implementation 'org.flywaydb:flyway-mysql:10.20.1'
     implementation 'com.github.ben-manes.caffeine:caffeine:3.2.0'
+    implementation 'org.apache.poi:poi-ooxml:5.4.1'
+    implementation 'org.apache.commons:commons-csv:1.14.1'
     runtimeOnly 'com.mysql:mysql-connector-j'
     runtimeOnly 'com.h2database:h2'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -75,3 +77,17 @@ tasks.register('frontendBuild', Exec) {
     outputs.dir('src/main/resources/static/build')
 }
 tasks.named('processResources') { dependsOn 'frontendBuild' }
+
+// Artifact-contract gate: a bundle that violates manifest v2 must not be released.
+def modelingPython = file('modeling/.venv/Scripts/python.exe')
+tasks.register('verifyManifest', Exec) {
+    onlyIf { modelingPython.exists() || !org.gradle.internal.os.OperatingSystem.current().isWindows() }
+    workingDir projectDir
+    commandLine(modelingPython.exists() ? modelingPython.absolutePath : 'python',
+            'modeling/scripts/30_verify_manifest.py')
+    inputs.files('src/main/resources/modeling/model_manifest.json',
+            'src/main/resources/modeling/lgbm_campus_model.txt',
+            'src/main/resources/modeling/campus_feature_cols.json')
+    outputs.upToDateWhen { false }
+}
+tasks.named('check') { dependsOn 'verifyManifest' }

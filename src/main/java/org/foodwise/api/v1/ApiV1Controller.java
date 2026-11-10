@@ -74,10 +74,22 @@ public class ApiV1Controller {
         PredictionEngineResult result = predictions.predict(
                 new PredictionContext(request.dishId(), request.weather(), request.examWeek(), request.campusEvent(),
                         ApiTrace.id(httpRequest), idempotencyKey, operatorName(), request.targetDate(),
-                        request.mealPeriod(), request.sourceNature()),
+                        request.mealPeriod(), demoEnabled ? "项目内经营测算快照（演示）" : "经营台账；来源待逐笔核验"),
                 request.engine());
         audit.record(httpRequest, "predictions.create", "prediction", String.valueOf(request.dishId()));
         return ApiResponse.success(result, ApiTrace.id(httpRequest));
+    }
+
+    @org.springframework.transaction.annotation.Transactional
+    @PostMapping("/predictions/{id}/feedback")
+    public ApiResponse<Map<String, Object>> predictionFeedback(@PathVariable @Min(1) long id,
+                @Valid @RequestBody PredictionFeedbackRequest request, HttpServletRequest httpRequest) {
+        idempotency.reserve(httpRequest, "predictions.feedback");
+        foodwise.validatePredictionFeedback(id, request.dishId(), request.targetDate(), request.mealPeriod(),
+                request.adopted(), request.adjustedQty(), request.reason());
+        foodwise.savePredictionFeedback(id, request.adopted(), request.adjustedQty(), request.reason(), operatorName());
+        audit.record(httpRequest, "predictions.feedback", "prediction", String.valueOf(id));
+        return ApiResponse.success(Map.of("message", "备餐执行计划已确认"), ApiTrace.id(httpRequest));
     }
 
     private String operatorName() {
@@ -99,6 +111,16 @@ public class ApiV1Controller {
     @GetMapping("/predictions/engines")
     public ApiResponse<?> engines(HttpServletRequest request) {
         return ApiResponse.success(predictions.availableEngines(), ApiTrace.id(request));
+    }
+
+    @GetMapping("/predictions/reviews")
+    public ApiResponse<?> predictionReviews(HttpServletRequest request) {
+        return ApiResponse.success(foodwise.predictionReviews(), ApiTrace.id(request));
+    }
+
+    @GetMapping("/predictions/{id}/replay")
+    public ApiResponse<?> replayPrediction(@PathVariable @Min(1) long id, HttpServletRequest request) {
+        return ApiResponse.success(foodwise.replayPredictionInputs(id), ApiTrace.id(request));
     }
 
     @GetMapping("/weather")
@@ -246,15 +268,58 @@ public class ApiV1Controller {
         return ApiResponse.success(PageResponse.of(feedback.recentFeedback(), page, size), ApiTrace.id(request));
     }
 
+    @GetMapping("/operations/source-evidence")
+    public ApiResponse<?> sourceEvidence(HttpServletRequest request) {
+        return ApiResponse.success(foodwise.sourceEvidenceRecords(), ApiTrace.id(request));
+    }
+
+    @GetMapping("/onboarding/readiness")
+    public ApiResponse<?> onboardingReadiness(HttpServletRequest request) {
+        return ApiResponse.success(foodwise.onboardingReadiness(), ApiTrace.id(request));
+    }
+
+    @org.springframework.transaction.annotation.Transactional
+    @PostMapping("/onboarding")
+    public ApiResponse<?> onboard(@RequestBody OnboardingRequest request, HttpServletRequest httpRequest) {
+        idempotency.reserve(httpRequest, "onboarding.create");
+        if (request == null || request.schoolName() == null || request.schoolName().isBlank()
+                || request.schoolCode() == null || request.schoolCode().isBlank()
+                || request.authorizationReference() == null || request.authorizationReference().isBlank()
+                || request.dataPurpose() == null || request.dataPurpose().isBlank()
+                || request.retentionPeriod() == null || request.retentionPeriod().isBlank()
+                || request.stallName() == null || request.stallName().isBlank()
+                || request.managerName() == null || request.managerName().isBlank()
+                || request.dishName() == null || request.dishName().isBlank()
+                || request.price() == null || request.unitCost() == null
+                || request.operatorName() == null || request.operatorName().isBlank()) {
+            throw new IllegalArgumentException("学校、授权、档口、菜品、价格和操作人均为必填项");
+        }
+        var result = foodwise.onboard(new FoodwiseService.OnboardingRequest(
+                request.schoolName(), request.schoolCode(), request.authorizationReference(),
+                request.dataPurpose(), request.retentionPeriod(), request.stallName(), request.stallCategory(),
+                request.location(), request.managerName(), request.dishName(), request.dishCategory(),
+                request.price(), request.unitCost(), request.prepMinutes(), request.quantityUnit(), request.operatorName()));
+        audit.record(httpRequest, "onboarding.create", "school_profile", String.valueOf(result.get("schoolId")));
+        return ApiResponse.success(result, ApiTrace.id(httpRequest));
+    }
+
     @org.springframework.transaction.annotation.Transactional
     @PostMapping("/operations/feedback")
     public ApiResponse<OperationLearningResult> operationFeedback(@Valid @RequestBody FeedbackRequest request,
                                                                    HttpServletRequest httpRequest) {
         idempotency.reserve(httpRequest, "operations.feedback");
+        if (request.predictionId() != null) {
+            foodwise.validatePredictionFeedback(request.predictionId(), request.dishId(), request.businessDate(),
+                    request.mealPeriod(), request.recommendationAdopted(), request.adjustedQty(), request.adjustmentReason());
+        }
         OperationLearningResult result = feedback.submit(request.businessDate(), request.mealPeriod(), request.dishId(), request.plannedQty(),
                 request.preparedQty(), request.soldQty(), request.discountSoldQty(), request.leftoverQty(),
                 request.revenue(), request.weather(), request.eventTag(), request.recommendationAdopted(),
                 request.safetyConfirmed(), request.operatorName(), request.note());
+        if (request.predictionId() != null) {
+            foodwise.savePredictionFeedback(request.predictionId(), request.recommendationAdopted(),
+                    request.adjustedQty(), request.adjustmentReason(), request.operatorName());
+        }
         audit.record(httpRequest, "operations.feedback", "operation", String.valueOf(result.operationId()));
         return ApiResponse.success(result, ApiTrace.id(httpRequest));
     }
@@ -273,6 +338,10 @@ public class ApiV1Controller {
 
     public record OfferRequest(@Min(1) long dishId) {}
 
+    public record PredictionFeedbackRequest(@Min(1) long dishId, @NotNull LocalDate targetDate,
+                                            @NotBlank String mealPeriod, boolean adopted,
+                                            @NotNull @Min(0) Integer adjustedQty, String reason) {}
+
     public record OfferCreateRequest(@Min(1) long dishId, @Min(1) int quantity,
                                      @NotNull @DecimalMin("0.01") BigDecimal offerPrice,
                                      @NotNull LocalTime startTime, @NotNull LocalTime endTime,
@@ -283,10 +352,18 @@ public class ApiV1Controller {
                                   @Min(0) int soldQty, @Min(0) int discountSoldQty,
                                   @Min(0) int leftoverQty, @NotNull @DecimalMin("0.00") BigDecimal revenue,
                                   @NotBlank String weather, String eventTag, boolean recommendationAdopted,
-                                   boolean safetyConfirmed, @NotBlank String operatorName, String note) {
+                                   boolean safetyConfirmed, @NotBlank String operatorName, String note,
+                                   Long predictionId, @Min(0) Integer adjustedQty, String adjustmentReason) {
         public FeedbackRequest {
             mealPeriod = mealPeriod == null || mealPeriod.isBlank() ? "未标注" : mealPeriod;
         }
     }
+
+    public record OnboardingRequest(String schoolName, String schoolCode, String authorizationReference,
+                                    String dataPurpose, String retentionPeriod, String stallName,
+                                    String stallCategory, String location, String managerName,
+                                    String dishName, String dishCategory, BigDecimal price,
+                                    BigDecimal unitCost, int prepMinutes, String quantityUnit,
+                                    String operatorName) {}
 }
 

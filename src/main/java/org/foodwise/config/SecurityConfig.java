@@ -63,10 +63,12 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login", "/api/health", "/css/**", "/images/**", "/build/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/**").hasAnyRole("ADMIN", "OPERATOR", "ANALYST")
-                        .requestMatchers(HttpMethod.POST, "/api/v1/predictions", "/api/v1/offers", "/api/v1/intelligence/**",
+                        .requestMatchers(HttpMethod.POST, "/api/v1/predictions", "/api/v1/predictions/*/feedback", "/api/v1/predictions/*/preparation-plans", "/api/v1/decisions/*/preparation-plans", "/api/v1/decisions/*/feedback", "/api/v1/offers", "/api/v1/intelligence/**",
                                 "/api/v1/orders/*/verify", "/api/v1/alerts/*/resolve", "/api/v1/operations/feedback")
                         .hasAnyRole("ADMIN", "OPERATOR")
                         .requestMatchers(HttpMethod.POST, "/api/v1/operations/import/preview").hasAnyRole("ADMIN", "OPERATOR", "ANALYST")
+                        // 参谋是只读问答，三类角色都可以问；写操作仍只给 ADMIN/OPERATOR。
+                        .requestMatchers(HttpMethod.POST, "/api/v1/assistant/advice").hasAnyRole("ADMIN", "OPERATOR", "ANALYST")
                         .requestMatchers(HttpMethod.POST, "/api/v1/operations/import").hasAnyRole("ADMIN", "OPERATOR")
                         .requestMatchers(HttpMethod.POST, "/api/v1/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/v1/**").hasRole("ADMIN")

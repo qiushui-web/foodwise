@@ -18,9 +18,11 @@ import java.util.*;
 public class FoodwiseService {
 
     private final FoodwiseRepository repository;
+    private final org.springframework.context.ApplicationEventPublisher events;
 
-    public FoodwiseService(FoodwiseRepository repository) {
+    public FoodwiseService(FoodwiseRepository repository, org.springframework.context.ApplicationEventPublisher events) {
         this.repository = repository;
+        this.events = events;
     }
 
     /**
@@ -126,6 +128,25 @@ public class FoodwiseService {
         }
     }
 
+    public void validatePredictionFeedback(long predictionId, long dishId, LocalDate date, String mealPeriod,
+                                           boolean adopted, Integer adjustedQty, String reason) {
+        var row = repository.predictionFeedbackContext(predictionId);
+        var snapshot = new tools.jackson.databind.ObjectMapper().readTree(String.valueOf(row.get("input_json")));
+        if (((Number) row.get("dish_id")).longValue() != dishId
+                || !date.toString().equals(String.valueOf(row.get("target_date")))
+                || !mealPeriod.equals(snapshot.path("mealPeriod").asText())) {
+            throw new IllegalArgumentException("关联预测必须与当前菜品、日期和餐次一致");
+        }
+        if (adjustedQty == null || adjustedQty < 0) throw new IllegalArgumentException("请填写实际执行的建议量");
+        if (row.get("constrained_total") instanceof Number limit && adjustedQty > limit.intValue())
+            throw new IllegalArgumentException("执行量超过最近留档的现场约束计划；请核对库存产能后重新生成计划");
+        if ((!adopted || adjustedQty != ((Number) row.get("predicted_mid")).intValue())
+                && (reason == null || reason.isBlank())) {
+            throw new IllegalArgumentException("调整或未采用建议时请填写原因");
+        }
+        if (reason != null && reason.length() > 300) throw new IllegalArgumentException("调整原因最多300字");
+    }
+
     public void savePredictionFeedback(long predictionId, boolean adopted, Integer adjustedQty,
                                        String reason, String operatorName) {
         if (!adopted && (reason == null || reason.isBlank())) {
@@ -169,6 +190,74 @@ public class FoodwiseService {
         data.put("dishes", repository.dishes());
         return data;
     }
+
+    public List<Map<String, Object>> predictionReviews() { return repository.predictionReviews(); }
+
+    @Transactional(readOnly = true)
+    public List<Map<String, Object>> sourceEvidenceRecords() { return repository.sourceEvidenceRecords(); }
+
+    /**
+     * 首次入驻前的可审计检查。演示种子数据只说明页面可运行，不会被解释为学校已完成入驻。
+     */
+    @Transactional(readOnly = true)
+    public Map<String, Object> onboardingReadiness() {
+        List<StallInfo> stalls = getStalls();
+        List<DishInfo> dishes = getDishes();
+        List<Map<String, Object>> evidence = repository.sourceEvidenceRecords();
+        long unverified = evidence.stream()
+                .filter(row -> "DECLARED_UNVERIFIED".equals(String.valueOf(row.get("verification_status"))))
+                .count();
+        List<Map<String, Object>> checks = new ArrayList<>();
+        checks.add(check("学校身份与数据授权", false,
+                "学校资料可通过首次建档登记；学校身份、授权材料及数据用途仍需人工核验，保存建档不会自动通过本项。"));
+        checks.add(check("档口建档", !stalls.isEmpty(), stalls.isEmpty()
+                ? "至少建立一个档口，并核对地点、负责人和营业状态。"
+                : "已发现 " + stalls.size() + " 个档口；请确认它们不是演示种子。"));
+        boolean dishesReady = !dishes.isEmpty() && dishes.stream().allMatch(d -> d.name() != null && !d.name().isBlank()
+                && "份".equals(d.quantityUnit()));
+        checks.add(check("菜品与单位口径", dishesReady,
+                dishesReady ? "已有菜品且预测计量单位统一为份。" : "至少建立一个菜品，并确认首版预测计量单位统一为份。"));
+        checks.add(check("来源与授权核验", !evidence.isEmpty() && unverified == 0,
+                evidence.isEmpty() ? "尚未登记原始台账来源。" : "已有 " + evidence.size() + " 条来源登记，其中 " + unverified + " 条仍待人工核验。"));
+        checks.add(check("训练准入", false,
+                "来源核验、有效样本、时间切分、独立校准和 Python-Java 对照全部通过后才能训练校园模型。"));
+        boolean ready = checks.stream().allMatch(row -> Boolean.TRUE.equals(row.get("passed")));
+        return Map.of("ready", ready, "checks", checks, "counts", Map.of(
+                "stalls", stalls.size(), "dishes", dishes.size(), "sourceEvidence", evidence.size(), "unverifiedSources", unverified));
+    }
+
+    private Map<String, Object> check(String name, boolean passed, String detail) {
+        return Map.of("name", name, "passed", passed, "detail", detail);
+    }
+
+    @Transactional
+    public Map<String, Object> onboard(OnboardingRequest request) {
+        if (!"份".equals(request.quantityUnit())) {
+            throw new IllegalArgumentException("首版只接受“份”作为预测计量单位；其他单位请先建立换算规则");
+        }
+        if (request.price().compareTo(request.unitCost()) < 0) {
+            throw new IllegalArgumentException("售价不能低于单位成本，请核对口径");
+        }
+        long schoolId = repository.upsertSchoolProfile(request.schoolName(), request.schoolCode(),
+                request.authorizationReference(), request.dataPurpose(), request.retentionPeriod(), request.operatorName());
+        long stallId = repository.createStall(request.stallName(), request.stallCategory(), request.location(), request.managerName());
+        long dishId = repository.createDish(stallId, request.dishName(), request.dishCategory(), request.price(),
+                request.unitCost(), request.prepMinutes(), request.quantityUnit());
+        events.publishEvent(new OperationDataChanged(dishId));
+        return Map.of("schoolId", schoolId, "stallId", stallId, "dishId", dishId,
+                "verificationStatus", "DECLARED_UNVERIFIED",
+                "message", "建档完成；学校授权、地域和原始台账仍需人工核验后才能进入训练");
+    }
+
+    public record OnboardingRequest(String schoolName, String schoolCode, String authorizationReference,
+                                    String dataPurpose, String retentionPeriod, String stallName,
+                                    String stallCategory, String location, String managerName,
+                                    String dishName, String dishCategory, BigDecimal price,
+                                    BigDecimal unitCost, int prepMinutes, String quantityUnit,
+                                    String operatorName) {}
+
+    @Transactional(readOnly = true)
+    public Map<String, Object> replayPredictionInputs(long predictionId) { return repository.replayPredictionInputs(predictionId); }
 
     @Transactional
     public void verify(long orderId) {

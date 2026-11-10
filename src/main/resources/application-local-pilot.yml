@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: ${FOODWISE_LOCAL_PILOT_DB_URL:jdbc:h2:file:./data/pilot/foodwise-pilot;MODE=MySQL;DATABASE_TO_LOWER=TRUE}
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+foodwise:
+  data:
+    demo-enabled: false
+    nature: 校园餐饮试运行数据（待现场授权与核验）
+    source-label: 试运行空库；未填充河北现场数据
+  ai:
+    enabled: false
+    spring-ai-enabled: false
+  security:
+    enabled: ${FOODWISE_SECURITY_ENABLED:true}
+server:
+  port: ${SERVER_PORT:8089}

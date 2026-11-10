@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="512.64pt" height="232.272pt" viewBox="0 0 512.64 232.272" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-10T08:14:13.955718</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.8.4, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 232.272 
+L 512.64 232.272 
+L 512.64 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 74.6352 146.628 
+C 81.797593 146.628 88.667597 143.415171 93.732174 137.6971 
+C 98.796751 131.979029 101.6424 124.222573 101.6424 116.136 
+C 101.6424 108.049427 98.796751 100.292971 93.732174 94.5749 
+C 88.667597 88.856829 81.797593 85.644 74.6352 85.644 
+C 67.472807 85.644 60.602803 88.856829 55.538226 94.5749 
+C 50.473649 100.292971 47.628 108.049427 47.628 116.136 
+C 47.628 124.222573 50.473649 131.979029 55.538226 137.6971 
+C 60.602803 143.415171 67.472807 146.628 74.6352 146.628 
+z
+" clip-path="url(#p733f2736f3)" style="fill: #ffffff; stroke: #285e82; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 74.6352 118.15956 
+C 76.28255 118.15956 77.862651 117.420609 79.027504 116.105453 
+C 80.192357 114.790297 80.846856 113.006312 80.846856 111.1464 
+C 80.846856 109.286488 80.192357 107.502503 79.027504 106.187347 
+C 77.862651 104.872191 76.28255 104.13324 74.6352 104.13324 
+C 72.98785 104.13324 71.407749 104.872191 70.242896 106.187347 
+C 69.078043 107.502503 68.423544 109.286488 68.423544 111.1464 
+C 68.423544 113.006312 69.078043 114.790297 70.242896 116.105453 
+C 71.407749 117.420609 72.98785 118.15956 74.6352 118.15956 
+L 74.6352 118.15956 
+z
+" clip-path="url(#p733f2736f3)" style="fill: none; stroke: #285e82; stroke-width: 1.3; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 86.78844 123.3432 
+C 86.78844 119.705454 85.507139 116.21298 83.228838 113.640705 
+C 80.950538 111.06843 77.857203 109.6218 74.6352 109.6218 
+C 71.413197 109.6218 68.319862 111.06843 66.041562 113.640705 
+C 63.763261 116.21298 62.48196 119.705454 62.48196 123.3432 
+" clip-path="url(#p733f2736f3)" style="fill: none; stroke: #285e82; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 438.0048 146.628 
+C 445.167193 146.628 452.037197 143.415171 457.101774 137.6971 
+C 462.166351 131.979029 465.012 124.222573 465.012 116.136 
+C 465.012 108.049427 462.166351 100.292971 457.101774 94.5749 
+C 452.037197 88.856829 445.167193 85.644 438.0048 85.644 
+C 430.842407 85.644 423.972403 88.856829 418.907826 94.5749 
+C 413.843249 100.292971 410.9976 108.049427 410.9976 116.136 
+C 410.9976 124.222573 413.843249 131.979029 418.907826 137.6971 
+C 423.972403 143.415171 430.842407 146.628 438.0048 146.628 
+z
+" clip-path="url(#p733f2736f3)" style="fill: #ffffff; stroke: #285e82; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 432.11232 125.0064 
+L 443.89728 125.0064 
+L 443.89728 107.2656 
+L 432.11232 107.2656 
+L 432.11232 125.0064 
+z
+" clip-path="url(#p733f2736f3)" style="fill: none; stroke: #285e82; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 120.830244 44.064 
+Q 256.318953 44.064 390.298317 44.064 
+" clip-path="url(#p733f2736f3)" style="fill: none; stroke: #9aa5af; stroke-width: 1.35; stroke-linecap: round"/>
+    <path d="M 385.098317 41.464 
+L 390.298317 44.064 
+L 385.098317 46.664 
+z
+" clip-path="url(#p733f2736f3)" style="fill: #9aa5af; stroke: #9aa5af; stroke-width: 1.35; stroke-linecap: round"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 391.809756 101.1672 
+Q 256.321047 101.1672 122.341683 101.1672 
+" clip-path="url(#p733f2736f3)" style="fill: none; stroke: #285e82; stroke-width: 1.35; stroke-linecap: round"/>
+    <path d="M 127.541683 103.7672 
+L 122.341683 101.1672 
+L 127.541683 98.5672 
+z
+" clip-path="url(#p733f2736f3)" style="fill: #285e82; stroke: #285e82; stroke-width: 1.35; stroke-linecap: round"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 120.830244 158.2704 
+Q 256.318953 158.2704 390.298317 158.2704 
+" clip-path="url(#p733f2736f3)" style="fill: none; stroke: #285e82; stroke-width: 1.35; stroke-linecap: round"/>
+    <path d="M 385.098317 155.6704 
+L 390.298317 158.2704 
+L 385.098317 160.8704 
+z
+" clip-path="url(#p733f2736f3)" style="fill: #285e82; stroke: #285e82; stroke-width: 1.35; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 434.56752 113.364 
+L 441.44208 113.364 
+" clip-path="url(#p733f2736f3)" style="fill: none; stroke: #285e82; stroke-width: 1.1; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 434.56752 118.3536 
+L 441.44208 118.3536 
+" clip-path="url(#p733f2736f3)" style="fill: none; stroke: #285e82; stroke-width: 1.1; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #222222; font: 16px 'Times New Roman', 'SimHei'; text-anchor: middle" x="74.6352" y="172.66275" transform="rotate(-0 74.6352 172.66275)">档口经营者</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #222222; font: 16px 'Times New Roman', 'SimHei'; text-anchor: middle" x="438.0048" y="172.819" transform="rotate(-0 438.0048 172.819)">食刻有数团队</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #222222; font: 14.5px 'Times New Roman', 'SimHei'; text-anchor: middle" x="256.32" y="33.870914" transform="rotate(-0 256.32 33.870914)">经营记录与人工确认</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #222222; font: 14.5px 'Times New Roman', 'SimHei'; text-anchor: middle" x="256.32" y="90.974114" transform="rotate(-0 256.32 90.974114)">建档 · 备餐参考 · 周期复盘</text>
+   </g>
+   <g id="text_5">
+    <text style="fill: #222222; font: 14.5px 'Times New Roman', 'SimHei'; text-anchor: middle" x="256.32" y="148.105634" transform="rotate(-0 256.32 148.105634)">约定范围的服务费用</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p733f2736f3">
+   <rect x="10.8" y="10.8" width="491.04" height="210.672"/>
+  </clipPath>
+ </defs>
+</svg>

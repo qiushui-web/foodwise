@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.util.HexFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
@@ -119,6 +121,7 @@ public class LgbmCampusModel {
     @PostConstruct
     public void init() {
         try {
+            verifyResourceManifest();
             loadFeatureMeta();
             parseModelText();
             if (trees.isEmpty()) {
@@ -135,6 +138,41 @@ public class LgbmCampusModel {
             this.ready = false;
             System.err.println("[LgbmCampusModel] 初始化失败，降级为规则引擎: " + t);
         }
+    }
+
+    /** Verify the immutable classpath bundle before parsing any model state. */
+    private void verifyResourceManifest() throws Exception {
+        String manifest = readResource("modeling/model_manifest.json");
+        String modelHash = extractString(manifest, "model_sha256");
+        String featureHash = extractString(manifest, "feature_sha256");
+        if (!modelHash.equalsIgnoreCase(sha256Resource("modeling/lgbm_campus_model.txt"))) {
+            throw new IllegalStateException("MODEL_SHA256_MISMATCH");
+        }
+        if (!featureHash.equalsIgnoreCase(sha256Resource("modeling/campus_feature_cols.json"))) {
+            throw new IllegalStateException("FEATURE_SHA256_MISMATCH");
+        }
+    }
+
+    private String readResource(String path) throws Exception {
+        try (var stream = new ClassPathResource(path).getInputStream()) {
+            return new String(stream.readAllBytes(), StandardCharsets.UTF_8);
+        }
+    }
+
+    private String sha256Resource(String path) throws Exception {
+        try (var stream = new ClassPathResource(path).getInputStream()) {
+            return HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(stream.readAllBytes()));
+        }
+    }
+
+    private String extractString(String json, String key) {
+        int start = json.indexOf("\"" + key + "\"");
+        if (start < 0) throw new IllegalStateException("MANIFEST_KEY_MISSING:" + key);
+        int colon = json.indexOf(':', start);
+        int first = json.indexOf('"', colon + 1);
+        int second = json.indexOf('"', first + 1);
+        if (colon < 0 || first < 0 || second < 0) throw new IllegalStateException("MANIFEST_VALUE_INVALID:" + key);
+        return json.substring(first + 1, second).trim();
     }
 
     /** 解析 classpath:modeling/lgbm_campus_model.txt（LightGBM 官方文本格式 v3/v4） */

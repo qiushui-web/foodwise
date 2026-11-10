@@ -1,0 +1,14 @@
+CREATE TABLE IF NOT EXISTS school_profile (
+    id BIGINT PRIMARY KEY,
+    school_name VARCHAR(160) NOT NULL,
+    school_code VARCHAR(80) NOT NULL,
+    authorization_reference VARCHAR(240) NOT NULL,
+    data_purpose VARCHAR(500) NOT NULL,
+    retention_period VARCHAR(120) NOT NULL,
+    verification_status VARCHAR(40) NOT NULL DEFAULT 'DECLARED_UNVERIFIED',
+    created_by VARCHAR(80) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+ALTER TABLE dish ADD COLUMN IF NOT EXISTS quantity_unit VARCHAR(20) NOT NULL DEFAULT '份';

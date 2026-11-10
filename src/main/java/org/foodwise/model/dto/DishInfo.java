@@ -12,6 +12,7 @@ public record DishInfo(
     BigDecimal price,
     BigDecimal unitCost,
     int prepMinutes,
+    String quantityUnit,
     boolean active,
     String color,
     String stallName,

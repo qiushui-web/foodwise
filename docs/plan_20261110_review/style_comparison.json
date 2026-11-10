@@ -1,0 +1,1756 @@
+{
+  "template": {
+    "styles": {
+      "Normal": 197,
+      "Normal (Web)": 3,
+      "Heading 1": 20,
+      "toc 1": 19,
+      "Heading 2": 67,
+      "下标": 64,
+      "Body Text": 52,
+      "First Paragraph": 9
+    },
+    "colors": {
+      "auto": 2
+    },
+    "sections": [
+      {
+        "margins_cm": [
+          2.5,
+          2.3,
+          2.7,
+          2.4,
+          1.2,
+          1.2
+        ],
+        "header": [
+          {
+            "text": "",
+            "style": "Normal",
+            "alignment": "CENTER (1)",
+            "fonts": [
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hint": "eastAsia",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "宋体"
+              }
+            ],
+            "size": [
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "18"
+              }
+            ],
+            "color": [],
+            "spacing": [
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}before": "240",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}after": "240"
+              }
+            ],
+            "borders": [],
+            "fields": [],
+            "drawing": 0
+          }
+        ],
+        "footer": [
+          {
+            "text": "",
+            "style": "Normal",
+            "alignment": "None",
+            "fonts": [],
+            "size": [],
+            "color": [],
+            "spacing": [
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}before": "240",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}after": "240"
+              }
+            ],
+            "borders": [],
+            "fields": [],
+            "drawing": 0
+          }
+        ],
+        "first_header": [
+          {
+            "text": "",
+            "style": "Normal",
+            "alignment": "CENTER (1)",
+            "fonts": [],
+            "size": [],
+            "color": [],
+            "spacing": [
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}before": "240",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}after": "240"
+              }
+            ],
+            "borders": [],
+            "fields": [],
+            "drawing": 0
+          }
+        ],
+        "first_footer": [
+          {
+            "text": "",
+            "style": "Normal",
+            "alignment": "None",
+            "fonts": [],
+            "size": [],
+            "color": [],
+            "spacing": [],
+            "borders": [],
+            "fields": [],
+            "drawing": 0
+          }
+        ]
+      },
+      {
+        "margins_cm": [
+          2.5,
+          2.3,
+          2.7,
+          2.4,
+          1.2,
+          1.2
+        ],
+        "header": [
+          {
+            "text": "食刻有数-高校食堂精细化经营与食品减损服务",
+            "style": "Normal",
+            "alignment": "CENTER (1)",
+            "fonts": [
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hint": "eastAsia",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "宋体"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hint": "eastAsia",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "宋体"
+              }
+            ],
+            "size": [
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "18"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "18"
+              }
+            ],
+            "color": [],
+            "spacing": [
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}before": "240",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}after": "240"
+              }
+            ],
+            "borders": [
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "single",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}color": "8B8B8B",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}sz": "6",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}space": "2"
+              }
+            ],
+            "fields": [],
+            "drawing": 0
+          }
+        ],
+        "footer": [
+          {
+            "text": "",
+            "style": "Normal",
+            "alignment": "None",
+            "fonts": [],
+            "size": [],
+            "color": [],
+            "spacing": [
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}before": "240",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}after": "240"
+              }
+            ],
+            "borders": [],
+            "fields": [],
+            "drawing": 0
+          }
+        ],
+        "first_header": [
+          {
+            "text": "",
+            "style": "Header",
+            "alignment": "None",
+            "fonts": [
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hint": "eastAsia",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "宋体"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hint": "eastAsia",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "宋体"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hint": "eastAsia",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "宋体"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hint": "eastAsia",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "宋体"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hint": "eastAsia",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "宋体"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hint": "eastAsia",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "宋体"
+              }
+            ],
+            "size": [
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "18"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "22"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "22"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "22"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "22"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "22"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "22"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "18"
+              }
+            ],
+            "color": [],
+            "spacing": [],
+            "borders": [],
+            "fields": [],
+            "drawing": 2
+          }
+        ],
+        "first_footer": [
+          {
+            "text": "",
+            "style": "Footer",
+            "alignment": "None",
+            "fonts": [],
+            "size": [],
+            "color": [],
+            "spacing": [],
+            "borders": [],
+            "fields": [],
+            "drawing": 0
+          }
+        ]
+      },
+      {
+        "margins_cm": [
+          2.5,
+          2.3,
+          2.7,
+          2.4,
+          1.2,
+          1.2
+        ],
+        "header": [
+          {
+            "text": "食刻有数-高校食堂精细化经营与食品减损服务",
+            "style": "Normal",
+            "alignment": "CENTER (1)",
+            "fonts": [
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hint": "eastAsia",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "宋体"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hint": "eastAsia",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "宋体"
+              }
+            ],
+            "size": [
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "18"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "18"
+              }
+            ],
+            "color": [],
+            "spacing": [
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}before": "240",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}after": "240"
+              }
+            ],
+            "borders": [
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "single",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}color": "8B8B8B",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}sz": "6",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}space": "2"
+              }
+            ],
+            "fields": [],
+            "drawing": 0
+          }
+        ],
+        "footer": [
+          {
+            "text": "",
+            "style": "Normal",
+            "alignment": "None",
+            "fonts": [],
+            "size": [
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "24"
+              }
+            ],
+            "color": [],
+            "spacing": [
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}before": "240",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}after": "240"
+              }
+            ],
+            "borders": [],
+            "fields": [
+              " PAGE  \\* MERGEFORMAT ",
+              " NUMPAGES  \\* MERGEFORMAT ",
+              " PAGE  \\* MERGEFORMAT ",
+              " NUMPAGES  \\* MERGEFORMAT "
+            ],
+            "drawing": 1
+          }
+        ],
+        "first_header": [
+          {
+            "text": "",
+            "style": "Header",
+            "alignment": "None",
+            "fonts": [
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hint": "eastAsia",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "宋体"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hint": "eastAsia",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "宋体"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hint": "eastAsia",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "宋体"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hint": "eastAsia",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "宋体"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hint": "eastAsia",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "宋体"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hint": "eastAsia",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "宋体",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "宋体"
+              }
+            ],
+            "size": [
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "18"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "22"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "22"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "22"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "22"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "22"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "22"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "18"
+              }
+            ],
+            "color": [],
+            "spacing": [],
+            "borders": [],
+            "fields": [],
+            "drawing": 2
+          }
+        ],
+        "first_footer": [
+          {
+            "text": "",
+            "style": "Footer",
+            "alignment": "None",
+            "fonts": [],
+            "size": [
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "18"
+              }
+            ],
+            "color": [],
+            "spacing": [],
+            "borders": [],
+            "fields": [
+              " PAGE  \\* MERGEFORMAT ",
+              " NUMPAGES  \\* MERGEFORMAT ",
+              " PAGE  \\* MERGEFORMAT ",
+              " NUMPAGES  \\* MERGEFORMAT "
+            ],
+            "drawing": 1
+          }
+        ]
+      }
+    ],
+    "samples": [
+      {
+        "text": "摘要",
+        "style": "Heading 1",
+        "alignment": "None",
+        "fonts": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          },
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          }
+        ],
+        "size": [],
+        "color": [],
+        "spacing": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}before": "120",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}after": "120"
+          }
+        ],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "第一章 服务概述与市场定位",
+        "style": "Heading 1",
+        "alignment": "None",
+        "fonts": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          },
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          }
+        ],
+        "size": [],
+        "color": [],
+        "spacing": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}before": "120",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}after": "120"
+          }
+        ],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "1.1 高校餐饮食品减损场景分析",
+        "style": "Heading 2",
+        "alignment": "None",
+        "fonts": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          },
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          },
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          }
+        ],
+        "size": [],
+        "color": [],
+        "spacing": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}before": "120",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}after": "120"
+          }
+        ],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "1.2 目标客户与核心需求识别",
+        "style": "Heading 2",
+        "alignment": "None",
+        "fonts": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          },
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          },
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          }
+        ],
+        "size": [],
+        "color": [],
+        "spacing": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}before": "120",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}after": "120"
+          }
+        ],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "1.3 产品服务体系概述",
+        "style": "Heading 2",
+        "alignment": "None",
+        "fonts": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          },
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          },
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          }
+        ],
+        "size": [],
+        "color": [],
+        "spacing": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}before": "120",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}after": "120"
+          }
+        ],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "1.4 数字平台功能定位",
+        "style": "Heading 2",
+        "alignment": "None",
+        "fonts": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          },
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          },
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          }
+        ],
+        "size": [],
+        "color": [],
+        "spacing": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}before": "120",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}after": "120"
+          }
+        ],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "1.5 核心价值与战略目标",
+        "style": "Heading 2",
+        "alignment": "None",
+        "fonts": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          },
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          }
+        ],
+        "size": [],
+        "color": [],
+        "spacing": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}before": "120",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}after": "120"
+          }
+        ],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "第二章 行业环境与政策分析",
+        "style": "Heading 1",
+        "alignment": "None",
+        "fonts": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          },
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          }
+        ],
+        "size": [],
+        "color": [],
+        "spacing": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}before": "120",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}after": "120"
+          }
+        ],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "2.1 高校餐饮行业特征分析",
+        "style": "Heading 2",
+        "alignment": "None",
+        "fonts": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          },
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          }
+        ],
+        "size": [],
+        "color": [],
+        "spacing": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}before": "120",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}after": "120"
+          }
+        ],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "2.2 反食品浪费政策与校园治理",
+        "style": "Heading 2",
+        "alignment": "None",
+        "fonts": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          },
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          }
+        ],
+        "size": [],
+        "color": [],
+        "spacing": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}before": "120",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}after": "120"
+          }
+        ],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "2.3 食堂数字化现状与技术方法参考",
+        "style": "Heading 2",
+        "alignment": "None",
+        "fonts": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          },
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          }
+        ],
+        "size": [],
+        "color": [],
+        "spacing": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}before": "120",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}after": "120"
+          }
+        ],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "2.4 行业机会与市场进入条件",
+        "style": "Heading 2",
+        "alignment": "None",
+        "fonts": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          },
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          }
+        ],
+        "size": [],
+        "color": [],
+        "spacing": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}before": "120",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}after": "120"
+          }
+        ],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "2.5 政策导向与市场机会关联",
+        "style": "Heading 2",
+        "alignment": "None",
+        "fonts": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          },
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          }
+        ],
+        "size": [],
+        "color": [],
+        "spacing": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}before": "120",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}after": "120"
+          }
+        ],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "2.6 战略环境综合分析",
+        "style": "Heading 2",
+        "alignment": "None",
+        "fonts": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体"
+          }
+        ],
+        "size": [],
+        "color": [],
+        "spacing": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}before": "120",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}after": "120"
+          }
+        ],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "第三章 经营痛点与需求分析",
+        "style": "Heading 1",
+        "alignment": "None",
+        "fonts": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          },
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Times New Roman",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "宋体",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Times New Roman"
+          }
+        ],
+        "size": [],
+        "color": [],
+        "spacing": [
+          {
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}before": "120",
+            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}after": "120"
+          }
+        ],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      }
+    ],
+    "captions": [
+      [
+        41,
+        "图1-1 高校食堂午间供餐场景"
+      ],
+      [
+        52,
+        "图1-2  创新点与经营证据对应关系"
+      ],
+      [
+        71,
+        "图2-1 高校餐饮PEST影响路径"
+      ],
+      [
+        79,
+        "图2-2 一天经营决策与供需偏差形成机制"
+      ],
+      [
+        85,
+        "图3-1 档口备餐与分批制作场景"
+      ],
+      [
+        100,
+        "表4-1 调研资料来源与用途"
+      ],
+      [
+        103,
+        "图4-1 经营核对证据链"
+      ],
+      [
+        107,
+        "表4-2 档口访谈主题与方式"
+      ],
+      [
+        112,
+        "图4-2 学生问卷结构"
+      ],
+      [
+        115,
+        "图4-3 限时优惠购买意愿结构"
+      ],
+      [
+        121,
+        "图4-5 营业节点观察记录"
+      ],
+      [
+        128,
+        "表4-3 现场观察节点与记录字段"
+      ],
+      [
+        140,
+        "表5-1 市场规模分层测算"
+      ],
+      [
+        146,
+        "图5-1 目标市场自下而上测算"
+      ],
+      [
+        149,
+        "表5-2 主要替代方案比较"
+      ],
+      [
+        155,
+        "图5-2 主要替代方案定位矩阵"
+      ],
+      [
+        157,
+        "图5-3 高校食堂服务五力图"
+      ],
+      [
+        164,
+        "图5-4 SWOT与进入策略"
+      ],
+      [
+        168,
+        "图5-5 高校食堂客户决策链与准入路径"
+      ],
+      [
+        175,
+        "图6-1 经营动作与数据记录闭环"
+      ],
+      [
+        178,
+        "表6-1 三端角色权限与责任边界"
+      ],
+      [
+        181,
+        "图6-2 三端权限与数据边界"
+      ],
+      [
+        188,
+        "图6-3 限时优惠决策流程"
+      ],
+      [
+        191,
+        "图6-4 高校经营周期适配"
+      ],
+      [
+        201,
+        "图7-1 今日经营总览与趋势"
+      ],
+      [
+        205,
+        "图7-2 档口与菜品经营管理"
+      ],
+      [
+        209,
+        "图7-3 备餐决策中心"
+      ],
+      [
+        213,
+        "图7-4 限时优惠与食品安全护栏"
+      ],
+      [
+        217,
+        "图7-5 周期经营复盘"
+      ],
+      [
+        221,
+        "图7-6 服务容量与扩容触发机制"
+      ],
+      [
+        231,
+        "图8-1 经营数据回传"
+      ],
+      [
+        234,
+        "表8-1 核心评价指标"
+      ],
+      [
+        236,
+        "图8-2 十四日备餐、售出与剩余趋势"
+      ],
+      [
+        238,
+        "图8-3 经营关键指标阶段对比"
+      ],
+      [
+        242,
+        "表8-2 预测模型层次与应用原则"
+      ],
+      [
+        246,
+        "表8-3 两阶段经营指标比较"
+      ],
+      [
+        249,
+        "图8-4 需求预测回测结果"
+      ],
+      [
+        253,
+        "图8-5 基线—策略—执行—复盘—付费判断"
+      ],
+      [
+        262,
+        "图9-1 付费协同与价值形成关系"
+      ],
+      [
+        265,
+        "表9-1 服务层级与收入结构"
+      ],
+      [
+        268,
+        "图9-2 服务交付与收费阶梯"
+      ],
+      [
+        276,
+        "图9-3 单档口经营价值形成"
+      ],
+      [
+        278,
+        "图9-4 单档口经营价值核算路径"
+      ],
+      [
+        284,
+        "图10-1 客户转化与续费路径"
+      ],
+      [
+        290,
+        "图10-2 三阶段实施路线图"
+      ],
+      [
+        295,
+        "表11-1 首批档口交付流程"
+      ],
+      [
+        298,
+        "图11-1 经营台账采集与现场记录"
+      ],
+      [
+        306,
+        "表11-2 团队分工与投入"
+      ],
+      [
+        307,
+        "表11-3 团队成员简介"
+      ],
+      [
+        314,
+        "表12-1 成本构成与核算方式"
+      ],
+      [
+        318,
+        "表12-2 三年经营预测"
+      ],
+      [
+        321,
+        "图12-1 三年营业收入与利润趋势"
+      ],
+      [
+        325,
+        "图12-2 单位经济与盈亏平衡"
+      ],
+      [
+        326,
+        "表12-3 单位经济敏感性分析"
+      ],
+      [
+        329,
+        "图12-3 单位经济敏感性分析"
+      ],
+      [
+        332,
+        "图12-4 三年累计经营现金变化"
+      ],
+      [
+        336,
+        "图12-5 首期启动资金使用结构"
+      ],
+      [
+        341,
+        "表13-1 高校餐饮风险识别与处置"
+      ],
+      [
+        345,
+        "图13-1 主要风险概率—影响矩阵"
+      ],
+      [
+        348,
+        "图13-2 高校特殊风险处置闭环"
+      ],
+      [
+        353,
+        "图13-3 服务质量监督流程"
+      ],
+      [
+        357,
+        "图13-4 减损指标量化框架"
+      ],
+      [
+        370,
+        "表13-2 阶段实施路线图与进入条件"
+      ],
+      [
+        412,
+        "图D-1 预约订单核销"
+      ],
+      [
+        413,
+        "图D-2 经营预警中心"
+      ],
+      [
+        415,
+        "图D-3 实时经营分析"
+      ],
+      [
+        417,
+        "图D-4 需求预测分析"
+      ],
+      [
+        419,
+        "图D-5 减损经营分析"
+      ]
+    ],
+    "images": 51
+  },
+  "current": {
+    "styles": {
+      "Normal": 15,
+      "Heading 1": 15,
+      "正文1": 124,
+      "来源说明": 18,
+      "目录条目": 56,
+      "Heading 2": 43,
+      "表题": 19,
+      "图片": 29,
+      "图题": 29,
+      "图后说明": 29,
+      "参考条目": 10
+    },
+    "colors": {},
+    "sections": [
+      {
+        "margins_cm": [
+          2.5,
+          2.3,
+          2.7,
+          2.4,
+          1.2,
+          1.2
+        ],
+        "header": [
+          {
+            "text": "",
+            "style": "Normal",
+            "alignment": "None",
+            "fonts": [],
+            "size": [],
+            "color": [],
+            "spacing": [],
+            "borders": [],
+            "fields": [],
+            "drawing": 0
+          }
+        ],
+        "footer": [
+          {
+            "text": "",
+            "style": "Normal",
+            "alignment": "None",
+            "fonts": [],
+            "size": [],
+            "color": [],
+            "spacing": [],
+            "borders": [],
+            "fields": [],
+            "drawing": 0
+          }
+        ],
+        "first_header": [
+          {
+            "text": "",
+            "style": "Normal",
+            "alignment": "None",
+            "fonts": [],
+            "size": [],
+            "color": [],
+            "spacing": [],
+            "borders": [],
+            "fields": [],
+            "drawing": 0
+          }
+        ],
+        "first_footer": [
+          {
+            "text": "",
+            "style": "Normal",
+            "alignment": "None",
+            "fonts": [],
+            "size": [],
+            "color": [],
+            "spacing": [],
+            "borders": [],
+            "fields": [],
+            "drawing": 0
+          }
+        ]
+      },
+      {
+        "margins_cm": [
+          2.5,
+          2.3,
+          2.7,
+          2.4,
+          1.2,
+          1.2
+        ],
+        "header": [
+          {
+            "text": "食刻有数—高校食堂精细化经营与食品减损平台",
+            "style": "Header",
+            "alignment": "CENTER (1)",
+            "fonts": [],
+            "size": [
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "18"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "18"
+              },
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "18"
+              }
+            ],
+            "color": [],
+            "spacing": [
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}after": "120"
+              }
+            ],
+            "borders": [
+              {
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "single",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}sz": "4",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}space": "3",
+                "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}color": "000000"
+              }
+            ],
+            "fields": [],
+            "drawing": 0
+          }
+        ],
+        "footer": [
+          {
+            "text": "1",
+            "style": "Footer",
+            "alignment": "CENTER (1)",
+            "fonts": [],
+            "size": [],
+            "color": [],
+            "spacing": [],
+            "borders": [],
+            "fields": [
+              "PAGE"
+            ],
+            "drawing": 0
+          }
+        ],
+        "first_header": [
+          {
+            "text": "",
+            "style": "Normal",
+            "alignment": "None",
+            "fonts": [],
+            "size": [],
+            "color": [],
+            "spacing": [],
+            "borders": [],
+            "fields": [],
+            "drawing": 0
+          }
+        ],
+        "first_footer": [
+          {
+            "text": "",
+            "style": "Normal",
+            "alignment": "None",
+            "fonts": [],
+            "size": [],
+            "color": [],
+            "spacing": [],
+            "borders": [],
+            "fields": [],
+            "drawing": 0
+          }
+        ]
+      }
+    ],
+    "samples": [
+      {
+        "text": "摘　要",
+        "style": "Heading 1",
+        "alignment": "None",
+        "fonts": [],
+        "size": [],
+        "color": [],
+        "spacing": [],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "目　录",
+        "style": "Heading 1",
+        "alignment": "None",
+        "fonts": [],
+        "size": [],
+        "color": [],
+        "spacing": [],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "第一章 项目概述与价值定位",
+        "style": "Heading 1",
+        "alignment": "None",
+        "fonts": [],
+        "size": [],
+        "color": [],
+        "spacing": [],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "1.1 从一餐备餐切入",
+        "style": "Heading 2",
+        "alignment": "None",
+        "fonts": [],
+        "size": [],
+        "color": [],
+        "spacing": [],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "1.2 服务对象与价值分工",
+        "style": "Heading 2",
+        "alignment": "None",
+        "fonts": [],
+        "size": [],
+        "color": [],
+        "spacing": [],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "表1-1  使用者、任务与价值",
+        "style": "表题",
+        "alignment": "None",
+        "fonts": [],
+        "size": [],
+        "color": [],
+        "spacing": [],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "1.3 创新主张与当前基础",
+        "style": "Heading 2",
+        "alignment": "None",
+        "fonts": [],
+        "size": [],
+        "color": [],
+        "spacing": [],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "图1-1  备餐经营的连续使用关系",
+        "style": "图题",
+        "alignment": "None",
+        "fonts": [],
+        "size": [],
+        "color": [],
+        "spacing": [],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "1.4 项目阶段与本轮目标",
+        "style": "Heading 2",
+        "alignment": "None",
+        "fonts": [],
+        "size": [],
+        "color": [],
+        "spacing": [],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "第二章 经营场景与需求分析",
+        "style": "Heading 1",
+        "alignment": "None",
+        "fonts": [],
+        "size": [],
+        "color": [],
+        "spacing": [],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "2.1 高校档口的经营约束",
+        "style": "Heading 2",
+        "alignment": "None",
+        "fonts": [],
+        "size": [],
+        "color": [],
+        "spacing": [],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "2.2 三类问题与产品响应",
+        "style": "Heading 2",
+        "alignment": "None",
+        "fonts": [],
+        "size": [],
+        "color": [],
+        "spacing": [],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "表2-1  问题、动作与验证方式",
+        "style": "表题",
+        "alignment": "None",
+        "fonts": [],
+        "size": [],
+        "color": [],
+        "spacing": [],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "2.3 最小数据与低负担使用",
+        "style": "Heading 2",
+        "alignment": "None",
+        "fonts": [],
+        "size": [],
+        "color": [],
+        "spacing": [],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      },
+      {
+        "text": "2.4 政策背景与进入条件",
+        "style": "Heading 2",
+        "alignment": "None",
+        "fonts": [],
+        "size": [],
+        "color": [],
+        "spacing": [],
+        "borders": [],
+        "fields": [],
+        "drawing": 0
+      }
+    ],
+    "captions": [
+      [
+        84,
+        "表1-1  使用者、任务与价值"
+      ],
+      [
+        92,
+        "图1-1  备餐经营的连续使用关系"
+      ],
+      [
+        103,
+        "表2-1  问题、动作与验证方式"
+      ],
+      [
+        120,
+        "图3-1  经营总览页面"
+      ],
+      [
+        127,
+        "图3-2  经营数据回传页面"
+      ],
+      [
+        134,
+        "图3-3  备餐计划页面"
+      ],
+      [
+        137,
+        "图3-4  备餐条件与人工确认关系"
+      ],
+      [
+        144,
+        "图3-5  限时优惠与剩余处理页面"
+      ],
+      [
+        145,
+        "图中餐品照片是页面素材，不作为现场拍摄证明；安全判断由档口与食堂管理流程完成。"
+      ],
+      [
+        151,
+        "图3-6  经营复盘报告页面"
+      ],
+      [
+        158,
+        "图3-7  经营参谋的读取与解释范围"
+      ],
+      [
+        164,
+        "表4-1  核心数据及研究角色"
+      ],
+      [
+        171,
+        "表4-2  关键字段与核对动作"
+      ],
+      [
+        179,
+        "图4-1  销量可观测性与售罄关系"
+      ],
+      [
+        186,
+        "图4-2  新一轮销量研究的时间切分"
+      ],
+      [
+        187,
+        "图示为拟实施方案，尚非已完成结果。所有方法使用相同测试日期，按日期块进行配对比较。"
+      ],
+      [
+        192,
+        "表4-3  从方法输出到现场安排"
+      ],
+      [
+        197,
+        "表4-4  技术组成及实际职责"
+      ],
+      [
+        200,
+        "图4-3  产品运行与离线研究的分层关系"
+      ],
+      [
+        207,
+        "表5-1  验证类别与当前结论"
+      ],
+      [
+        211,
+        "表5-2  冻结公开回测的方法比较"
+      ],
+      [
+        219,
+        "图5-1  四类仿真情景下的额外损失"
+      ],
+      [
+        221,
+        "表5-3  基线情景的多指标比较"
+      ],
+      [
+        226,
+        "表5-4  研究任务与验收依据"
+      ],
+      [
+        240,
+        "表6-1  替代方案的任务对照"
+      ],
+      [
+        252,
+        "表7-1  拟议服务层次与计价依据"
+      ],
+      [
+        262,
+        "图7-1  第二年单档口收入与交付成本情景"
+      ],
+      [
+        272,
+        "表8-1  首轮服务安排"
+      ],
+      [
+        277,
+        "表8-2  团队拟议职责与核验依据"
+      ],
+      [
+        284,
+        "图8-1  一次营业任务的责任交接"
+      ],
+      [
+        290,
+        "表9-1  三年经营情景"
+      ],
+      [
+        297,
+        "图9-1  三年收入、成本与利润情景"
+      ],
+      [
+        300,
+        "表9-2  第二年情景的压力测试"
+      ],
+      [
+        305,
+        "表9-3  风险信号与处理动作"
+      ],
+      [
+        312,
+        "表10-1  阶段任务与进入条件"
+      ],
+      [
+        328,
+        "图A-1  订单核销"
+      ],
+      [
+        331,
+        "图A-2  经营预警中心"
+      ],
+      [
+        334,
+        "图A-3  档口与菜品"
+      ],
+      [
+        337,
+        "图A-4  首次建档"
+      ],
+      [
+        340,
+        "图A-5  营业概况"
+      ],
+      [
+        343,
+        "图A-6  需求分析"
+      ],
+      [
+        346,
+        "图A-7  剩余分析"
+      ],
+      [
+        349,
+        "图A-8  服务说明"
+      ],
+      [
+        352,
+        "图A-9  数据来源与验证说明"
+      ],
+      [
+        355,
+        "图A-10  登录入口"
+      ],
+      [
+        358,
+        "图A-11  备餐建议操作特写"
+      ],
+      [
+        361,
+        "图A-12  经营记录表单特写"
+      ],
+      [
+        364,
+        "图A-13  复盘记录对照特写"
+      ],
+      [
+        367,
+        "图A-14  建档信息特写"
+      ],
+      [
+        371,
+        "表B-1  材料索引与核验范围"
+      ]
+    ],
+    "images": 29
+  }
+}

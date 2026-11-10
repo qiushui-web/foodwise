@@ -12,5 +12,5 @@ const isLogin = computed(() => route.path === "/login");
 
 <style>
 .app-root{min-height:100vh}
- .login-root{min-height:100vh;display:grid;place-items:center;background:linear-gradient(120deg,#eef7ff,#f9fcff 52%,#e6f4ff)!important}
+ .login-root{min-height:100vh;display:grid;place-items:center;background:#f1f6f8!important}
 </style>

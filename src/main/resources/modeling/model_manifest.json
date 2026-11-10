@@ -1,0 +1,63 @@
+{
+  "schema_version": 2,
+  "bundle_version": "campus-local-v1",
+  "model_version": "2026.10.27-interval-v1",
+  "model_kind": "calibrated-quantile",
+  "source_kind": "derived-target-demonstration",
+  "created_at": "2026-10-27T09:23:18+08:00",
+  "model_file": "modeling/lgbm_campus_model.txt",
+  "model_sha256": "b4c5a2cb45f54e17c18e882ae7f0cceb5595797de889b6c5183d33fc97ead119",
+  "feature_file": "modeling/campus_feature_cols.json",
+  "feature_sha256": "a25ec8de74b654149cf01e1702b62ec1e6d5f59251745c8d07c795f65a215539",
+  "quantiles": [
+    0.05,
+    0.95
+  ],
+  "calibration": {
+    "method": "cqr+stratified-aci",
+    "status": "calibrated",
+    "alpha": 0.1,
+    "artifact": "modeling/campus_interval_calibration.json",
+    "artifact_sha256": "1047da73b650a98e0548946a8af084a330d1b8a4e2c6ba9b5bd31bffe0296cdf",
+    "picp90": 0.9666666666666667
+  },
+  "cost_model": {
+    "source": "unset",
+    "defaults": {
+      "price": null,
+      "unit_cost": null,
+      "discount_price": null,
+      "shortage_penalty_lambda": 0.3
+    }
+  },
+  "metrics": {
+    "mae": null,
+    "mase": null,
+    "picp90": 0.9666666666666667,
+    "pinaw90": 0.28439808537476213,
+    "winkler90": 19.00598345362764,
+    "regret": null,
+    "evaluated_on": "finetune_uwaste:test(390rows)"
+  },
+  "data": {
+    "dataset": "finetune_uwaste",
+    "rows": 2600,
+    "sha256": "c9b9d4288c63244c2b762d9ffc145598a8f2d1fc0b7267daf1aa2050364d68d5"
+  },
+  "limits": [
+    "标签为派生目标，覆盖率与宽度只代表方法在构造数据上的表现。",
+    "一次性离线校准在波动率漂移时会过覆盖，部署需按周滚动重校准。",
+    "单次时间切分，未做滚动原点重复，指标方差未估计。",
+    "派生目标数据不得用于对外宣称现场减损效果。"
+  ],
+  "quantile_models": {
+    "0.05": {
+      "file": "modeling/lgbm_campus_q05.txt",
+      "sha256": "b2254841502bd625d2c2f45c80f0dd69ab48918c7220c200e5641d8e1af238b4"
+    },
+    "0.95": {
+      "file": "modeling/lgbm_campus_q95.txt",
+      "sha256": "2c2a4eae77ac21d0b17cbab089fc94858fbb84bd5ce5d1cde5dc8c12de548a89"
+    }
+  }
+}

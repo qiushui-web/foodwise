@@ -1,0 +1,210 @@
+{
+  "模板": [
+    {
+      "name": "Normal",
+      "font": "Times New Roman",
+      "pt": 12.0,
+      "bold": null,
+      "color": "None",
+      "line": "1.5",
+      "before": 0,
+      "after": 0,
+      "first": 112.45,
+      "xml": "<w:style xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w14=\"http://schemas.microsoft.com/office/word/2010/wordml\" xmlns:w10=\"urn:schemas-microsoft-com:office:word\" xmlns:sl=\"http://schemas.openxmlformats.org/schemaLibrary/2006/main\" xmlns:wpsCustomData=\"http://www.wps.cn/officeDocument/2013/wpsCustomData\" w:type=\"paragraph\" w:default=\"1\" w:styleId=\"1\">\n  <w:name w:val=\"Normal\"/>\n  <w:qFormat/>\n  <w:uiPriority w:val=\"0\"/>\n  <w:pPr>\n    <w:spacing w:line=\"360\" w:lineRule=\"auto\"/>\n    <w:ind w:firstLine=\"2249\" w:firstLineChars=\"200\"/>\n    <w:jc w:val=\"both\"/>\n  </w:pPr>\n  <w:rPr>\n    <w:rFonts w:ascii=\"Times New Roman\" w:hAnsi=\"Times New Roman\" w:eastAsia=\"宋体\" w:cstheme=\"minorBidi\"/>\n    <w:sz w:val=\"24\"/>\n    <w:szCs w:val=\"24\"/>\n    <w:lang w:val=\"en-US\" w:eastAsia=\"zh-CN\" w:bidi=\"ar-SA\"/>\n  </w:rPr>\n</w:style>\n"
+    },
+    {
+      "name": "Heading 1",
+      "font": null,
+      "pt": 18.0,
+      "bold": true,
+      "color": "000000",
+      "line": "None",
+      "before": 2.5,
+      "after": 2.5,
+      "first": 0,
+      "xml": "<w:style xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w14=\"http://schemas.microsoft.com/office/word/2010/wordml\" xmlns:w10=\"urn:schemas-microsoft-com:office:word\" xmlns:sl=\"http://schemas.openxmlformats.org/schemaLibrary/2006/main\" xmlns:wpsCustomData=\"http://www.wps.cn/officeDocument/2013/wpsCustomData\" w:type=\"paragraph\" w:styleId=\"2\">\n  <w:name w:val=\"heading 1\"/>\n  <w:basedOn w:val=\"1\"/>\n  <w:next w:val=\"1\"/>\n  <w:link w:val=\"45\"/>\n  <w:qFormat/>\n  <w:uiPriority w:val=\"9\"/>\n  <w:pPr>\n    <w:keepNext/>\n    <w:keepLines/>\n    <w:spacing w:before=\"50\" w:beforeLines=\"50\" w:after=\"50\" w:afterLines=\"50\"/>\n    <w:ind w:firstLine=\"0\"/>\n    <w:jc w:val=\"center\"/>\n    <w:outlineLvl w:val=\"0\"/>\n  </w:pPr>\n  <w:rPr>\n    <w:rFonts w:eastAsia=\"黑体\" w:asciiTheme=\"majorAscii\" w:hAnsiTheme=\"majorAscii\" w:cstheme=\"majorBidi\"/>\n    <w:b/>\n    <w:color w:val=\"000000\" w:themeColor=\"text1\"/>\n    <w:sz w:val=\"36\"/>\n    <w:szCs w:val=\"40\"/>\n    <w14:textFill>\n      <w14:solidFill>\n        <w14:schemeClr w14:val=\"tx1\"/>\n      </w14:solidFill>\n    </w14:textFill>\n  </w:rPr>\n</w:style>\n"
+    },
+    {
+      "name": "Heading 2",
+      "font": null,
+      "pt": 16.0,
+      "bold": true,
+      "color": "000000",
+      "line": "None",
+      "before": 2.5,
+      "after": 2.5,
+      "first": 0,
+      "xml": "<w:style xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w14=\"http://schemas.microsoft.com/office/word/2010/wordml\" xmlns:w10=\"urn:schemas-microsoft-com:office:word\" xmlns:sl=\"http://schemas.openxmlformats.org/schemaLibrary/2006/main\" xmlns:wpsCustomData=\"http://www.wps.cn/officeDocument/2013/wpsCustomData\" w:type=\"paragraph\" w:styleId=\"3\">\n  <w:name w:val=\"heading 2\"/>\n  <w:basedOn w:val=\"1\"/>\n  <w:next w:val=\"4\"/>\n  <w:link w:val=\"46\"/>\n  <w:unhideWhenUsed/>\n  <w:qFormat/>\n  <w:uiPriority w:val=\"9\"/>\n  <w:pPr>\n    <w:keepNext/>\n    <w:keepLines/>\n    <w:spacing w:before=\"50\" w:beforeLines=\"50\" w:after=\"50\" w:afterLines=\"50\"/>\n    <w:ind w:firstLine=\"0\" w:firstLineChars=\"0\"/>\n    <w:jc w:val=\"left\"/>\n    <w:outlineLvl w:val=\"1\"/>\n  </w:pPr>\n  <w:rPr>\n    <w:rFonts w:eastAsia=\"黑体\" w:asciiTheme=\"majorAscii\" w:hAnsiTheme=\"majorAscii\" w:cstheme=\"majorBidi\"/>\n    <w:b/>\n    <w:color w:val=\"000000\" w:themeColor=\"text1\"/>\n    <w:sz w:val=\"32\"/>\n    <w:szCs w:val=\"32\"/>\n    <w14:textFill>\n      <w14:solidFill>\n        <w14:schemeClr w14:val=\"tx1\"/>\n      </w14:solidFill>\n    </w14:textFill>\n  </w:rPr>\n</w:style>\n"
+    },
+    {
+      "name": "Heading 3",
+      "font": "Arial",
+      "pt": 11.0,
+      "bold": true,
+      "color": "355C7C",
+      "line": "None",
+      "before": 10.0,
+      "after": 6.0,
+      "first": 0,
+      "xml": "<w:style xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w14=\"http://schemas.microsoft.com/office/word/2010/wordml\" xmlns:w10=\"urn:schemas-microsoft-com:office:word\" xmlns:sl=\"http://schemas.openxmlformats.org/schemaLibrary/2006/main\" xmlns:wpsCustomData=\"http://www.wps.cn/officeDocument/2013/wpsCustomData\" w:type=\"paragraph\" w:styleId=\"5\">\n  <w:name w:val=\"heading 3\"/>\n  <w:basedOn w:val=\"1\"/>\n  <w:next w:val=\"4\"/>\n  <w:link w:val=\"47\"/>\n  <w:unhideWhenUsed/>\n  <w:qFormat/>\n  <w:uiPriority w:val=\"9\"/>\n  <w:pPr>\n    <w:keepNext/>\n    <w:keepLines/>\n    <w:spacing w:before=\"200\" w:after=\"120\"/>\n    <w:ind w:firstLine=\"0\"/>\n    <w:outlineLvl w:val=\"2\"/>\n  </w:pPr>\n  <w:rPr>\n    <w:rFonts w:ascii=\"Arial\" w:hAnsi=\"Arial\" w:eastAsiaTheme=\"majorEastAsia\" w:cstheme=\"majorBidi\"/>\n    <w:b/>\n    <w:color w:val=\"355C7C\"/>\n    <w:sz w:val=\"22\"/>\n    <w:szCs w:val=\"28\"/>\n  </w:rPr>\n</w:style>\n"
+    },
+    {
+      "name": "Body Text",
+      "font": null,
+      "pt": null,
+      "bold": null,
+      "color": "None",
+      "line": "None",
+      "before": 9.0,
+      "after": 9.0,
+      "first": 0,
+      "xml": "<w:style xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w14=\"http://schemas.microsoft.com/office/word/2010/wordml\" xmlns:w10=\"urn:schemas-microsoft-com:office:word\" xmlns:sl=\"http://schemas.openxmlformats.org/schemaLibrary/2006/main\" xmlns:wpsCustomData=\"http://www.wps.cn/officeDocument/2013/wpsCustomData\" w:type=\"paragraph\" w:styleId=\"4\">\n  <w:name w:val=\"Body Text\"/>\n  <w:basedOn w:val=\"1\"/>\n  <w:link w:val=\"35\"/>\n  <w:qFormat/>\n  <w:uiPriority w:val=\"0\"/>\n  <w:pPr>\n    <w:spacing w:before=\"180\" w:after=\"180\"/>\n  </w:pPr>\n</w:style>\n"
+    },
+    {
+      "name": "Header",
+      "font": null,
+      "pt": 9.0,
+      "bold": null,
+      "color": "None",
+      "line": "1.0",
+      "before": 0,
+      "after": 0,
+      "first": 0,
+      "xml": "<w:style xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w14=\"http://schemas.microsoft.com/office/word/2010/wordml\" xmlns:w10=\"urn:schemas-microsoft-com:office:word\" xmlns:sl=\"http://schemas.openxmlformats.org/schemaLibrary/2006/main\" xmlns:wpsCustomData=\"http://www.wps.cn/officeDocument/2013/wpsCustomData\" w:type=\"paragraph\" w:styleId=\"21\">\n  <w:name w:val=\"header\"/>\n  <w:basedOn w:val=\"1\"/>\n  <w:link w:val=\"98\"/>\n  <w:qFormat/>\n  <w:uiPriority w:val=\"0\"/>\n  <w:pPr>\n    <w:tabs>\n      <w:tab w:val=\"center\" w:pos=\"4153\"/>\n      <w:tab w:val=\"right\" w:pos=\"8306\"/>\n    </w:tabs>\n    <w:snapToGrid w:val=\"0\"/>\n    <w:spacing w:line=\"240\" w:lineRule=\"auto\"/>\n    <w:jc w:val=\"center\"/>\n  </w:pPr>\n  <w:rPr>\n    <w:sz w:val=\"18\"/>\n    <w:szCs w:val=\"18\"/>\n  </w:rPr>\n</w:style>\n"
+    },
+    {
+      "name": "Footer",
+      "font": null,
+      "pt": 9.0,
+      "bold": null,
+      "color": "None",
+      "line": "1.0",
+      "before": 0,
+      "after": 0,
+      "first": 0,
+      "xml": "<w:style xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w14=\"http://schemas.microsoft.com/office/word/2010/wordml\" xmlns:w10=\"urn:schemas-microsoft-com:office:word\" xmlns:sl=\"http://schemas.openxmlformats.org/schemaLibrary/2006/main\" xmlns:wpsCustomData=\"http://www.wps.cn/officeDocument/2013/wpsCustomData\" w:type=\"paragraph\" w:styleId=\"20\">\n  <w:name w:val=\"footer\"/>\n  <w:basedOn w:val=\"1\"/>\n  <w:link w:val=\"99\"/>\n  <w:qFormat/>\n  <w:uiPriority w:val=\"0\"/>\n  <w:pPr>\n    <w:tabs>\n      <w:tab w:val=\"center\" w:pos=\"4153\"/>\n      <w:tab w:val=\"right\" w:pos=\"8306\"/>\n    </w:tabs>\n    <w:snapToGrid w:val=\"0\"/>\n    <w:spacing w:line=\"240\" w:lineRule=\"auto\"/>\n  </w:pPr>\n  <w:rPr>\n    <w:sz w:val=\"18\"/>\n    <w:szCs w:val=\"18\"/>\n  </w:rPr>\n</w:style>\n"
+    }
+  ],
+  "新版": [
+    {
+      "name": "Normal",
+      "font": "Times New Roman",
+      "pt": 12.0,
+      "bold": null,
+      "color": "000000",
+      "line": "1.5",
+      "before": 0,
+      "after": 3.0,
+      "first": 24.0,
+      "xml": "<w:style xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:w14=\"http://schemas.microsoft.com/office/word/2010/wordml\" xmlns:w15=\"http://schemas.microsoft.com/office/word/2012/wordml\" xmlns:w16cex=\"http://schemas.microsoft.com/office/word/2018/wordml/cex\" xmlns:w16cid=\"http://schemas.microsoft.com/office/word/2016/wordml/cid\" xmlns:w16=\"http://schemas.microsoft.com/office/word/2018/wordml\" xmlns:w16du=\"http://schemas.microsoft.com/office/word/2023/wordml/word16du\" xmlns:w16sdtdh=\"http://schemas.microsoft.com/office/word/2020/wordml/sdtdatahash\" xmlns:w16sdtfl=\"http://schemas.microsoft.com/office/word/2024/wordml/sdtformatlock\" xmlns:w16se=\"http://schemas.microsoft.com/office/word/2015/wordml/symex\" w:type=\"paragraph\" w:default=\"1\" w:styleId=\"a1\">\n  <w:name w:val=\"Normal\"/>\n  <w:qFormat/>\n  <w:rsid w:val=\"00FC693F\"/>\n  <w:pPr>\n    <w:spacing w:after=\"60\" w:line=\"360\" w:lineRule=\"auto\"/>\n    <w:ind w:firstLine=\"480\"/>\n    <w:jc w:val=\"both\"/>\n  </w:pPr>\n  <w:rPr>\n    <w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"宋体\" w:hAnsi=\"Times New Roman\" w:cs=\"Times New Roman\"/>\n    <w:color w:val=\"000000\"/>\n    <w:sz w:val=\"24\"/>\n  </w:rPr>\n</w:style>\n"
+    },
+    {
+      "name": "Heading 1",
+      "font": null,
+      "pt": 18.0,
+      "bold": true,
+      "color": "None",
+      "line": "1.2",
+      "before": 9.0,
+      "after": 9.0,
+      "first": 0,
+      "xml": "<w:style xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:w14=\"http://schemas.microsoft.com/office/word/2010/wordml\" xmlns:w15=\"http://schemas.microsoft.com/office/word/2012/wordml\" xmlns:w16cex=\"http://schemas.microsoft.com/office/word/2018/wordml/cex\" xmlns:w16cid=\"http://schemas.microsoft.com/office/word/2016/wordml/cid\" xmlns:w16=\"http://schemas.microsoft.com/office/word/2018/wordml\" xmlns:w16du=\"http://schemas.microsoft.com/office/word/2023/wordml/word16du\" xmlns:w16sdtdh=\"http://schemas.microsoft.com/office/word/2020/wordml/sdtdatahash\" xmlns:w16sdtfl=\"http://schemas.microsoft.com/office/word/2024/wordml/sdtformatlock\" xmlns:w16se=\"http://schemas.microsoft.com/office/word/2015/wordml/symex\" w:type=\"paragraph\" w:styleId=\"1\">\n  <w:name w:val=\"heading 1\"/>\n  <w:basedOn w:val=\"a1\"/>\n  <w:next w:val=\"a1\"/>\n  <w:link w:val=\"10\"/>\n  <w:uiPriority w:val=\"9\"/>\n  <w:qFormat/>\n  <w:rsid w:val=\"00FC693F\"/>\n  <w:pPr>\n    <w:keepNext/>\n    <w:keepLines/>\n    <w:pageBreakBefore/>\n    <w:spacing w:before=\"180\" w:after=\"180\" w:line=\"288\" w:lineRule=\"auto\"/>\n    <w:ind w:firstLine=\"0\"/>\n    <w:jc w:val=\"center\"/>\n    <w:outlineLvl w:val=\"0\"/>\n  </w:pPr>\n  <w:rPr>\n    <w:rFonts w:eastAsia=\"黑体\"/>\n    <w:b/>\n    <w:bCs/>\n    <w:sz w:val=\"36\"/>\n    <w:szCs w:val=\"28\"/>\n  </w:rPr>\n</w:style>\n"
+    },
+    {
+      "name": "Heading 2",
+      "font": null,
+      "pt": 16.0,
+      "bold": true,
+      "color": "None",
+      "line": "1.2",
+      "before": 6.0,
+      "after": 6.0,
+      "first": 0,
+      "xml": "<w:style xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:w14=\"http://schemas.microsoft.com/office/word/2010/wordml\" xmlns:w15=\"http://schemas.microsoft.com/office/word/2012/wordml\" xmlns:w16cex=\"http://schemas.microsoft.com/office/word/2018/wordml/cex\" xmlns:w16cid=\"http://schemas.microsoft.com/office/word/2016/wordml/cid\" xmlns:w16=\"http://schemas.microsoft.com/office/word/2018/wordml\" xmlns:w16du=\"http://schemas.microsoft.com/office/word/2023/wordml/word16du\" xmlns:w16sdtdh=\"http://schemas.microsoft.com/office/word/2020/wordml/sdtdatahash\" xmlns:w16sdtfl=\"http://schemas.microsoft.com/office/word/2024/wordml/sdtformatlock\" xmlns:w16se=\"http://schemas.microsoft.com/office/word/2015/wordml/symex\" w:type=\"paragraph\" w:styleId=\"21\">\n  <w:name w:val=\"heading 2\"/>\n  <w:basedOn w:val=\"a1\"/>\n  <w:next w:val=\"a1\"/>\n  <w:link w:val=\"22\"/>\n  <w:uiPriority w:val=\"9\"/>\n  <w:unhideWhenUsed/>\n  <w:qFormat/>\n  <w:rsid w:val=\"00FC693F\"/>\n  <w:pPr>\n    <w:keepNext/>\n    <w:keepLines/>\n    <w:spacing w:before=\"120\" w:after=\"120\" w:line=\"288\" w:lineRule=\"auto\"/>\n    <w:ind w:firstLine=\"0\"/>\n    <w:jc w:val=\"left\"/>\n    <w:outlineLvl w:val=\"1\"/>\n  </w:pPr>\n  <w:rPr>\n    <w:rFonts w:eastAsia=\"黑体\"/>\n    <w:b/>\n    <w:bCs/>\n    <w:sz w:val=\"32\"/>\n    <w:szCs w:val=\"26\"/>\n  </w:rPr>\n</w:style>\n"
+    },
+    {
+      "name": "Heading 3",
+      "font": null,
+      "pt": null,
+      "bold": true,
+      "color": "4F81BD",
+      "line": "None",
+      "before": 10.0,
+      "after": 0,
+      "first": 0,
+      "xml": "<w:style xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:w14=\"http://schemas.microsoft.com/office/word/2010/wordml\" xmlns:w15=\"http://schemas.microsoft.com/office/word/2012/wordml\" xmlns:w16cex=\"http://schemas.microsoft.com/office/word/2018/wordml/cex\" xmlns:w16cid=\"http://schemas.microsoft.com/office/word/2016/wordml/cid\" xmlns:w16=\"http://schemas.microsoft.com/office/word/2018/wordml\" xmlns:w16du=\"http://schemas.microsoft.com/office/word/2023/wordml/word16du\" xmlns:w16sdtdh=\"http://schemas.microsoft.com/office/word/2020/wordml/sdtdatahash\" xmlns:w16sdtfl=\"http://schemas.microsoft.com/office/word/2024/wordml/sdtformatlock\" xmlns:w16se=\"http://schemas.microsoft.com/office/word/2015/wordml/symex\" w:type=\"paragraph\" w:styleId=\"31\">\n  <w:name w:val=\"heading 3\"/>\n  <w:basedOn w:val=\"a1\"/>\n  <w:next w:val=\"a1\"/>\n  <w:link w:val=\"32\"/>\n  <w:uiPriority w:val=\"9\"/>\n  <w:unhideWhenUsed/>\n  <w:qFormat/>\n  <w:rsid w:val=\"00FC693F\"/>\n  <w:pPr>\n    <w:keepNext/>\n    <w:keepLines/>\n    <w:spacing w:before=\"200\" w:after=\"0\"/>\n    <w:outlineLvl w:val=\"2\"/>\n  </w:pPr>\n  <w:rPr>\n    <w:rFonts w:asciiTheme=\"majorHAnsi\" w:eastAsiaTheme=\"majorEastAsia\" w:hAnsiTheme=\"majorHAnsi\" w:cstheme=\"majorBidi\"/>\n    <w:b/>\n    <w:bCs/>\n    <w:color w:val=\"4F81BD\" w:themeColor=\"accent1\"/>\n  </w:rPr>\n</w:style>\n"
+    },
+    {
+      "name": "Body Text",
+      "font": null,
+      "pt": null,
+      "bold": null,
+      "color": "None",
+      "line": "None",
+      "before": 0,
+      "after": 6.0,
+      "first": 0,
+      "xml": "<w:style xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:w14=\"http://schemas.microsoft.com/office/word/2010/wordml\" xmlns:w15=\"http://schemas.microsoft.com/office/word/2012/wordml\" xmlns:w16cex=\"http://schemas.microsoft.com/office/word/2018/wordml/cex\" xmlns:w16cid=\"http://schemas.microsoft.com/office/word/2016/wordml/cid\" xmlns:w16=\"http://schemas.microsoft.com/office/word/2018/wordml\" xmlns:w16du=\"http://schemas.microsoft.com/office/word/2023/wordml/word16du\" xmlns:w16sdtdh=\"http://schemas.microsoft.com/office/word/2020/wordml/sdtdatahash\" xmlns:w16sdtfl=\"http://schemas.microsoft.com/office/word/2024/wordml/sdtformatlock\" xmlns:w16se=\"http://schemas.microsoft.com/office/word/2015/wordml/symex\" w:type=\"paragraph\" w:styleId=\"af\">\n  <w:name w:val=\"Body Text\"/>\n  <w:basedOn w:val=\"a1\"/>\n  <w:link w:val=\"af0\"/>\n  <w:uiPriority w:val=\"99\"/>\n  <w:unhideWhenUsed/>\n  <w:rsid w:val=\"00AA1D8D\"/>\n  <w:pPr>\n    <w:spacing w:after=\"120\"/>\n  </w:pPr>\n</w:style>\n"
+    },
+    {
+      "name": "正文1",
+      "font": "Times New Roman",
+      "pt": 12.0,
+      "bold": null,
+      "color": "000000",
+      "line": "1.5",
+      "before": 0,
+      "after": 3.0,
+      "first": 24.0,
+      "xml": "<w:style xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:w14=\"http://schemas.microsoft.com/office/word/2010/wordml\" xmlns:w15=\"http://schemas.microsoft.com/office/word/2012/wordml\" xmlns:w16cex=\"http://schemas.microsoft.com/office/word/2018/wordml/cex\" xmlns:w16cid=\"http://schemas.microsoft.com/office/word/2016/wordml/cid\" xmlns:w16=\"http://schemas.microsoft.com/office/word/2018/wordml\" xmlns:w16du=\"http://schemas.microsoft.com/office/word/2023/wordml/word16du\" xmlns:w16sdtdh=\"http://schemas.microsoft.com/office/word/2020/wordml/sdtdatahash\" xmlns:w16sdtfl=\"http://schemas.microsoft.com/office/word/2024/wordml/sdtformatlock\" xmlns:w16se=\"http://schemas.microsoft.com/office/word/2015/wordml/symex\" w:type=\"paragraph\" w:customStyle=\"1\" w:styleId=\"14\">\n  <w:name w:val=\"正文1\"/>\n  <w:pPr>\n    <w:spacing w:after=\"60\" w:line=\"360\" w:lineRule=\"auto\"/>\n    <w:ind w:firstLine=\"480\"/>\n    <w:jc w:val=\"both\"/>\n  </w:pPr>\n  <w:rPr>\n    <w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"宋体\" w:hAnsi=\"Times New Roman\" w:cs=\"Times New Roman\"/>\n    <w:color w:val=\"000000\"/>\n    <w:sz w:val=\"24\"/>\n  </w:rPr>\n</w:style>\n"
+    },
+    {
+      "name": "表文",
+      "font": "Times New Roman",
+      "pt": 9.5,
+      "bold": null,
+      "color": "000000",
+      "line": "1.1208333333333333",
+      "before": 0,
+      "after": 0,
+      "first": 0,
+      "xml": "<w:style xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:w14=\"http://schemas.microsoft.com/office/word/2010/wordml\" xmlns:w15=\"http://schemas.microsoft.com/office/word/2012/wordml\" xmlns:w16cex=\"http://schemas.microsoft.com/office/word/2018/wordml/cex\" xmlns:w16cid=\"http://schemas.microsoft.com/office/word/2016/wordml/cid\" xmlns:w16=\"http://schemas.microsoft.com/office/word/2018/wordml\" xmlns:w16du=\"http://schemas.microsoft.com/office/word/2023/wordml/word16du\" xmlns:w16sdtdh=\"http://schemas.microsoft.com/office/word/2020/wordml/sdtdatahash\" xmlns:w16sdtfl=\"http://schemas.microsoft.com/office/word/2024/wordml/sdtformatlock\" xmlns:w16se=\"http://schemas.microsoft.com/office/word/2015/wordml/symex\" w:type=\"paragraph\" w:customStyle=\"1\" w:styleId=\"aff9\">\n  <w:name w:val=\"表文\"/>\n  <w:pPr>\n    <w:spacing w:after=\"0\" w:line=\"269\" w:lineRule=\"auto\"/>\n    <w:jc w:val=\"center\"/>\n  </w:pPr>\n  <w:rPr>\n    <w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"宋体\" w:hAnsi=\"Times New Roman\" w:cs=\"Times New Roman\"/>\n    <w:color w:val=\"000000\"/>\n    <w:sz w:val=\"19\"/>\n  </w:rPr>\n</w:style>\n"
+    },
+    {
+      "name": "图题",
+      "font": "Times New Roman",
+      "pt": 10.5,
+      "bold": true,
+      "color": "000000",
+      "line": "None",
+      "before": 0,
+      "after": 4.0,
+      "first": 0,
+      "xml": "<w:style xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:w14=\"http://schemas.microsoft.com/office/word/2010/wordml\" xmlns:w15=\"http://schemas.microsoft.com/office/word/2012/wordml\" xmlns:w16cex=\"http://schemas.microsoft.com/office/word/2018/wordml/cex\" xmlns:w16cid=\"http://schemas.microsoft.com/office/word/2016/wordml/cid\" xmlns:w16=\"http://schemas.microsoft.com/office/word/2018/wordml\" xmlns:w16du=\"http://schemas.microsoft.com/office/word/2023/wordml/word16du\" xmlns:w16sdtdh=\"http://schemas.microsoft.com/office/word/2020/wordml/sdtdatahash\" xmlns:w16sdtfl=\"http://schemas.microsoft.com/office/word/2024/wordml/sdtformatlock\" xmlns:w16se=\"http://schemas.microsoft.com/office/word/2015/wordml/symex\" w:type=\"paragraph\" w:customStyle=\"1\" w:styleId=\"affb\">\n  <w:name w:val=\"图题\"/>\n  <w:pPr>\n    <w:keepNext/>\n    <w:spacing w:after=\"80\"/>\n    <w:jc w:val=\"center\"/>\n  </w:pPr>\n  <w:rPr>\n    <w:rFonts w:ascii=\"Times New Roman\" w:eastAsia=\"黑体\" w:hAnsi=\"Times New Roman\" w:cs=\"Times New Roman\"/>\n    <w:b/>\n    <w:color w:val=\"000000\"/>\n    <w:sz w:val=\"21\"/>\n  </w:rPr>\n</w:style>\n"
+    },
+    {
+      "name": "Header",
+      "font": null,
+      "pt": null,
+      "bold": null,
+      "color": "None",
+      "line": "1.0",
+      "before": 0,
+      "after": 0,
+      "first": 0,
+      "xml": "<w:style xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:w14=\"http://schemas.microsoft.com/office/word/2010/wordml\" xmlns:w15=\"http://schemas.microsoft.com/office/word/2012/wordml\" xmlns:w16cex=\"http://schemas.microsoft.com/office/word/2018/wordml/cex\" xmlns:w16cid=\"http://schemas.microsoft.com/office/word/2016/wordml/cid\" xmlns:w16=\"http://schemas.microsoft.com/office/word/2018/wordml\" xmlns:w16du=\"http://schemas.microsoft.com/office/word/2023/wordml/word16du\" xmlns:w16sdtdh=\"http://schemas.microsoft.com/office/word/2020/wordml/sdtdatahash\" xmlns:w16sdtfl=\"http://schemas.microsoft.com/office/word/2024/wordml/sdtformatlock\" xmlns:w16se=\"http://schemas.microsoft.com/office/word/2015/wordml/symex\" w:type=\"paragraph\" w:styleId=\"a5\">\n  <w:name w:val=\"header\"/>\n  <w:basedOn w:val=\"a1\"/>\n  <w:link w:val=\"a6\"/>\n  <w:uiPriority w:val=\"99\"/>\n  <w:unhideWhenUsed/>\n  <w:rsid w:val=\"00E618BF\"/>\n  <w:pPr>\n    <w:tabs>\n      <w:tab w:val=\"center\" w:pos=\"4680\"/>\n      <w:tab w:val=\"right\" w:pos=\"9360\"/>\n    </w:tabs>\n    <w:spacing w:after=\"0\" w:line=\"240\" w:lineRule=\"auto\"/>\n  </w:pPr>\n</w:style>\n"
+    },
+    {
+      "name": "Footer",
+      "font": null,
+      "pt": null,
+      "bold": null,
+      "color": "None",
+      "line": "1.0",
+      "before": 0,
+      "after": 0,
+      "first": 0,
+      "xml": "<w:style xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:w14=\"http://schemas.microsoft.com/office/word/2010/wordml\" xmlns:w15=\"http://schemas.microsoft.com/office/word/2012/wordml\" xmlns:w16cex=\"http://schemas.microsoft.com/office/word/2018/wordml/cex\" xmlns:w16cid=\"http://schemas.microsoft.com/office/word/2016/wordml/cid\" xmlns:w16=\"http://schemas.microsoft.com/office/word/2018/wordml\" xmlns:w16du=\"http://schemas.microsoft.com/office/word/2023/wordml/word16du\" xmlns:w16sdtdh=\"http://schemas.microsoft.com/office/word/2020/wordml/sdtdatahash\" xmlns:w16sdtfl=\"http://schemas.microsoft.com/office/word/2024/wordml/sdtformatlock\" xmlns:w16se=\"http://schemas.microsoft.com/office/word/2015/wordml/symex\" w:type=\"paragraph\" w:styleId=\"a7\">\n  <w:name w:val=\"footer\"/>\n  <w:basedOn w:val=\"a1\"/>\n  <w:link w:val=\"a8\"/>\n  <w:uiPriority w:val=\"99\"/>\n  <w:unhideWhenUsed/>\n  <w:rsid w:val=\"00E618BF\"/>\n  <w:pPr>\n    <w:tabs>\n      <w:tab w:val=\"center\" w:pos=\"4680\"/>\n      <w:tab w:val=\"right\" w:pos=\"9360\"/>\n    </w:tabs>\n    <w:spacing w:after=\"0\" w:line=\"240\" w:lineRule=\"auto\"/>\n  </w:pPr>\n</w:style>\n"
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "browser": {
+    "passed": 17,
+    "skipped": 1,
+    "failed": 0
+  },
+  "date": "2026-10-15",
+  "pending": [
+    "original files custody and independent authorization/region verification",
+    "production database concurrency and backup restore",
+    "full campus candidate training and calibration"
+  ],
+  "java": {
+    "passed": 38,
+    "skipped": 0,
+    "failed": 0
+  },
+  "environment": "local H2 constructed/demo data",
+  "scope": "committed publication watermark, as-of ledger revisions, original-input replay, declared source linkage, source tampering rejection, source register read API and local restart persistence",
+  "typecheck": "passed",
+  "replay": "7-of-7 saved ledger revisions and recomputed features verified in browser",
+  "local_persistent_restart": "98 demo ledger rows present on two separate application starts; not MySQL backup/restore",
+  "mysql_validation": "not run; isolated mysqld startup exited with Windows status 0xC0000142",
+  "python": {
+    "failed": 0,
+    "passed": 41,
+    "skipped": 0
+  },
+  "files": [
+    {
+      "path": "src/main/resources/db/migration/V16__operation_revisions.sql",
+      "sha256": "7c6e96e1d6cce4f0429a6800162caabfac545baaa3bf8f75017a87a560fa5a70"
+    },
+    {
+      "path": "src/main/resources/db/migration/V17__ledger_publication_watermark.sql",
+      "sha256": "53af2e34da913d9a5a23b74ff6d3a4292ada5acdcd45e8846a88c10cd562f111"
+    },
+    {
+      "path": "src/main/java/org/foodwise/prediction/PredictionContext.java",
+      "sha256": "55f1191765ea5560ec98c5af7ec302f24123ffa7a187f59afde157d6b8317314"
+    },
+    {
+      "path": "src/main/java/org/foodwise/repository/FoodwiseRepository.java",
+      "sha256": "f467d6508271aa83cf43335b7ebe00dd1f4a9b2e98da5f0c4b8e24a31a7a56c9"
+    },
+    {
+      "path": "src/main/java/org/foodwise/service/PredictionService.java",
+      "sha256": "5b4de8849f7639ff2fe9a46afa455d03c05afbe62fa7974e35737041d575a9ca"
+    },
+    {
+      "path": "src/test/java/org/foodwise/ConcurrentLedgerVisibilityTests.java",
+      "sha256": "3fdc17052b09adb6c760186e429c2ac6569b4f81708d83c6fa4873d93906a73a"
+    },
+    {
+      "path": "src/main/resources/application-local-persistent.yml",
+      "sha256": "134d3bf69c363851165a509ea0af1dbb3f6988eeba1ec7c6eaeab19b8453b254"
+    },
+    {
+      "path": "frontend/src/views/PredictionView.vue",
+      "sha256": "42da715b7de47aad20546179e480ebe8e14152f38bd912408999b35dab85566b"
+    },
+    {
+      "path": "src/main/resources/db/migration/V18__source_evidence_links.sql",
+      "sha256": "bf94c1b4700d3281eae0386334d957fad9bf051ee24f38fd9447ddcaeb3a612f"
+    },
+    {
+      "path": "src/main/java/org/foodwise/service/OperationImportService.java",
+      "sha256": "52e3259c5c354021f81bd7bad96b18339f50c94c0e504e9239501d7772864a21"
+    },
+    {
+      "path": "src/main/java/org/foodwise/service/OperationFeedbackService.java",
+      "sha256": "00be6cd41b5d8bbf6424dd4254ab2196c92ce1d2603f402850ff09bd3c70d1a0"
+    },
+    {
+      "path": "modeling/scripts/26_campus_training_chain.py",
+      "sha256": "f87a50f63a2d37668ccaffa0eacf769e4a8e1e31355174fcd209aaa7ba46899b"
+    },
+    {
+      "path": "modeling/tests/test_campus_training_chain.py",
+      "sha256": "6d48beb644d36503ba266bd85d4a733f8510c177930fee904c704b67f9bd4937"
+    },
+    {
+      "sha256": "7a1d9f8bbc965593b3efc31177e278a735790b2ef9cc4558a781d5400d81f09a",
+      "path": "src/main/java/org/foodwise/api/v1/ApiV1Controller.java"
+    },
+    {
+      "sha256": "193a2f6cff3fb3634eedd2846d895ce8e69baee3cee9ce90dbf6ed55864bd914",
+      "path": "src/main/java/org/foodwise/service/FoodwiseService.java"
+    },
+    {
+      "sha256": "dbeea73ead1a45d667520d90457e66b92f8151f504ad1d0ab696fae6d737592f",
+      "path": "frontend/src/views/FeedbackView.vue"
+    },
+    {
+      "sha256": "08aef4406e30429ab1d1c2f30d6a65ea840c9786a7f3f523abde2541d98f537f",
+      "path": "frontend/src/api/types.ts"
+    },
+    {
+      "sha256": "1440db977601da28719a652177903166f33a2cda2f434496c5d2537dfaf61915",
+      "path": "src/test/java/org/foodwise/OperationSourceEvidenceTests.java"
+    }
+  ]
+}

@@ -1,0 +1,462 @@
+{
+  "splitRows": [],
+  "captions": [
+    {
+      "page": 7,
+      "imagePage": 7,
+      "caption": "图2-1  可售供给对观测销量的限制"
+    },
+    {
+      "page": 10,
+      "imagePage": 10,
+      "caption": "图3-1  一餐经营中的操作与反馈"
+    },
+    {
+      "page": 11,
+      "imagePage": 11,
+      "caption": "图3-2  备餐计划的查看与确认"
+    },
+    {
+      "page": 12,
+      "imagePage": 12,
+      "caption": "图3-3  经营数据回传与数量核对"
+    },
+    {
+      "page": 13,
+      "imagePage": 13,
+      "caption": "图3-4  经营复盘中的计划与结果阅读"
+    },
+    {
+      "page": 19,
+      "imagePage": 19,
+      "caption": "图4-1  从经营记录到可执行备餐安排"
+    },
+    {
+      "page": 20,
+      "imagePage": 20,
+      "caption": "图4-2  分源研究中的时间边界"
+    },
+    {
+      "page": 23,
+      "imagePage": 23,
+      "caption": "图5-1  同一公开回测中的观测销量误差"
+    },
+    {
+      "page": 24,
+      "imagePage": 24,
+      "caption": "图5-2  相同需求情景下的策略损失比较"
+    },
+    {
+      "page": 25,
+      "imagePage": 25,
+      "caption": "图5-3  基线情景中剩余与缺货的共同变化"
+    },
+    {
+      "page": 29,
+      "imagePage": 29,
+      "caption": "图7-1  档口服务中的交付与付费关系"
+    },
+    {
+      "page": 32,
+      "imagePage": 32,
+      "caption": "图8-1  首轮服务的启动与复核"
+    },
+    {
+      "page": 36,
+      "imagePage": 36,
+      "caption": "图9-1  第二年规划利润的形成"
+    },
+    {
+      "page": 37,
+      "imagePage": 37,
+      "caption": "图9-2  第二年规划利润的单因素压力测试"
+    },
+    {
+      "page": 38,
+      "imagePage": 38,
+      "caption": "图10-1  项目推进阶段与进入条件"
+    },
+    {
+      "page": 40,
+      "imagePage": 40,
+      "caption": "图A-1  首次建档的信息填写"
+    },
+    {
+      "page": 41,
+      "imagePage": 41,
+      "caption": "图A-2  优惠订单的状态核对"
+    }
+  ],
+  "pdfGenerated": false,
+  "footers": [
+    {
+      "section": 1,
+      "pages": 5,
+      "text": ""
+    },
+    {
+      "section": 2,
+      "pages": 39,
+      "text": "第 1 页 共 39 页"
+    }
+  ],
+  "pages": 43,
+  "headings": [
+    {
+      "physical": 5,
+      "title": "第一章 项目概述与价值定位",
+      "page": 1
+    },
+    {
+      "physical": 5,
+      "title": "1.1 一餐经营中的数量决策",
+      "page": 1
+    },
+    {
+      "physical": 5,
+      "title": "1.2 服务对象与价值主张",
+      "page": 1
+    },
+    {
+      "physical": 6,
+      "title": "1.3 当前基础与推进目标",
+      "page": 2
+    },
+    {
+      "physical": 7,
+      "title": "第二章 经营场景与需求分析",
+      "page": 3
+    },
+    {
+      "physical": 7,
+      "title": "2.1 开餐前的需求不确定性",
+      "page": 3
+    },
+    {
+      "physical": 7,
+      "title": "2.2 营业中的供需变化",
+      "page": 3
+    },
+    {
+      "physical": 8,
+      "title": "2.3 收餐后的复盘障碍",
+      "page": 4
+    },
+    {
+      "physical": 8,
+      "title": "2.4 适用条件与首轮服务边界",
+      "page": 4
+    },
+    {
+      "physical": 10,
+      "title": "第三章 一餐经营中的产品使用",
+      "page": 6
+    },
+    {
+      "physical": 10,
+      "title": "3.1 开餐前形成备餐安排",
+      "page": 6
+    },
+    {
+      "physical": 11,
+      "title": "3.2 营业中调整与余量处置",
+      "page": 7
+    },
+    {
+      "physical": 12,
+      "title": "3.3 收餐后回传与经营复盘",
+      "page": 8
+    },
+    {
+      "physical": 13,
+      "title": "3.4 经营参谋如何解释建议",
+      "page": 9
+    },
+    {
+      "physical": 15,
+      "title": "第四章 数据基础与备餐建模",
+      "page": 11
+    },
+    {
+      "physical": 15,
+      "title": "4.1 数据来源与研究角色",
+      "page": 11
+    },
+    {
+      "physical": 16,
+      "title": "4.2 单位、售罄与异常记录",
+      "page": 12
+    },
+    {
+      "physical": 17,
+      "title": "4.3 需求预测与不确定性",
+      "page": 13
+    },
+    {
+      "physical": 17,
+      "title": "4.4 库存产能约束下的备餐决策",
+      "page": 13
+    },
+    {
+      "physical": 19,
+      "title": "4.5 分源实验与时间划分",
+      "page": 15
+    },
+    {
+      "physical": 20,
+      "title": "4.6 在线业务、离线研究与解释边界",
+      "page": 16
+    },
+    {
+      "physical": 22,
+      "title": "第五章 验证结果与创新评价",
+      "page": 18
+    },
+    {
+      "physical": 22,
+      "title": "5.1 验证设计与评价口径",
+      "page": 18
+    },
+    {
+      "physical": 22,
+      "title": "5.2 公开回测的误差与经营损失",
+      "page": 18
+    },
+    {
+      "physical": 23,
+      "title": "5.3 情景仿真的剩余与缺货取舍",
+      "page": 19
+    },
+    {
+      "physical": 25,
+      "title": "5.4 原型验收与方法改进",
+      "page": 21
+    },
+    {
+      "physical": 27,
+      "title": "第六章 市场切入与竞争分析",
+      "page": 23
+    },
+    {
+      "physical": 27,
+      "title": "6.1 首轮档口筛选",
+      "page": 23
+    },
+    {
+      "physical": 27,
+      "title": "6.2 替代方案与采购差异",
+      "page": 23
+    },
+    {
+      "physical": 28,
+      "title": "6.3 试用渠道与市场判断",
+      "page": 24
+    },
+    {
+      "physical": 29,
+      "title": "第七章 商业模式与单位经济",
+      "page": 25
+    },
+    {
+      "physical": 29,
+      "title": "7.1 服务包与付费对象",
+      "page": 25
+    },
+    {
+      "physical": 30,
+      "title": "7.2 客户价值与续用条件",
+      "page": 26
+    },
+    {
+      "physical": 30,
+      "title": "7.3 单位经济与服务范围",
+      "page": 26
+    },
+    {
+      "physical": 32,
+      "title": "第八章 服务交付与组织保障",
+      "page": 28
+    },
+    {
+      "physical": 32,
+      "title": "8.1 准入、建档与启动",
+      "page": 28
+    },
+    {
+      "physical": 33,
+      "title": "8.2 影子运行与试用复核",
+      "page": 29
+    },
+    {
+      "physical": 33,
+      "title": "8.3 职责、支持与数据保护",
+      "page": 29
+    },
+    {
+      "physical": 35,
+      "title": "第九章 财务情景与风险管理",
+      "page": 31
+    },
+    {
+      "physical": 35,
+      "title": "9.1 测算假设与投入安排",
+      "page": 31
+    },
+    {
+      "physical": 35,
+      "title": "9.2 利润形成与资金需求",
+      "page": 31
+    },
+    {
+      "physical": 36,
+      "title": "9.3 敏感因素和风险应对",
+      "page": 32
+    },
+    {
+      "physical": 38,
+      "title": "第十章 实施路线与社会价值",
+      "page": 34
+    },
+    {
+      "physical": 38,
+      "title": "10.1 阶段任务与进入条件",
+      "page": 34
+    },
+    {
+      "physical": 38,
+      "title": "10.2 试用评价和调整机制",
+      "page": 34
+    },
+    {
+      "physical": 39,
+      "title": "10.3 食品减损价值与复制条件",
+      "page": 35
+    },
+    {
+      "physical": 40,
+      "title": "附录A 关键操作补充",
+      "page": 36
+    },
+    {
+      "physical": 42,
+      "title": "附录B 数据口径与证据索引",
+      "page": 38
+    },
+    {
+      "physical": 43,
+      "title": "参考文献与来源",
+      "page": 39
+    }
+  ],
+  "explanations": [
+    {
+      "text": "概念示意。销量在供给上限处停止增长，未被满足的需求无法直接从收银数量中恢复。",
+      "captionPage": 7,
+      "page": 7
+    },
+    {
+      "text": "负责人确认计划、当班人员记录执行，回传结果成为后续复盘的依据。异常调整保留原因。",
+      "captionPage": 10,
+      "page": 10
+    },
+    {
+      "text": "本地原型界面，数据为构造演示。实际生效参考与可执行约束以运行配置、输入及负责人核对为准。",
+      "captionPage": 11,
+      "page": 11
+    },
+    {
+      "text": "界面原样保留。优惠售出属于总售出的一部分，数量差额需要结合报损、转存等去向核对。",
+      "captionPage": 12,
+      "page": 12
+    },
+    {
+      "text": "本地构造数据展示。复盘需要同时考虑剩余、缺货、净回收和操作负担。",
+      "captionPage": 13,
+      "page": 13
+    },
+    {
+      "text": "实线为现有业务链路，虚线为候选研究路径。当前规则参考与拟研究模型不混为一项已验证能力。",
+      "captionPage": 19,
+      "page": 19
+    },
+    {
+      "text": "图中为拟实施研究安排。日期区间按各来源分别解释，芬兰分析不与销量预测共用训练切分。",
+      "captionPage": 20,
+      "page": 20
+    },
+    {
+      "text": "来源：2026-11-04冻结ZHAW回测，40日训练、20日测试；WAPE越低越好。该旧版聚合口径与新分源方案不同。",
+      "captionPage": 23,
+      "page": 23
+    },
+    {
+      "text": "20种子×4情景×3策略，共240次90日运行。点为均值，横线为种子结果P5—P95经验分位，不是均值置信区间。",
+      "captionPage": 24,
+      "page": 24
+    },
+    {
+      "text": "基线情景60个点来自20种子与3种策略。剩余率和缺货频率分母不同，不相加，也不互为补数。",
+      "captionPage": 25,
+      "page": 25
+    },
+    {
+      "text": "关系为拟议服务安排。基础服务不包含无限现场陪跑，管理版本须在授权与需求明确后另行设计。",
+      "captionPage": 29,
+      "page": 29
+    },
+    {
+      "text": "各阶段时长由授权、记录及人员条件决定，不预设固定天数。异常处理后再决定继续、调整或退出。",
+      "captionPage": 32,
+      "page": 32
+    },
+    {
+      "text": "单位万元；营业收入11，可变交付成本4.25，固定费用6.50，营业利润0.25。未计未确定税费及资本性支出。",
+      "captionPage": 36,
+      "page": 36
+    },
+    {
+      "text": "每次只改变一项假设，其余保持基准。变化幅度不同，不代表标准化因素重要性或事件概率。",
+      "captionPage": 37,
+      "page": 37
+    },
+    {
+      "text": "按证据推进的规划路线；现场授权、持续记录、方法效果和交付能力分别核对，未完成条件则调整后续进度。",
+      "captionPage": 38,
+      "page": 38
+    },
+    {
+      "text": "展示建档字段；真实采集仍须事先确认准入、用途和责任。",
+      "captionPage": 40,
+      "page": 40
+    },
+    {
+      "text": "展示订单与核销状态，便于核对余量处置中的操作衔接。",
+      "captionPage": 41,
+      "page": 41
+    }
+  ],
+  "bodyFonts": [
+    {
+      "line": 18.0,
+      "size": 12.0,
+      "style": "正文",
+      "bold": 0,
+      "eastAsia": "宋体"
+    },
+    {
+      "line": 18.0,
+      "size": 12.0,
+      "style": "正文",
+      "bold": 0,
+      "eastAsia": "宋体"
+    },
+    {
+      "line": 18.0,
+      "size": 12.0,
+      "style": "正文",
+      "bold": 0,
+      "eastAsia": "宋体"
+    }
+  ],
+  "tocCount": 1
+}

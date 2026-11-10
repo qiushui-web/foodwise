@@ -1,0 +1,29 @@
+{
+  "scope": "local sequential authenticated GET; includes HTTP Basic verification; not production/concurrent prediction latency",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.4",
+  "warmups": 3,
+  "rows": [
+    {
+      "endpoint": "/api/v1/dishes",
+      "samples": 30,
+      "p50_ms": 70.20850000844803,
+      "p95_ms": 81.96749999478925,
+      "max_ms": 82.89040000818204
+    },
+    {
+      "endpoint": "/api/v1/onboarding/readiness",
+      "samples": 30,
+      "p50_ms": 64.72010001016315,
+      "p95_ms": 80.0325000018347,
+      "max_ms": 80.1039999932982
+    },
+    {
+      "endpoint": "/api/v1/reports",
+      "samples": 30,
+      "p50_ms": 70.09819999802858,
+      "p95_ms": 79.67069999722298,
+      "max_ms": 81.41389999946114
+    }
+  ]
+}

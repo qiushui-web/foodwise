@@ -4,19 +4,20 @@
 
 项目工作目录为 `项目代码/`，Git 仓库、后端、前端、模型、部署脚本和工程文档均在此目录。运行本 README 中的命令前，请先进入该目录。
 
-上一级目录仅保留 `项目代码/`、`计划书/`、`PPT/`、`数据来源/`、`软著资料/` 五类内容。网站截图位于 `../计划书/计划书照片/网站截图/`。历史计划书生成脚本已归档至 docs/archive/20261013/，不参与应用构建。
+上一级目录保留 `项目代码/`、`计划书/`、`PPT/`、`数据来源/`、`软著资料/` 五类内容。软著核验快照归档包和申请准备说明保存在 `../软著资料/`；网站截图位于 `../计划书/计划书照片/网站截图/`。历史计划书生成脚本集中在 `docs/archive/历史工作资料_20261109.zip`。
 
 原先被 Git 跟踪的计划书和软著文件已迁出代码仓库，Git 状态会显示这些旧路径为删除；材料文件仍保存在上一级对应目录中，历史版本仍可从 Git 查看。
 
-高校食堂精细化经营与食品减损平台。当前主技术路线为 Spring Boot、Java 21、Vue 3、Vue Router、Pinia、Vite、TypeScript、MySQL/H2 和 Flyway，围绕“经营数据 - 销量预测 - 分批备餐 - 限时优惠 - 订单核销 - 效果复盘”形成可追踪的运营闭环。
+食刻有数面向高校食堂单个档口的试用准备：从人工记录或经营数据文件导入起步，生成可人工复核的备餐建议，记录当餐盘点、剩余处理和经营复盘。当前以公开数据验证和本地流程验收支持试用准备，现场效果随实际试用记录。实现采用 Spring Boot、Java 21、Vue 3、TypeScript 和 H2/MySQL。
 
 ## 页面与验证
 
 当前应用入口为 `/app/dashboard`，生产环境加 `/foodwise/` 前缀。
 
-- `/app/stalls`：档口与菜品；数值统一舍入，图片为同类菜品示意。
+- `/app/onboarding`：首次建档；管理员填写学校、档口、菜品与授权材料引用。
+- `/app/stalls`：查看档口与菜品；图片为同类菜品示意。
 - `/app/prediction`：按目标日期、餐次生成规则备餐参考；经验范围尚未校准。
-- `/app/operations/feedback`：手工回填、CSV 预览与逐行导入、台账导出。
+- `/app/operations/feedback`：历史台账导入、当餐盘点与最终结果更新；同一日期、餐次和菜品可继续填写。
 - `/app/offers`、`/app/orders`、`/app/alerts`：优惠、核销、预警。
 - `/app/reports`：经营测算与冻结公开实验分别展示。
 - `/app/insights/realtime`：最近营业日快照，不代表实时监测。
@@ -25,8 +26,13 @@
 - `/app/about`：输入要求、使用步骤与来源说明。
 
 工程整理与验收见 [优化实施报告](docs/validation/optimization-implementation-20261013/REPORT.md)。
+整体产品闭环、页面职责、技术栈与经营参谋边界见 [总体产品与技术优化方案](docs/product/食刻有数_总体产品与技术优化方案_20261109.md)。
 建模当前入口为 `modeling/scripts/verify_current.py`；添加 `--experiment` 运行新的不可覆盖公开销量实验。
 历史管道只有显式 `--historical` 才可运行，并不能替代当前验证。
+
+## 经营数据导入
+
+经营数据回传页面支持 Excel（XLSX/XLS）、CSV、TSV 和 JSON 文件。各格式共用预览、字段校验、来源登记和逐行导入流程；原始文件哈希、导入批次与记录来源保持关联。详细字段与格式示例见 [经营数据导入说明](docs/product/经营数据导入说明.md)。
 
 ## 本机启动
 
@@ -39,6 +45,15 @@
 ```
 
 访问：<http://localhost:8089>
+
+如需在本机重启后保留录入内容，可使用单独的文件型 H2 演示库：
+
+```powershell
+$env:SPRING_PROFILES_ACTIVE="local-persistent"
+.\gradlew.bat bootRun
+```
+
+数据库文件保存在 `data/runtime/foodwise`，不会提交到 Git。此 profile 仍会在空库首次启动时加载演示经营数据，页面会标注演示来源；请勿将其当作河北校园真实台账。正式持久化试点使用 `mysql` profile，并需单独配置数据库账号、备份与恢复演练。
 
 ## MySQL启动
 
@@ -135,7 +150,7 @@ $env:FOODWISE_CSV_PATH="D:\data\foodwise_operations.csv"
 
 新版模块化接口位于 `/api/v1`，返回统一的 `success/data/code/message/traceId/timestamp` 结构。列表接口支持 `page`、`size` 参数，分页数据包含 `items/page/size/total/totalPages`；前端 getPage 保留完整元数据，getAllPages 用于需要加载全部分页的列表。
 
-- `GET /api/v1/predictions/engines`：可用预测引擎。
+- `GET /api/v1/predictions/engines`：可用预测引擎。决策链路另有 `robust-baseline`（v3 默认）与 `calibrated-quantile` / `quantile` 对照。
 - `POST /api/v1/predictions`：按 `dishId/weather/examWeek/campusEvent/engine/targetDate/mealPeriod` 生成带模型版本的预测，未提供日期与餐次时默认明天、全日。
 - `GET /api/v1/analytics/metadata`、`GET /api/v1/analytics/backtest`：数据元信息和回测结果。
 
@@ -147,6 +162,10 @@ Spring AI OpenAI-compatible 适配器默认关闭。设置 `FOODWISE_SPRING_AI_E
 
 
 ## 构建系统
+
+### 本轮落地与试运行
+
+2026-10-16 的实现范围、验收证据和现场依赖见 [落地交付索引](docs/落地交付索引_20261016.md)。首次准备、每日输入、计划确认、闭餐回填及独立持久化试运行说明见 [用户操作与试运行包](docs/pilot/README.md)。当前本地工程验收使用隔离构造数据，不能作为河北现场成效证明。
 
 ### 后端 (Gradle)
 

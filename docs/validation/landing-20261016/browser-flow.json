@@ -1,0 +1,36 @@
+{
+  "dataNature": "synthetic isolated acceptance only; not Hebei field evidence",
+  "views": [
+    {
+      "width": 1440,
+      "overflow": false,
+      "console": [],
+      "failedResources": [],
+      "zeroStock": true,
+      "roundTripAndDecision": true
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "console": [],
+      "failedResources": [],
+      "zeroStock": true,
+      "roundTripAndDecision": true
+    }
+  ],
+  "emptyBusinessTables": true,
+  "unauthenticatedStatus": 401,
+  "api": {
+    "idempotency409": true,
+    "missingPrediction400": true,
+    "negativeInput400": true,
+    "overCapacityDecision400": true,
+    "roundTrip": true
+  },
+  "persisted": {
+    "dishId": 1,
+    "planId": 5,
+    "predictionId": 3,
+    "plannedTotal": 20
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "/dishes": {
+    "items": [
+      {
+        "id": 1,
+        "name": "验收菜品（构造）",
+        "category": "套餐饭",
+        "price": 10.0,
+        "unitCost": 6.0,
+        "prepMinutes": 20,
+        "quantityUnit": "份",
+        "active": true,
+        "color": "#1f8a70",
+        "stallName": "验收档口（构造）",
+        "avgSales": 80.0,
+        "leftoverRate": 20.0
+      }
+    ],
+    "page": 1,
+    "size": 50,
+    "total": 1,
+    "totalPages": 1
+  },
+  "/stalls": {
+    "items": [
+      {
+        "id": 1,
+        "name": "验收档口（构造）",
+        "category": "基础餐饮",
+        "location": "",
+        "managerName": "验收人员",
+        "status": "待核对",
+        "rating": 5,
+        "dishCount": 1,
+        "todayRevenue": 800.0,
+        "todayLeftover": 20
+      }
+    ],
+    "page": 1,
+    "size": 20,
+    "total": 1,
+    "totalPages": 1
+  },
+  "/orders": {
+    "items": [],
+    "page": 1,
+    "size": 20,
+    "total": 0,
+    "totalPages": 0
+  },
+  "/operations/feedback": {
+    "items": [
+      {
+        "id": 1,
+        "submission_type": "新增",
+        "operator_name": "验收人员",
+        "safety_confirmed": true,
+        "submission_note": "非河北现场实采",
+        "submitted_at": "2026-10-16T02:57:45.865Z",
+        "business_date": "2026-10-15",
+        "meal_period": "午餐",
+        "prepared_qty": 100,
+        "sold_qty": 80,
+        "discount_sold_qty": 0,
+        "leftover_qty": 20,
+        "weather": "晴",
+        "dish_name": "验收菜品（构造）",
+        "stall_name": "验收档口（构造）",
+        "baseline_before": 0.0,
+        "baseline_after": 80.0,
+        "adjustment_rate": 0.0
+      }
+    ],
+    "page": 1,
+    "size": 20,
+    "total": 1,
+    "totalPages": 1
+  },
+  "/preparation-plans/5": {
+    "createdAt": "2026-10-16 10:57:48.814028",
+    "plan": {
+      "referenceDemand": 80,
+      "firstBatch": 20,
+      "replenishQty": 0,
+      "plannedTotal": 20,
+      "uncoveredDemand": 60,
+      "latestReplenishStart": "12:40:00",
+      "canReplenish": false,
+      "automaticExecution": false,
+      "warnings": [
+        "库存、产能、整批或时段约束留下60份参考需求缺口；该缺口不是实测缺货。",
+        "库存和产能为手工分配快照；补餐前必须复核售速、剩余、原料与食品安全，不自动执行。"
+      ]
+    },
+    "predictionId": 3,
+    "inputs": {
+      "stockServings": 20,
+      "capacityServings": 30,
+      "minimumBatch": 10,
+      "leadMinutes": 20,
+      "preparationStart": "10:00:00",
+      "serviceStart": "11:00:00",
+      "serviceEnd": "13:00:00"
+    },
+    "id": 5,
+    "createdBy": "foodwise-admin"
+  },
+  "/predictions/3/replay": {
+    "scope": "仅核对原预测的台账输入，不代表模型有效性或现场效果验证",
+    "observations": [
+      {
+        "date": "2026-10-15",
+        "sold": 80,
+        "prepared": 100
+      }
+    ],
+    "predictionId": 3,
+    "dataVerified": true,
+    "savedOutput": {
+      "predictionId": 3,
+      "predictedMid": 80,
+      "firstBatch": 60,
+      "replenishQty": 20
+    },
+    "revisionIds": [
+      1
+    ],
+    "sourceEvidence": [
+      {
+        "revisionId": 1,
+        "sourceEvidenceId": null,
+        "sourceRowNo": null,
+        "verificationStatus": "ONLINE_UNVERIFIED",
+        "sourceSha256": null,
+        "fileName": null,
+        "sourceName": null,
+        "provider": null,
+        "declaredRegion": null,
+        "authorizationReference": null,
+        "evidenceStatus": null
+      }
+    ],
+    "predictionCutoffAt": "2026-10-16T02:57:48.799028Z",
+    "publicationWatermark": 2,
+    "features": {
+      "weightedDemand": 80.0,
+      "trend": 1.0,
+      "variability": 0.0,
+      "observations": 1
+    }
+  }
+}

@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 @Component
+@org.springframework.core.annotation.Order(10)
 public class DataBootstrapService implements ApplicationRunner {
 
     private final JdbcTemplate jdbcTemplate;
@@ -199,8 +200,8 @@ public class DataBootstrapService implements ApplicationRunner {
 
     private void upsertSources(String importedFrom) {
         List<SourceRow> sources = List.of(
-                new SourceRow("OPS_MEASURE_001", "高校食堂经营追踪数据（14日）", "operational_measurement", "某高校食堂档口经营者",
-                        null, "经档口经营者授权采集", importedFrom, "经营指标分析、效果评估与界面展示", "2026年6-7月实地采集，经档口经营者授权"),
+                new SourceRow("OPS_MEASURE_001", "项目内14日经营测算快照", "project_snapshot_unverified", "项目内资料；原始提供方待核验",
+                        null, "授权材料待核验", importedFrom, "界面演示与计算流程核对", "未完成原始台账、授权和地域核验；不能作为河北校园现场成效"),
                 new SourceRow("MOE_2025", "全国高等学校名单（截至2025年6月20日）", "public_statistics", "中华人民共和国教育部",
                         "https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/A03/202506/t20250627_1195683.html", "政府公开信息", null,
                         "高校餐饮市场宏观背景", "不直接等同于可服务高校或档口数量"),

@@ -10,6 +10,10 @@ spring:
           model: ${ZHIPU_MODEL:glm-4-flash}
   profiles:
     default: local
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 11MB
   thymeleaf:
     cache: false
   flyway:

@@ -28,7 +28,8 @@ test('narrow screens and enlarged text keep reports readable', async ({ page }, 
   await page.setViewportSize({ width:720, height:450 });
   await page.goto('/app/reports');
   await page.addStyleTag({content:'main *{font-size:200%!important;line-height:1.5!important}'});
-  await expect(page.getByRole('heading',{name:'冻结测试集验证'})).toBeVisible();
+  await page.getByText('公开数据实验与验证范围').click();
+  await expect(page.getByText('当前 LightGBM MAE 高于同星期均值基线')).toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
 });
 

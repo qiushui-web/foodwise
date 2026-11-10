@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="583.92pt" height="214.416pt" viewBox="0 0 583.92 214.416" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-09T21:57:58.837103</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.8.4, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 214.416 
+L 583.92 214.416 
+L 583.92 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 18.54 94.717301 
+L 559.8 94.717301 
+L 559.8 56.109687 
+L 18.54 56.109687 
+z
+" clip-path="url(#pfe58cd8b0d)" style="fill: #edf4f8"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 18.54 144.680096 
+L 559.8 144.680096 
+L 559.8 106.072482 
+L 18.54 106.072482 
+z
+" clip-path="url(#pfe58cd8b0d)" style="fill: #f5f8fa"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 18.54 194.642892 
+L 559.8 194.642892 
+L 559.8 156.035277 
+L 18.54 156.035277 
+z
+" clip-path="url(#pfe58cd8b0d)" style="fill: #edf4f8"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 207.080925 82.271236 
+Q 233.370101 101.530484 258.306417 119.798637 
+" clip-path="url(#pfe58cd8b0d)" style="fill: none; stroke: #285e82; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 255.648164 114.628174 
+L 258.306417 119.798637 
+L 252.575095 118.822962 
+z
+" clip-path="url(#pfe58cd8b0d)" style="fill: #285e82; stroke: #285e82; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 358.129012 126.511807 
+Q 385.424561 126.511807 411.04306 126.511807 
+" clip-path="url(#pfe58cd8b0d)" style="fill: none; stroke: #285e82; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 405.84306 123.911807 
+L 411.04306 126.511807 
+L 405.84306 129.111807 
+z
+" clip-path="url(#pfe58cd8b0d)" style="fill: #285e82; stroke: #285e82; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 462.15 108.614091 
+Q 462.15 101.530799 462.15 96.124558 
+" clip-path="url(#pfe58cd8b0d)" style="fill: none; stroke: #285e82; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 459.55 101.324558 
+L 462.15 96.124558 
+L 464.75 101.324558 
+z
+" clip-path="url(#pfe58cd8b0d)" style="fill: #285e82; stroke: #285e82; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 207.469182 176.474602 
+Q 233.369692 176.474602 257.593151 176.474602 
+" clip-path="url(#pfe58cd8b0d)" style="fill: none; stroke: #285e82; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 252.393151 173.874602 
+L 257.593151 176.474602 
+L 252.393151 179.074602 
+z
+" clip-path="url(#pfe58cd8b0d)" style="fill: #285e82; stroke: #285e82; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #203748; font: 13px 'SimHei'; text-anchor: middle" x="155.25" y="33.275222" transform="rotate(-0 155.25 33.275222)">营业前</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #203748; font: 13px 'SimHei'; text-anchor: middle" x="308.7" y="33.148269" transform="rotate(-0 308.7 33.148269)">营业中</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #203748; font: 13px 'SimHei'; text-anchor: middle" x="462.15" y="33.249831" transform="rotate(-0 462.15 33.249831)">闭餐后</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #203748; font: 11px 'SimHei'; text-anchor: middle" x="52.02" y="80.287293" transform="rotate(-0 52.02 80.287293)">负责人</text>
+   </g>
+   <g id="text_5">
+    <text style="fill: #203748; font: 11px 'SimHei'; text-anchor: middle" x="52.02" y="130.185635" transform="rotate(-0 52.02 130.185635)">当班人员</text>
+   </g>
+   <g id="text_6">
+    <text style="fill: #203748; font: 11px 'SimHei'; text-anchor: middle" x="52.02" y="180.041009" transform="rotate(-0 52.02 180.041009)">团队</text>
+   </g>
+   <g id="text_7">
+    <text style="fill: #203748; font: 12px 'SimHei'; text-anchor: middle" x="155.25" y="80.650575" transform="rotate(-0 155.25 80.650575)">确认计划</text>
+   </g>
+   <g id="text_8">
+    <text style="fill: #203748; font: 12px 'SimHei'; text-anchor: middle" x="308.7" y="130.683682" transform="rotate(-0 308.7 130.683682)">执行与暂记</text>
+   </g>
+   <g id="text_9">
+    <text style="fill: #203748; font: 12px 'SimHei'; text-anchor: middle" x="462.15" y="130.51962" transform="rotate(-0 462.15 130.51962)">盘点与去向</text>
+   </g>
+   <g id="text_10">
+    <text style="fill: #203748; font: 12px 'SimHei'; text-anchor: middle" x="462.15" y="80.6037" transform="rotate(-0 462.15 80.6037)">核对复盘</text>
+   </g>
+   <g id="text_11">
+    <text style="fill: #203748; font: 12px 'SimHei'; text-anchor: middle" x="155.25" y="180.52929" transform="rotate(-0 155.25 180.52929)">准备与培训</text>
+   </g>
+   <g id="text_12">
+    <text style="fill: #203748; font: 12px 'SimHei'; text-anchor: middle" x="308.7" y="180.458977" transform="rotate(-0 308.7 180.458977)">异常支持</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pfe58cd8b0d">
+   <rect x="12.96" y="12.96" width="558" height="188.496"/>
+  </clipPath>
+ </defs>
+</svg>

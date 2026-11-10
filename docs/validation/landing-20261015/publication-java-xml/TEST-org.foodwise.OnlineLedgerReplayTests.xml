@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.foodwise.OnlineLedgerReplayTests" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-15T08:42:22.712Z" hostname="LAPTOP-2R211UDQ" time="0.152">
+  <properties/>
+  <testcase name="aRecordedBoundaryDoesNotIncludeALaterBackfill()" classname="org.foodwise.OnlineLedgerReplayTests" time="0.009"/>
+  <testcase name="failedFeedbackTransactionDoesNotPublishALedgerRevision()" classname="org.foodwise.OnlineLedgerReplayTests" time="0.011"/>
+  <testcase name="aLaterCorrectionCannotRewriteAPreviouslyCapturedPredictionContext()" classname="org.foodwise.OnlineLedgerReplayTests" time="0.04"/>
+  <testcase name="historicalDateDoesNotPretendCurrentSeedsWereAvailableThen()" classname="org.foodwise.OnlineLedgerReplayTests" time="0.007"/>
+  <testcase name="ambiguousLegacyBusinessKeysAreRejectedInsteadOfDoubleCounted()" classname="org.foodwise.OnlineLedgerReplayTests" time="0.057"/>
+  <system-out><![CDATA[2026-10-15T16:42:22.723+08:00  INFO 12888 --- [foodwise] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [org.foodwise.OnlineLedgerReplayTests]: OnlineLedgerReplayTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-15T16:42:22.732+08:00  INFO 12888 --- [foodwise] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration org.foodwise.FoodwiseApplication for test class org.foodwise.OnlineLedgerReplayTests
+2026-10-15T16:42:22.736+08:00  INFO 12888 --- [foodwise] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [org.foodwise.OnlineLedgerReplayTests]: OnlineLedgerReplayTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-15T16:42:22.738+08:00  INFO 12888 --- [foodwise] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration org.foodwise.FoodwiseApplication for test class org.foodwise.OnlineLedgerReplayTests
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

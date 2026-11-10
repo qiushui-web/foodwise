@@ -1,0 +1,50 @@
+{
+  "censoring": {
+    "source": "概念机制：Y=min(D,A)，非观测数据",
+    "generated_image_api": false
+  },
+  "journey": {
+    "source": "项目业务与研究方案；结构化绘制",
+    "generated_image_api": false
+  },
+  "pipeline": {
+    "source": "项目业务与研究方案；结构化绘制",
+    "generated_image_api": false
+  },
+  "split": {
+    "source": "数据集与建模方案_20261109；各行不共用日期尺度",
+    "generated_image_api": false
+  },
+  "wape": {
+    "source": "项目代码\\modeling\\data\\03_output\\competition-public-data\\competition-public-data-20261104-final\\summary.json",
+    "generated_image_api": false
+  },
+  "simulation": {
+    "source": "项目代码\\modeling\\data\\03_output\\competition_validation_20261104_final.json",
+    "generated_image_api": false
+  },
+  "tradeoff": {
+    "source": "项目代码\\modeling\\data\\03_output\\competition_validation_20261104_final.json；仅baseline明细，未新增数据",
+    "generated_image_api": false
+  },
+  "business": {
+    "source": "项目业务与研究方案；结构化绘制",
+    "generated_image_api": false
+  },
+  "delivery": {
+    "source": "项目业务与研究方案；结构化绘制",
+    "generated_image_api": false
+  },
+  "waterfall": {
+    "source": "规划测算：50×2200−50×850−65000=2500元",
+    "generated_image_api": false
+  },
+  "sensitivity": {
+    "source": "规划单因素敏感性；档口40，价格1980，单位成本1020分别计算",
+    "generated_image_api": false
+  },
+  "roadmap": {
+    "source": "项目业务与研究方案；结构化绘制",
+    "generated_image_api": false
+  }
+}

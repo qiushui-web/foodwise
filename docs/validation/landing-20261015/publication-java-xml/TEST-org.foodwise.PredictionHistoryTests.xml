@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.foodwise.PredictionHistoryTests" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-15T08:42:34.476Z" hostname="LAPTOP-2R211UDQ" time="0.139">
+  <properties/>
+  <testcase name="historyCutoffExcludesFutureRecordsAndPreservesMealScope()" classname="org.foodwise.PredictionHistoryTests" time="0.081"/>
+  <testcase name="missingBusinessDatesDoNotBecomeZeroSales()" classname="org.foodwise.PredictionHistoryTests" time="0.018"/>
+  <system-out><![CDATA[2026-10-15T16:42:34.495+08:00  INFO 12888 --- [foodwise] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [org.foodwise.PredictionHistoryTests]: PredictionHistoryTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-15T16:42:34.495+08:00  INFO 12888 --- [foodwise] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration org.foodwise.FoodwiseApplication for test class org.foodwise.PredictionHistoryTests
+2026-10-15T16:42:34.511+08:00  INFO 12888 --- [foodwise] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [org.foodwise.PredictionHistoryTests]: PredictionHistoryTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-15T16:42:34.511+08:00  INFO 12888 --- [foodwise] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration org.foodwise.FoodwiseApplication for test class org.foodwise.PredictionHistoryTests
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

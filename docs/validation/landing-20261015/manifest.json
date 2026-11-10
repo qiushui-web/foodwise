@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-15",
+  "goal_status": "active",
+  "environment": "local H2 demonstration; not production or field validation",
+  "java": {
+    "tests": 38,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "frontend_typecheck": "passed",
+  "frontend_build": "passed through Gradle frontendBuild",
+  "existing_browser_tests": {
+    "passed": 17,
+    "skipped": 1,
+    "failed": 0
+  },
+  "field_data_validation": false,
+  "production_deployment": false,
+  "sha256": {
+    "modeling/scripts/25_campus_admission.py": "24753006ec5136979c0c87c9e24fbe5e3792c920f267102a6a9e43ad60e20c6a",
+    "modeling/scripts/27_build_local_model_bundle.py": "7b8f7862f258d6c01017f1417ac710dcd810d6750e9e8889bfba0e778e4ec068",
+    "modeling/scripts/28_availability_revision_interval.py": "2a01398b7ddaa184e48b933348d28c4a47b56ef0f231a0ba5d89ec77c8a1b0eb",
+    "src/main/resources/modeling/lgbm_campus_model.txt": "b4c5a2cb45f54e17c18e882ae7f0cceb5595797de889b6c5183d33fc97ead119",
+    "src/main/resources/modeling/campus_feature_cols.json": "a25ec8de74b654149cf01e1702b62ec1e6d5f59251745c8d07c795f65a215539",
+    "src/main/resources/db/migration/V18__source_evidence_links.sql": "bf94c1b4700d3281eae0386334d957fad9bf051ee24f38fd9447ddcaeb3a612f",
+    "src/main/java/org/foodwise/service/OperationImportService.java": "52e3259c5c354021f81bd7bad96b18339f50c94c0e504e9239501d7772864a21",
+    "src/main/java/org/foodwise/service/OperationFeedbackService.java": "00be6cd41b5d8bbf6424dd4254ab2196c92ce1d2603f402850ff09bd3c70d1a0",
+    "src/main/java/org/foodwise/repository/FoodwiseRepository.java": "f467d6508271aa83cf43335b7ebe00dd1f4a9b2e98da5f0c4b8e24a31a7a56c9",
+    "src/main/java/org/foodwise/service/PredictionService.java": "5b4de8849f7639ff2fe9a46afa455d03c05afbe62fa7974e35737041d575a9ca",
+    "frontend/src/views/PredictionView.vue": "42da715b7de47aad20546179e480ebe8e14152f38bd912408999b35dab85566b",
+    "modeling/scripts/26_campus_training_chain.py": "88d9dabdb5ebae7154508f95184efb662925975754a495e4208f062e414fb8bd",
+    "modeling/tests/test_campus_training_chain.py": "1d856e943b63c6f8884c1429bc55e368bc82298ee06467148400f6c39c02abf0",
+    "src/main/java/org/foodwise/api/v1/ApiV1Controller.java": "7a1d9f8bbc965593b3efc31177e278a735790b2ef9cc4558a781d5400d81f09a",
+    "src/main/java/org/foodwise/service/FoodwiseService.java": "193a2f6cff3fb3634eedd2846d895ce8e69baee3cee9ce90dbf6ed55864bd914",
+    "frontend/src/views/FeedbackView.vue": "dbeea73ead1a45d667520d90457e66b92f8151f504ad1d0ab696fae6d737592f",
+    "frontend/src/api/types.ts": "08aef4406e30429ab1d1c2f30d6a65ea840c9786a7f3f523abde2541d98f537f",
+    "src/test/java/org/foodwise/OperationSourceEvidenceTests.java": "1440db977601da28719a652177903166f33a2cda2f434496c5d2537dfaf61915"
+  },
+  "screenshots": [
+    "01-prediction-confirmed.png",
+    "02-linked-feedback.png",
+    "03-review-desktop.png",
+    "04-review-mobile.png",
+    "05-versioned-ledger-desktop.png",
+    "06-versioned-ledger-mobile.png",
+    "07-prediction-input-replay.png",
+    "08-prediction-input-replay-mobile.png",
+    "source-register-empty-desktop.png",
+    "source-register-imported-desktop.png",
+    "source-register-imported-mobile.png",
+    "onboarding-empty-desktop.png",
+    "onboarding-empty-mobile.png",
+    "onboarding-submitted-desktop.png",
+    "onboarding-submitted-mobile.png"
+  ],
+  "source_register_browser_flow": {
+    "status": "passed_with_constructed_data",
+    "imported_rows": 1,
+    "rejected_rows": 0,
+    "verification_state": "DECLARED_UNVERIFIED",
+    "sha256": "1b3c1051fdf5007a53835f29a149b506b21af714307a36ca403264c588643549",
+    "evidence_note": "构造验证台账仅用于页面与来源证据链验收，不代表河北校园现场数据或授权核验。"
+  },
+  "python_tests": 41,
+  "candidate_training_chain": "implemented_and_tested",
+  "training_ready_with_constructed_data": false,
+  "onboarding_mvp": {
+    "frontend_route": "/app/onboarding",
+    "readiness_endpoint": "/api/v1/onboarding/readiness",
+    "write_endpoint": "/api/v1/onboarding",
+    "e2e_port": 18092,
+    "readiness_before_write": false,
+    "verification_status_after_write": "DECLARED_UNVERIFIED",
+    "field_data_validation": false,
+    "browser_validation": {
+      "status": "passed_with_constructed_data",
+      "port": 18092,
+      "desktop_empty": "passed",
+      "mobile_empty": "passed",
+      "desktop_submitted": "passed",
+      "mobile_submitted": "passed",
+      "mobile_width": 390,
+      "mobile_scroll_width": 390,
+      "console_errors": 0,
+      "console_warnings": 0,
+      "verification_status": "DECLARED_UNVERIFIED",
+      "evidence_note": "构造数据仅用于页面、成本约束和核验边界验收，不代表河北学校授权、真实台账或现场效果。"
+    }
+  }
+}

@@ -12,22 +12,48 @@ def sha256(path):
 
 
 def build_bundle(model, features, calibration, output, source_kind):
+    for source in (model, features):
+        if not source.is_file():
+            raise FileNotFoundError(f'MISSING_BUNDLE_SOURCE:{source}')
+    if calibration is not None and not calibration.is_file():
+        raise FileNotFoundError(f'MISSING_CALIBRATION_SOURCE:{calibration}')
+    model_hash = sha256(model)
+    feature_hash = sha256(features)
+    if calibration is not None:
+        calibration_data = json.loads(calibration.read_text(encoding='utf-8'))
+        if not isinstance(calibration_data, dict):
+            raise ValueError('CALIBRATION_MUST_BE_OBJECT')
+        if not calibration_data.get('model_sha256'):
+            raise ValueError('CALIBRATION_MODEL_SHA256_REQUIRED')
+        if str(calibration_data['model_sha256']).lower() != model_hash.lower():
+            raise ValueError('CALIBRATION_MODEL_SHA256_MISMATCH')
+        if not calibration_data.get('feature_sha256'):
+            raise ValueError('CALIBRATION_FEATURE_SHA256_REQUIRED')
+        if str(calibration_data['feature_sha256']).lower() != feature_hash.lower():
+            raise ValueError('CALIBRATION_FEATURE_SHA256_MISMATCH')
     output.mkdir(parents=False, exist_ok=False)
     copied = {}
     for source, name in ((model, 'model.txt'), (features, 'features.json')):
         destination = output / name
         shutil.copyfile(source, destination)
         copied[name] = {'sha256': sha256(destination), 'bytes': destination.stat().st_size}
+    calibration_fingerprint = None
     if calibration:
         destination = output / 'calibration.json'
         shutil.copyfile(calibration, destination)
         copied['calibration.json'] = {'sha256': sha256(destination), 'bytes': destination.stat().st_size}
+        calibration_data = json.loads(destination.read_text(encoding='utf-8'))
+        if not isinstance(calibration_data, dict):
+            raise ValueError('CALIBRATION_MUST_BE_OBJECT')
+        calibration_fingerprint = {'model_sha256': copied['model.txt']['sha256'], 'feature_sha256': copied['features.json']['sha256']}
     manifest = {
         'bundle_version': 'campus-local-v1',
         'created_at_utc': datetime.now(timezone.utc).isoformat(),
         'source_kind': source_kind,
         'load_once_at_startup': True,
         'online_model_overwrite': False,
+        'startup_integrity_check': 'sha256_manifest',
+        'calibration_binding': calibration_fingerprint,
         'artifacts': copied,
         'limitations': [
             'Bundle packaging does not establish label authenticity or field accuracy.',

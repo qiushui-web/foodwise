@@ -16,6 +16,12 @@ public class ApiExceptionHandler {
         return ResponseEntity.badRequest().body(ApiResponse.failure("BUSINESS_RULE", exception.getMessage(), traceId));
     }
 
+    @ExceptionHandler(org.springframework.web.multipart.MaxUploadSizeExceededException.class)
+    public ResponseEntity<ApiResponse<Void>> oversizedUpload(HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.PAYLOAD_TOO_LARGE).body(
+                ApiResponse.failure("FILE_TOO_LARGE", "导入文件不能超过10MB", ApiTrace.id(request)));
+    }
+
     @ExceptionHandler(ApiIdempotencyException.class)
     public ResponseEntity<ApiResponse<Void>> idempotencyError(ApiIdempotencyException exception,
                                                                HttpServletRequest request) {

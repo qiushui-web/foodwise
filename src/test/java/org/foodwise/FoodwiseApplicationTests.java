@@ -49,10 +49,16 @@ public class FoodwiseApplicationTests {
     @Test
     @Transactional
     void predictionHandlesZeroSalesHistoryWithoutNonFiniteNumbers() {
-        jdbcTemplate.update("UPDATE daily_operation SET sold_qty=0, discount_sold_qty=0, leftover_qty=prepared_qty WHERE dish_id=1");
+        for (var row : jdbcTemplate.queryForList("SELECT business_date, meal_period, prepared_qty FROM daily_operation WHERE dish_id=1")) {
+            int prepared = ((Number) row.get("prepared_qty")).intValue();
+            repository.upsertOperation(((java.sql.Date) row.get("business_date")).toLocalDate(),
+                    String.valueOf(row.get("meal_period")), 1, 0, prepared, 0, 0, prepared,
+                    BigDecimal.ZERO, "晴", "constructed zero-sales test", false);
+        }
         PredictionEngineResult result = predictionOrchestrator.predict(new PredictionContext(1, "晴", false, false));
         org.junit.jupiter.api.Assertions.assertNotNull(result.prediction());
         org.junit.jupiter.api.Assertions.assertTrue(result.prediction().predictedHigh() >= result.prediction().predictedLow());
+        assertEquals(0, BigDecimal.ZERO.compareTo(result.prediction().factors().get(0).value()));
     }
 
     @Test
@@ -182,6 +188,26 @@ public class FoodwiseApplicationTests {
         org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class,
                 () -> foodwiseService.createOffer(1, 1, new BigDecimal("15.00"), LocalTime.MIN,
                         LocalTime.MAX, true));
+    }
+
+    @Test
+    @Transactional
+    void onboardingCreatesMasterDataAndKeepsVerificationBoundary() {
+        var result = foodwiseService.onboard(new FoodwiseService.OnboardingRequest(
+                "河北测试高校", "HEB-TEST", "授权材料-TEST-001", "校园餐饮备餐分析", "校赛结束后90天",
+                "测试快餐档", "基础餐饮", "一食堂一层", "测试负责人", "测试鸡腿饭", "套餐饭",
+                new BigDecimal("16.00"), new BigDecimal("8.00"), 20, "份", "测试操作人"));
+        assertEquals("DECLARED_UNVERIFIED", result.get("verificationStatus"));
+        assertEquals(1, jdbcTemplate.queryForObject("SELECT COUNT(*) FROM school_profile WHERE school_code='HEB-TEST'", Integer.class));
+        assertEquals("份", jdbcTemplate.queryForObject("SELECT quantity_unit FROM dish WHERE id=?", String.class, result.get("dishId")));
+    }
+
+    @Test
+    void onboardingRejectsUnsupportedUnitAndInvalidCost() {
+        var unsupported = new FoodwiseService.OnboardingRequest("学校", "CODE", "AUTH", "用途", "期限", "档口", "类别", "地点", "负责人", "菜品", "类别", new BigDecimal("10"), new BigDecimal("5"), 10, "碗", "操作人");
+        org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class, () -> foodwiseService.onboard(unsupported));
+        var invalidCost = new FoodwiseService.OnboardingRequest("学校", "CODE", "AUTH", "用途", "期限", "档口", "类别", "地点", "负责人", "菜品", "类别", new BigDecimal("4"), new BigDecimal("5"), 10, "份", "操作人");
+        org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class, () -> foodwiseService.onboard(invalidCost));
     }
 
     @Test

@@ -1,0 +1,333 @@
+{
+  "dataset": "finetune_uwaste",
+  "rows": 390,
+  "assumptions": {
+    "discount_ratio": 0.5,
+    "shortage_lambda": 0.3,
+    "safety_factor": 1.1,
+    "minimum_batch": 5.0,
+    "capacity": 250.0
+  },
+  "cost_summary": {
+    "mean_price": 12.320512820512821,
+    "mean_unit_cost": 4.9282051282051285,
+    "mean_demand": 74.1076923076923
+  },
+  "base_scenario": {
+    "salvage_probability": 0.6,
+    "mean_critical_ratio": 0.8863636363636364,
+    "methods": {
+      "rule_10pct": {
+        "profit": 220555.7034988622,
+        "oracle_profit": 224269.20000000016,
+        "regret": 0.016558209959896257,
+        "loss_per_100": 12.84857968700425,
+        "stockout_rate": 0.0,
+        "leftover_rate": 0.09725714314223784,
+        "mean_prepared": 82.09169615104344,
+        "n": 390
+      },
+      "newsvendor_raw": {
+        "profit": 221508.39490509013,
+        "oracle_profit": 224269.20000000016,
+        "regret": 0.0123102284883971,
+        "loss_per_100": 9.552297747249424,
+        "stockout_rate": 0.004316569818377117,
+        "leftover_rate": 0.050069661960500084,
+        "mean_prepared": 77.67706570152632,
+        "n": 390
+      },
+      "newsvendor_calibrated": {
+        "profit": 220952.73992546712,
+        "oracle_profit": 224269.20000000016,
+        "regret": 0.014787853501653533,
+        "loss_per_100": 11.474846289298453,
+        "stockout_rate": 4.0199877640529505e-05,
+        "leftover_rate": 0.08977526938493584,
+        "mean_prepared": 81.41364510877965,
+        "n": 390
+      },
+      "newsvendor_batch": {
+        "profit": 219763.89999999982,
+        "oracle_profit": 224269.20000000016,
+        "regret": 0.02008880399091955,
+        "loss_per_100": 15.588194588610953,
+        "stockout_rate": 0.0,
+        "leftover_rate": 0.11668704156479218,
+        "mean_prepared": 83.8974358974359,
+        "n": 390
+      }
+    },
+    "bootstrap": {
+      "rule_minus_calibrated": {
+        "mean": 0.0017708312749989434,
+        "ci95": [
+          0.0013867649516550763,
+          0.002189587607387024
+        ],
+        "reps": 1000,
+        "block": 14
+      },
+      "rule_minus_raw": {
+        "mean": 0.004204680422849349,
+        "ci95": [
+          0.0022352115296417614,
+          0.006317309078368744
+        ],
+        "reps": 1000,
+        "block": 14
+      }
+    }
+  },
+  "scenarios": [
+    {
+      "salvage_probability": 0.0,
+      "mean_critical_ratio": 0.6610169491525423,
+      "methods": {
+        "rule_10pct": {
+          "profit": 209415.21399544846,
+          "oracle_profit": 224269.20000000016,
+          "regret": 0.06623283983958425,
+          "loss_per_100": 51.394318748016396,
+          "stockout_rate": 0.0,
+          "leftover_rate": 0.09725714314223784,
+          "mean_prepared": 82.09169615104344,
+          "n": 390
+        },
+        "newsvendor_raw": {
+          "profit": 217088.21944009935,
+          "oracle_profit": 224269.20000000016,
+          "regret": 0.032019468388440345,
+          "loss_per_100": 24.845964154386586,
+          "stockout_rate": 0.012279365108199948,
+          "leftover_rate": 0.0327633670790173,
+          "mean_prepared": 75.67713463815826,
+          "n": 390
+        },
+        "newsvendor_calibrated": {
+          "profit": 216656.27530565803,
+          "oracle_profit": 224269.20000000016,
+          "regret": 0.033945475769040626,
+          "loss_per_100": 26.34047711003436,
+          "stockout_rate": 0.007357998555404852,
+          "leftover_rate": 0.04417453905039516,
+          "mean_prepared": 76.96217669454443,
+          "n": 390
+        },
+        "newsvendor_batch": {
+          "profit": 213711.0,
+          "oracle_profit": 224269.20000000016,
+          "regret": 0.047078243468118446,
+          "loss_per_100": 36.53103591447013,
+          "stockout_rate": 0.002733374852951353,
+          "leftover_rate": 0.07037574584744397,
+          "mean_prepared": 79.5,
+          "n": 390
+        }
+      },
+      "bootstrap": {
+        "rule_minus_calibrated": {
+          "mean": 0.03219710406182623,
+          "ci95": [
+            0.02769449462186603,
+            0.03710965102838915
+          ],
+          "reps": 1000,
+          "block": 14
+        }
+      }
+    },
+    {
+      "salvage_probability": 0.2,
+      "mean_critical_ratio": 0.7222222222222223,
+      "methods": {
+        "rule_10pct": {
+          "profit": 213128.7104965865,
+          "oracle_profit": 224269.20000000016,
+          "regret": 0.04967462987968773,
+          "loss_per_100": 38.54573906101194,
+          "stockout_rate": 0.0,
+          "leftover_rate": 0.09725714314223784,
+          "mean_prepared": 82.09169615104344,
+          "n": 390
+        },
+        "newsvendor_raw": {
+          "profit": 218288.8482461435,
+          "oracle_profit": 224269.20000000016,
+          "regret": 0.02666595214080517,
+          "loss_per_100": 20.691826703538393,
+          "stockout_rate": 0.010067929474811119,
+          "leftover_rate": 0.03619929180383331,
+          "mean_prepared": 76.11696138437144,
+          "n": 390
+        },
+        "newsvendor_calibrated": {
+          "profit": 217809.57439128243,
+          "oracle_profit": 224269.20000000016,
+          "regret": 0.028802999291555536,
+          "loss_per_100": 22.350098985252686,
+          "stockout_rate": 0.004314595737420722,
+          "leftover_rate": 0.05328636299709593,
+          "mean_prepared": 77.9411478722843,
+          "n": 390
+        },
+        "newsvendor_batch": {
+          "profit": 215369.09999999977,
+          "oracle_profit": 224269.20000000016,
+          "regret": 0.039684896543976514,
+          "loss_per_100": 30.79406269462454,
+          "stockout_rate": 0.0017645837658293543,
+          "leftover_rate": 0.07927237912876975,
+          "mean_prepared": 80.34615384615384,
+          "n": 390
+        }
+      }
+    },
+    {
+      "salvage_probability": 0.4,
+      "mean_critical_ratio": 0.7959183673469389,
+      "methods": {
+        "rule_10pct": {
+          "profit": 216842.20699772428,
+          "oracle_profit": 224269.20000000016,
+          "regret": 0.03311641991979225,
+          "loss_per_100": 25.6971593740083,
+          "stockout_rate": 0.0,
+          "leftover_rate": 0.09725714314223784,
+          "mean_prepared": 82.09169615104344,
+          "n": 390
+        },
+        "newsvendor_raw": {
+          "profit": 219708.5572772068,
+          "oracle_profit": 224269.20000000016,
+          "regret": 0.020335573154019175,
+          "loss_per_100": 15.779678647821466,
+          "stockout_rate": 0.007488105109232692,
+          "leftover_rate": 0.04124549793627635,
+          "mean_prepared": 76.71699685369609,
+          "n": 390
+        },
+        "newsvendor_calibrated": {
+          "profit": 219242.80763797753,
+          "oracle_profit": 224269.20000000016,
+          "regret": 0.022412316814001312,
+          "loss_per_100": 17.39115757394861,
+          "stockout_rate": 0.0015053431066463156,
+          "leftover_rate": 0.06660945374374085,
+          "mean_prepared": 79.27671337653783,
+          "n": 390
+        },
+        "newsvendor_batch": {
+          "profit": 217205.6000000002,
+          "oracle_profit": 224269.20000000016,
+          "regret": 0.03149607703599042,
+          "loss_per_100": 24.439831153553207,
+          "stockout_rate": 0.00034599681682928514,
+          "leftover_rate": 0.09472035093216356,
+          "mean_prepared": 81.83333333333333,
+          "n": 390
+        }
+      }
+    },
+    {
+      "salvage_probability": 0.6,
+      "mean_critical_ratio": 0.8863636363636364,
+      "methods": {
+        "rule_10pct": {
+          "profit": 220555.7034988622,
+          "oracle_profit": 224269.20000000016,
+          "regret": 0.016558209959896257,
+          "loss_per_100": 12.84857968700425,
+          "stockout_rate": 0.0,
+          "leftover_rate": 0.09725714314223784,
+          "mean_prepared": 82.09169615104344,
+          "n": 390
+        },
+        "newsvendor_raw": {
+          "profit": 221508.39490509013,
+          "oracle_profit": 224269.20000000016,
+          "regret": 0.0123102284883971,
+          "loss_per_100": 9.552297747249424,
+          "stockout_rate": 0.004316569818377117,
+          "leftover_rate": 0.050069661960500084,
+          "mean_prepared": 77.67706570152632,
+          "n": 390
+        },
+        "newsvendor_calibrated": {
+          "profit": 220952.73992546712,
+          "oracle_profit": 224269.20000000016,
+          "regret": 0.014787853501653533,
+          "loss_per_100": 11.474846289298453,
+          "stockout_rate": 4.0199877640529505e-05,
+          "leftover_rate": 0.08977526938493584,
+          "mean_prepared": 81.41364510877965,
+          "n": 390
+        },
+        "newsvendor_batch": {
+          "profit": 219763.89999999982,
+          "oracle_profit": 224269.20000000016,
+          "regret": 0.02008880399091955,
+          "loss_per_100": 15.588194588610953,
+          "stockout_rate": 0.0,
+          "leftover_rate": 0.11668704156479218,
+          "mean_prepared": 83.8974358974359,
+          "n": 390
+        }
+      }
+    },
+    {
+      "salvage_probability": 0.7,
+      "mean_critical_ratio": 0.9397590361445783,
+      "methods": {
+        "rule_10pct": {
+          "profit": 222412.4517494312,
+          "oracle_profit": 224269.20000000016,
+          "regret": 0.008279104979947998,
+          "loss_per_100": 6.424289843502024,
+          "stockout_rate": 0.0,
+          "leftover_rate": 0.09725714314223784,
+          "mean_prepared": 82.09169615104344,
+          "n": 390
+        },
+        "newsvendor_raw": {
+          "profit": 222700.85211334107,
+          "oracle_profit": 224269.20000000016,
+          "regret": 0.006993148799117701,
+          "loss_per_100": 5.426433764649811,
+          "stockout_rate": 0.002262370129698029,
+          "leftover_rate": 0.058675303406266976,
+          "mean_prepared": 78.54891467927388,
+          "n": 390
+        },
+        "newsvendor_calibrated": {
+          "profit": 222140.8485984325,
+          "oracle_profit": 224269.20000000016,
+          "regret": 0.009490163613941019,
+          "loss_per_100": 7.36402810036559,
+          "stockout_rate": 0.0,
+          "leftover_rate": 0.11093048697749822,
+          "mean_prepared": 83.35421609020649,
+          "n": 390
+        },
+        "newsvendor_batch": {
+          "profit": 221538.29999999984,
+          "oracle_profit": 224269.20000000016,
+          "regret": 0.012176883852086299,
+          "loss_per_100": 9.448827070792037,
+          "stockout_rate": 0.0,
+          "leftover_rate": 0.136996118244252,
+          "mean_prepared": 85.87179487179488,
+          "n": 390
+        }
+      }
+    }
+  ],
+  "skipped_salvage": [],
+  "bias_correction": 3.7132686603669063,
+  "limits": [
+    "成本参数（折价比例、可售概率、信任损失）为情景假设，未经现场财务数据校准。",
+    "需求为派生目标，regret 只反映策略相对排序，不等于现场减损金额。",
+    "未建模分时段售卖与二次补餐，单期报童是简化。",
+    "安全系数只取 1.10 一个值，未做规则参数调优，规则与算法并非同等调参预算。"
+  ]
+}

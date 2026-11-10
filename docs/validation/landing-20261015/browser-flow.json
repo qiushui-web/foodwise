@@ -1,0 +1,27 @@
+{
+  "environment": "disposable local H2; demonstration, not field evidence",
+  "mismatched_prediction_status": 400,
+  "feedback_count_unchanged": true,
+  "matched_review": {
+    "prediction_id": 1,
+    "dish_id": 1,
+    "target_date": "2026-10-15",
+    "predicted_mid": 72,
+    "created_at": "2026-10-15T01:14:21.649Z",
+    "dish_name": "香菇滑鸡饭",
+    "adopted": true,
+    "adjusted_qty": 70,
+    "reason": "本地验收演示：库存约束",
+    "meal_period": "全日",
+    "history_cutoff": "2026-10-14",
+    "source_nature": "项目内经营测算快照（演示）",
+    "prepared_qty": 70,
+    "sold_qty": 65,
+    "leftover_qty": 5,
+    "prediction_error": -7,
+    "execution_error": 0
+  },
+  "manual_flow": "prediction 72 -> confirmed plan 70 -> prepared 70, sold 65, leftover 5",
+  "browser_suite": "17 passed, 1 desktop-inapplicable mobile-menu test skipped",
+  "mobile_report_overflow": false
+}

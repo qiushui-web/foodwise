@@ -18,16 +18,19 @@ public record PredictionResult(
         String soldOutRisk,
         String leftoverRisk,
         List<Factor> factors,
-        IntelligentAdvice advice
+        IntelligentAdvice advice,
+        String intervalMethod,
+        boolean intervalCalibrated,
+        String confidenceKind
 ) {
-    @com.fasterxml.jackson.annotation.JsonProperty
-    public String intervalMethod() { return "heuristic"; }
-
-    @com.fasterxml.jackson.annotation.JsonProperty
-    public boolean intervalCalibrated() { return false; }
-
-    @com.fasterxml.jackson.annotation.JsonProperty
-    public String confidenceKind() { return "heuristic_score_not_accuracy"; }
+    public PredictionResult(long predictionId, long dishId, String dishName, int predictedLow, int predictedMid,
+                            int predictedHigh, int firstBatch, int replenishQty, int stopHour,
+                            int stopMinute, BigDecimal confidence, String soldOutRisk,
+                            String leftoverRisk, List<Factor> factors, IntelligentAdvice advice) {
+        this(predictionId, dishId, dishName, predictedLow, predictedMid, predictedHigh, firstBatch,
+                replenishQty, stopHour, stopMinute, confidence, soldOutRisk, leftoverRisk, factors, advice,
+                "heuristic", false, "heuristic_score_not_accuracy");
+    }
 
     public PredictionResult(long dishId, String dishName, int predictedLow, int predictedMid,
                             int predictedHigh, int firstBatch, int replenishQty, int stopHour,
@@ -40,4 +43,3 @@ public record PredictionResult(
     public record Factor(String name, String detail, BigDecimal value, String type) {
     }
 }
-

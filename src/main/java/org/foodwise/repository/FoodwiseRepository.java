@@ -4,6 +4,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.PreparedStatement;
 import java.math.BigDecimal;
@@ -79,7 +80,7 @@ public class FoodwiseRepository {
 
     public List<Map<String, Object>> dishes() {
         return jdbcTemplate.queryForList("""
-                SELECT d.id, d.name, d.category, d.price, d.unit_cost, d.prep_minutes,
+                SELECT d.id, d.name, d.category, d.price, d.unit_cost, d.prep_minutes, d.quantity_unit,
                        d.active, d.color, s.name AS stall_name,
                        COALESCE(AVG(o.sold_qty), 0) AS avg_sales,
                        COALESCE(AVG(CASE WHEN o.prepared_qty = 0 THEN 0
@@ -87,7 +88,7 @@ public class FoodwiseRepository {
                 FROM dish d
                 JOIN stall s ON s.id = d.stall_id
                 LEFT JOIN daily_operation o ON o.dish_id = d.id
-                GROUP BY d.id, d.name, d.category, d.price, d.unit_cost, d.prep_minutes,
+                GROUP BY d.id, d.name, d.category, d.price, d.unit_cost, d.prep_minutes, d.quantity_unit,
                          d.active, d.color, s.name
                 ORDER BY d.id
                 """);
@@ -120,12 +121,22 @@ public class FoodwiseRepository {
     }
 
     public List<org.foodwise.prediction.SalesObservation> recentSalesObservations(long dishId, LocalDate cutoff, String mealPeriod) {
+        return recentSalesObservations(dishId, cutoff, mealPeriod, 7);
+    }
+
+    /**
+     * 分层基线需要按星期取中位数，7 天窗口只够一个点，因此单独开一个可放大窗口的查询。
+     * 返回按 business_date 倒序，调用方自己按日期重排。
+     */
+    public List<org.foodwise.prediction.SalesObservation> recentSalesObservations(long dishId, LocalDate cutoff,
+                                                                                  String mealPeriod, int limit) {
+        int window = Math.min(Math.max(limit, 1), 120);
         return jdbcTemplate.query("""
                 SELECT business_date, SUM(sold_qty) AS sold, SUM(prepared_qty) AS prepared FROM daily_operation
                 WHERE dish_id = ? AND business_date <= ? AND (? = '全日' OR meal_period = ?)
-                GROUP BY business_date ORDER BY business_date DESC LIMIT 7
+                GROUP BY business_date ORDER BY business_date DESC LIMIT ?
                 """, (rs, index) -> new org.foodwise.prediction.SalesObservation(rs.getDate("business_date").toLocalDate(),
-                rs.getInt("sold"), rs.getInt("prepared")), dishId, cutoff, mealPeriod, mealPeriod);
+                rs.getInt("sold"), rs.getInt("prepared")), dishId, cutoff, mealPeriod, mealPeriod, window);
     }
 
     public Map<String, Object> latestDishOperation(long dishId) {
@@ -346,10 +357,24 @@ public class FoodwiseRepository {
                 """);
     }
 
+    @org.springframework.transaction.annotation.Transactional
     public OperationSaveResult upsertOperation(LocalDate businessDate, String mealPeriod, long dishId, int plannedQty,
                                                int preparedQty, int soldQty, int discountSoldQty,
                                                int leftoverQty, BigDecimal revenue, String weather,
                                                String eventTag, boolean recommendationAdopted) {
+        return upsertOperation(businessDate, mealPeriod, dishId, plannedQty, preparedQty, soldQty,
+                discountSoldQty, leftoverQty, revenue, weather, eventTag, recommendationAdopted, null, null);
+    }
+
+    @org.springframework.transaction.annotation.Transactional
+    public OperationSaveResult upsertOperation(LocalDate businessDate, String mealPeriod, long dishId, int plannedQty,
+                                               int preparedQty, int soldQty, int discountSoldQty,
+                                               int leftoverQty, BigDecimal revenue, String weather,
+                                               String eventTag, boolean recommendationAdopted,
+                                               Long sourceEvidenceId, Integer sourceRowNo) {
+        long publication = nextLedgerPublication();
+        // Serialize inserts and corrections for a dish, including initially absent business keys.
+        jdbcTemplate.queryForObject("SELECT id FROM dish WHERE id=? FOR UPDATE", Long.class, dishId);
         List<Long> existing = jdbcTemplate.queryForList("""
                 SELECT id FROM daily_operation
                  WHERE business_date = ? AND meal_period = ? AND dish_id = ?
@@ -357,6 +382,7 @@ public class FoodwiseRepository {
                  """, Long.class, businessDate, mealPeriod, dishId);
         if (!existing.isEmpty()) {
             long operationId = existing.get(0);
+            captureOperationRevision(operationId, "legacy_unverified", true, publication, null, null, "LEGACY_UNVERIFIED");
             jdbcTemplate.update("""
                     UPDATE daily_operation SET phase='运营回传', planned_qty=?, prepared_qty=?,
                         sold_qty=?, discount_sold_qty=?, leftover_qty=?, revenue=?, weather=?,
@@ -364,6 +390,8 @@ public class FoodwiseRepository {
                     WHERE id=?
                     """, plannedQty, preparedQty, soldQty, discountSoldQty, leftoverQty, revenue,
                     weather, eventTag, recommendationAdopted, operationId);
+            captureOperationRevision(operationId, "online_unverified", false, publication, sourceEvidenceId, sourceRowNo,
+                    sourceEvidenceId == null ? "ONLINE_UNVERIFIED" : "SOURCE_DECLARED_UNVERIFIED");
             return new OperationSaveResult(operationId, true);
         }
 
@@ -391,7 +419,104 @@ public class FoodwiseRepository {
         }, keyHolder);
         Number key = keyHolder.getKey();
         if (key == null) throw new IllegalStateException("经营记录写入失败");
+        captureOperationRevision(key.longValue(), "online_unverified", false, publication, sourceEvidenceId, sourceRowNo,
+                sourceEvidenceId == null ? "ONLINE_UNVERIFIED" : "SOURCE_DECLARED_UNVERIFIED");
         return new OperationSaveResult(key.longValue(), false);
+    }
+
+    @org.springframework.transaction.annotation.Transactional
+    public void captureUnversionedOperations() {
+        long publication = nextLedgerPublication();
+        for (Long id : jdbcTemplate.queryForList("SELECT id FROM daily_operation ORDER BY id", Long.class))
+            captureOperationRevision(id, "legacy_unverified", true, publication, null, null, "LEGACY_UNVERIFIED");
+    }
+
+    private long nextLedgerPublication() {
+        // The singleton row serializes publications until commit, so no uncommitted hole can
+        // later appear below a watermark already observed by another transaction.
+        jdbcTemplate.update("UPDATE ledger_publication_state SET sequence_value=sequence_value+1 WHERE id=1");
+        return jdbcTemplate.queryForObject("SELECT sequence_value FROM ledger_publication_state WHERE id=1", Long.class);
+    }
+
+    public org.foodwise.prediction.PredictionContext captureLedgerBoundary(org.foodwise.prediction.PredictionContext context) {
+        if (context.publicationWatermark() != null) return context;
+        if (context.explicitCutoff() || context.targetDate().isBefore(LocalDate.now(java.time.ZoneId.of("Asia/Shanghai"))))
+            throw new IllegalArgumentException("历史回放需要原预测编号和当时保存的版本边界，不能仅按日期重新生成");
+        long watermark = jdbcTemplate.queryForObject("SELECT sequence_value FROM ledger_publication_state WHERE id=1", Long.class);
+        return context.withPublicationBoundary(watermark, java.time.Instant.now().truncatedTo(java.time.temporal.ChronoUnit.MICROS));
+    }
+
+    private void captureOperationRevision(long operationId, String origin, boolean onlyMissing, long publication,
+                                          Long sourceEvidenceId, Integer sourceRowNo, String sourceStatus) {
+        // Truncate explicitly: database rounding could make a completed write appear in the future.
+        var now = java.time.LocalDateTime.ofInstant(java.time.Instant.now().truncatedTo(java.time.temporal.ChronoUnit.MICROS), java.time.ZoneOffset.UTC);
+        jdbcTemplate.update("""
+                INSERT INTO operation_revision(operation_id, business_date, meal_period, dish_id,
+                    planned_qty, prepared_qty, sold_qty, discount_sold_qty, leftover_qty, revenue,
+                    weather, event_tag, recommendation_adopted, available_at, revision_at, origin, publication_seq,
+                    source_evidence_id, source_row_no, source_verification_status)
+                SELECT o.id, o.business_date, o.meal_period, o.dish_id, o.planned_qty,
+                    o.prepared_qty, o.sold_qty, o.discount_sold_qty, o.leftover_qty, o.revenue,
+                    o.weather, o.event_tag, o.recommendation_adopted, ?, ?, ?, ?, ?, ?, ?
+                FROM daily_operation o WHERE o.id=?
+                """ + (onlyMissing ? " AND NOT EXISTS (SELECT 1 FROM operation_revision r WHERE r.operation_id=o.id)" : ""),
+                now, now, origin, publication, sourceEvidenceId, sourceRowNo, sourceStatus, operationId);
+    }
+
+    public record LedgerHistory(List<org.foodwise.prediction.SalesObservation> observations, List<Long> revisionIds,
+                                List<Map<String, Object>> sourceEvidence) {}
+
+    public LedgerHistory ledgerHistory(org.foodwise.prediction.PredictionContext context) {
+        if (context.publicationWatermark() == null) throw new IllegalArgumentException("缺少原预测的已提交版本边界，不能按时间戳猜测历史输入");
+        var cutoff = LocalDateTime.ofInstant(context.predictionCutoffAt(), java.time.ZoneOffset.UTC);
+        var versions = jdbcTemplate.queryForList("""
+                SELECT r.id, r.business_date, r.meal_period, r.sold_qty, r.prepared_qty,
+                       r.source_evidence_id, r.source_row_no, r.source_verification_status,
+                       se.source_sha256, se.file_name, se.source_name, se.provider,
+                       se.declared_region, se.authorization_reference, se.verification_status AS evidence_status
+                FROM operation_revision r LEFT JOIN source_evidence se ON se.id=r.source_evidence_id
+                WHERE r.dish_id=? AND r.business_date<=? AND (?='全日' OR r.meal_period=?)
+                  AND r.available_at<=? AND r.revision_at<=? AND r.publication_seq<=?
+                  AND NOT EXISTS (SELECT 1 FROM operation_revision n WHERE n.operation_id=r.operation_id
+                    AND n.available_at<=? AND n.revision_at<=? AND n.publication_seq<=?
+                    AND (n.publication_seq>r.publication_seq OR (n.publication_seq=r.publication_seq AND n.id>r.id)))
+                ORDER BY r.business_date DESC, r.id
+                """, context.dishId(), context.historyCutoff(), context.mealPeriod(), context.mealPeriod(),
+                cutoff, cutoff, context.publicationWatermark(), cutoff, cutoff, context.publicationWatermark());
+        var totals = new LinkedHashMap<LocalDate, int[]>();
+        var ids = new java.util.ArrayList<Long>();
+        var evidence = new java.util.ArrayList<Map<String, Object>>();
+        var scopes = new java.util.HashMap<LocalDate, java.util.Set<String>>();
+        for (var row : versions) {
+            var day = ((java.sql.Date) row.get("business_date")).toLocalDate();
+            if (!totals.containsKey(day) && totals.size() >= 7) continue;
+            var meals = scopes.computeIfAbsent(day, ignored -> new java.util.HashSet<>());
+            String meal = String.valueOf(row.get("meal_period"));
+            if (meals.contains(meal) || (!meals.isEmpty() && ("全日".equals(meal) || meals.contains("全日"))))
+                throw new IllegalArgumentException(day + "台账存在重复或全日/分餐次混录，请先核对原始记录");
+            meals.add(meal);
+            var sum = totals.computeIfAbsent(day, ignored -> new int[2]);
+            sum[0] += ((Number) row.get("sold_qty")).intValue();
+            sum[1] += ((Number) row.get("prepared_qty")).intValue();
+            ids.add(((Number) row.get("id")).longValue());
+            var evidenceRow = new java.util.LinkedHashMap<String, Object>();
+            Object sourceId = row.get("source_evidence_id");
+            evidenceRow.put("revisionId", ((Number) row.get("id")).longValue());
+            evidenceRow.put("sourceEvidenceId", sourceId == null ? null : ((Number) sourceId).longValue());
+            evidenceRow.put("sourceRowNo", row.get("source_row_no") == null ? null : ((Number) row.get("source_row_no")).intValue());
+            evidenceRow.put("verificationStatus", row.get("source_verification_status"));
+            evidenceRow.put("sourceSha256", row.get("source_sha256"));
+            evidenceRow.put("fileName", row.get("file_name"));
+            evidenceRow.put("sourceName", row.get("source_name"));
+            evidenceRow.put("provider", row.get("provider"));
+            evidenceRow.put("declaredRegion", row.get("declared_region"));
+            evidenceRow.put("authorizationReference", row.get("authorization_reference"));
+            evidenceRow.put("evidenceStatus", row.get("evidence_status"));
+            evidence.add(java.util.Collections.unmodifiableMap(evidenceRow));
+        }
+        return new LedgerHistory(totals.entrySet().stream().map(e ->
+                new org.foodwise.prediction.SalesObservation(e.getKey(), e.getValue()[0], e.getValue()[1])).toList(),
+                List.copyOf(ids), List.copyOf(evidence));
     }
 
     public void saveOperationFeedback(long operationId, String operatorName, boolean safetyConfirmed,
@@ -424,10 +549,11 @@ public class FoodwiseRepository {
     }
 
     public List<Map<String, Object>> recentOperationFeedback() {
-        return jdbcTemplate.queryForList("""
-                SELECT f.id, f.submission_type, f.operator_name, f.safety_confirmed,
-                       f.submission_note, f.submitted_at, o.business_date, o.meal_period, o.prepared_qty,
-                       o.sold_qty, o.discount_sold_qty, o.leftover_qty, o.weather,
+        var rows = jdbcTemplate.queryForList("""
+                SELECT f.id, f.operation_id, f.submission_type, f.operator_name, f.safety_confirmed,
+                       f.submission_note, f.submitted_at, o.business_date, o.meal_period, o.dish_id,
+                       o.planned_qty, o.prepared_qty, o.sold_qty, o.discount_sold_qty,
+                       o.leftover_qty, o.revenue, o.weather, o.event_tag, o.recommendation_adopted,
                        d.name AS dish_name, s.name AS stall_name,
                        l.baseline_before, l.baseline_after, l.adjustment_rate
                 FROM operation_feedback_record f
@@ -440,6 +566,8 @@ public class FoodwiseRepository {
                 ORDER BY f.submitted_at DESC, f.id DESC
                 LIMIT 12
                 """);
+        rows.forEach(row -> row.put("business_date", String.valueOf(row.get("business_date"))));
+        return rows;
     }
 
     public void replaceOperationAlerts(LocalDate businessDate, long dishId, int preparedQty,
@@ -555,10 +683,21 @@ public class FoodwiseRepository {
         Long modelVersionId = jdbcTemplate.queryForObject(
                 "SELECT id FROM model_version WHERE model_key='demand' AND version=?",
                 Long.class, modelVersion);
+        var frozenHistory = ledgerHistory(context);
+        if (!frozenHistory.revisionIds().equals(context.selectedRevisionIds()))
+            throw new IllegalStateException("预测计算与存档台账版本不一致");
+        String ledgerFeatures = new tools.jackson.databind.ObjectMapper().writeValueAsString(
+                org.foodwise.prediction.FeatureBuilder.build(frozenHistory.observations()));
         String inputJson = "{\"dishId\":" + context.dishId() + ",\"weather\":\"" + json(context.weather())
                 + "\",\"examWeek\":" + context.examWeek() + ",\"campusEvent\":" + context.campusEvent()
                 + ",\"targetDate\":\"" + context.targetDate() + "\",\"historyCutoff\":\"" + context.historyCutoff()
-                + "\",\"mealPeriod\":\"" + json(context.mealPeriod()) + "\",\"sourceNature\":\"" + json(context.sourceNature()) + "\"}";
+                + "\",\"mealPeriod\":\"" + json(context.mealPeriod()) + "\",\"sourceNature\":\"" + json(context.sourceNature())
+                + "\",\"predictionCutoffAt\":\"" + context.predictionCutoffAt()
+                + "\",\"replayScope\":\"committed_publication_snapshot\",\"publicationWatermark\":" + context.publicationWatermark()
+                + ",\"ledgerFeatures\":" + ledgerFeatures + ",\"sourceEvidence\":"
+                + new tools.jackson.databind.ObjectMapper().writeValueAsString(frozenHistory.sourceEvidence())
+                + ",\"revisionIds\":"
+                + java.util.Objects.requireNonNull(context.selectedRevisionIds(), "Prediction revisions must be frozen before saving") + "}";
         String outputJson = "{\"predictionId\":" + result.predictionId() + ",\"predictedMid\":"
                 + result.predictedMid() + ",\"firstBatch\":" + result.firstBatch() + ",\"replenishQty\":"
                 + result.replenishQty() + "}";
@@ -568,9 +707,66 @@ public class FoodwiseRepository {
                 """, predictionId, modelVersionId, inputJson, outputJson);
     }
 
+    public Map<String, Object> replayPredictionInputs(long predictionId) {
+        var rows = jdbcTemplate.queryForList("SELECT input_json, output_json FROM prediction_input_snapshot WHERE prediction_id=? ORDER BY id DESC LIMIT 1", predictionId);
+        if (rows.isEmpty()) throw new IllegalArgumentException("未找到该预测的输入快照");
+        var mapper = new tools.jackson.databind.ObjectMapper();
+        var input = mapper.readTree(String.valueOf(rows.get(0).get("input_json")));
+        if (!input.has("publicationWatermark") || input.path("publicationWatermark").isNull() || !input.has("ledgerFeatures"))
+            throw new IllegalArgumentException("该旧预测未留存已提交版本边界及特征，无法严格回放；保留原记录供查阅");
+        var context = new org.foodwise.prediction.PredictionContext(input.path("dishId").asLong(),
+                input.path("weather").asText(), input.path("examWeek").asBoolean(), input.path("campusEvent").asBoolean(),
+                "replay", null, "replay", LocalDate.parse(input.path("targetDate").asText()),
+                input.path("mealPeriod").asText(), input.path("sourceNature").asText(),
+                java.time.Instant.parse(input.path("predictionCutoffAt").asText()))
+                .withPublicationBoundary(input.path("publicationWatermark").asLong(),
+                        java.time.Instant.parse(input.path("predictionCutoffAt").asText()));
+        var history = ledgerHistory(context);
+        var expected = new java.util.ArrayList<Long>();
+        input.path("revisionIds").forEach(node -> expected.add(node.asLong()));
+        if (!expected.equals(history.revisionIds())) throw new IllegalArgumentException("原预测的版本边界无法核对，不能用当前台账替代历史输入");
+        if (input.has("sourceEvidence") && !sameSourceEvidence(input.path("sourceEvidence"), history.sourceEvidence()))
+            throw new IllegalArgumentException("原预测的来源证据与留存版本不一致，请检查来源登记或台账版本");
+        var features = org.foodwise.prediction.FeatureBuilder.build(history.observations());
+        if (!mapper.valueToTree(features).equals(input.path("ledgerFeatures")))
+            throw new IllegalArgumentException("原预测特征与留存版本不一致，请检查数据或特征实现的变更");
+        return Map.of("predictionId", predictionId, "dataVerified", true,
+                "predictionCutoffAt", context.predictionCutoffAt(), "revisionIds", history.revisionIds(),
+                "observations", history.observations(), "features", features, "publicationWatermark", context.publicationWatermark(),
+                "sourceEvidence", history.sourceEvidence(),
+                "savedOutput", mapper.readTree(String.valueOf(rows.get(0).get("output_json"))),
+                "scope", "仅核对原预测的台账输入，不代表模型有效性或现场效果验证");
+    }
+
     private String json(String value) {
         String encoded = new tools.jackson.databind.ObjectMapper().writeValueAsString(value == null ? "" : value);
         return encoded.substring(1, encoded.length() - 1);
+    }
+
+    private boolean sameSourceEvidence(tools.jackson.databind.JsonNode saved, List<Map<String, Object>> current) {
+        if (!saved.isArray() || saved.size() != current.size()) return false;
+        for (int i = 0; i < current.size(); i++) {
+            var row = current.get(i);
+            var node = saved.get(i);
+            if (!sameNumber(node.get("revisionId"), row.get("revisionId"))
+                    || !sameNumber(node.get("sourceEvidenceId"), row.get("sourceEvidenceId"))
+                    || !sameNumber(node.get("sourceRowNo"), row.get("sourceRowNo"))
+                    || !sameText(node.get("verificationStatus"), row.get("verificationStatus"))
+                    || !sameText(node.get("sourceSha256"), row.get("sourceSha256"))) return false;
+            for (String key : List.of("fileName", "sourceName", "provider", "declaredRegion", "authorizationReference", "evidenceStatus"))
+                if (!sameText(node.get(key), row.get(key))) return false;
+        }
+        return true;
+    }
+
+    private boolean sameNumber(tools.jackson.databind.JsonNode node, Object value) {
+        if (node == null || node.isNull()) return value == null;
+        return value instanceof Number number && node.asLong() == number.longValue();
+    }
+
+    private boolean sameText(tools.jackson.databind.JsonNode node, Object value) {
+        if (node == null || node.isNull()) return value == null;
+        return value != null && node.asText().equals(String.valueOf(value));
     }
 
     public Map<String, Object> trialEffectiveness() {
@@ -621,19 +817,109 @@ public class FoodwiseRepository {
         return Math.round(value * factor) / factor;
     }
 
-    public long createImportBatch(String fileName, String operatorName) {
+    public long createSourceEvidence(String sha256, String fileName, String sourceName, String provider,
+                                     String region, String authorizationReference, String createdBy) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement statement = connection.prepareStatement("""
-                    INSERT INTO operation_import_batch(file_name, operator_name, status)
-                    VALUES (?, ?, 'PROCESSING')
+                    INSERT INTO source_evidence(source_sha256, file_name, source_name, provider, declared_region,
+                        authorization_reference, verification_status, created_by)
+                    VALUES (?, ?, ?, ?, ?, ?, 'DECLARED_UNVERIFIED', ?)
+                    """, new String[]{"id"});
+            statement.setString(1, sha256);
+            statement.setString(2, fileName);
+            statement.setString(3, sourceName);
+            statement.setString(4, provider);
+            statement.setString(5, region);
+            statement.setString(6, authorizationReference);
+            statement.setString(7, createdBy);
+            return statement;
+        }, keyHolder);
+        Number key = keyHolder.getKey();
+        if (key == null) throw new IllegalStateException("来源证据登记失败");
+        return key.longValue();
+    }
+
+    public List<Map<String, Object>> sourceEvidenceRecords() {
+        return jdbcTemplate.queryForList("""
+                SELECT id AS source_evidence_id, source_sha256, file_name, source_name, provider,
+                       declared_region, authorization_reference, verification_status, created_by, created_at
+                FROM source_evidence ORDER BY id DESC LIMIT 100
+                """);
+    }
+
+    @Transactional
+    public long upsertSchoolProfile(String schoolName, String schoolCode, String authorizationReference,
+                                    String dataPurpose, String retentionPeriod, String operatorName) {
+        int updated = jdbcTemplate.update("""
+                UPDATE school_profile SET school_name=?, school_code=?, authorization_reference=?,
+                    data_purpose=?, retention_period=?, verification_status='DECLARED_UNVERIFIED',
+                    created_by=?, updated_at=CURRENT_TIMESTAMP WHERE id=1
+                """, schoolName, schoolCode, authorizationReference, dataPurpose, retentionPeriod, operatorName);
+        if (updated == 0) {
+            jdbcTemplate.update("""
+                    INSERT INTO school_profile (id, school_name, school_code, authorization_reference,
+                        data_purpose, retention_period, verification_status, created_by, created_at, updated_at)
+                    VALUES (1, ?, ?, ?, ?, ?, 'DECLARED_UNVERIFIED', ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+                    """, schoolName, schoolCode, authorizationReference, dataPurpose, retentionPeriod, operatorName);
+        }
+        return 1L;
+    }
+
+    public long createStall(String name, String category, String location, String managerName) {
+        KeyHolder holder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement("""
+                    INSERT INTO stall(name, category, location, manager_name, status, rating)
+                    VALUES (?, ?, ?, ?, '待核对', 5.0)
+                    """, new String[]{"id"});
+            ps.setString(1, name); ps.setString(2, category); ps.setString(3, location); ps.setString(4, managerName);
+            return ps;
+        }, holder);
+        Number key = holder.getKey();
+        if (key == null) throw new IllegalStateException("档口建档失败");
+        return key.longValue();
+    }
+
+    public long createDish(long stallId, String name, String category, BigDecimal price, BigDecimal unitCost,
+                           int prepMinutes, String quantityUnit) {
+        KeyHolder holder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement("""
+                    INSERT INTO dish(stall_id, name, category, price, unit_cost, prep_minutes, active, color, quantity_unit)
+                    VALUES (?, ?, ?, ?, ?, ?, TRUE, '#1f8a70', ?)
+                    """, new String[]{"id"});
+            ps.setLong(1, stallId); ps.setString(2, name); ps.setString(3, category); ps.setBigDecimal(4, price);
+            ps.setBigDecimal(5, unitCost); ps.setInt(6, prepMinutes); ps.setString(7, quantityUnit);
+            return ps;
+        }, holder);
+        Number key = holder.getKey();
+        if (key == null) throw new IllegalStateException("菜品建档失败");
+        return key.longValue();
+    }
+
+    public long createImportBatch(String fileName, String operatorName, long sourceEvidenceId) {
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement statement = connection.prepareStatement("""
+                    INSERT INTO operation_import_batch(file_name, operator_name, status, source_evidence_id)
+                    VALUES (?, ?, 'PROCESSING', ?)
                     """, new String[]{"id"});
             statement.setString(1, fileName == null || fileName.isBlank() ? "operations.csv" : fileName);
             statement.setString(2, operatorName == null || operatorName.isBlank() ? "运营人员" : operatorName);
+            statement.setLong(3, sourceEvidenceId);
             return statement;
         }, keyHolder);
         Number key = keyHolder.getKey();
         return key == null ? 0 : key.longValue();
+    }
+
+    public void validateMealScope(LocalDate businessDate, String mealPeriod, long dishId) {
+        Integer count = jdbcTemplate.queryForObject("""
+                SELECT COUNT(*) FROM daily_operation WHERE business_date=? AND dish_id=?
+                AND meal_period<>? AND (?='全日' OR meal_period='全日')
+                """, Integer.class, businessDate, dishId, mealPeriod, mealPeriod);
+        if (count != null && count > 0) throw new IllegalArgumentException("同一菜品同一天不能混录全日汇总与分餐次台账，请统一统计口径");
     }
 
     public boolean operationExists(LocalDate businessDate, String mealPeriod, long dishId) {
@@ -658,6 +944,48 @@ public class FoodwiseRepository {
                 WHERE id = ?
                 """, rejectedRows > 0 ? "COMPLETED_WITH_ERRORS" : "COMPLETED",
                 totalRows, importedRows, rejectedRows, duplicateRows, batchId);
+    }
+
+    public List<Map<String, Object>> predictionReviews() {
+        var rows = jdbcTemplate.queryForList("""
+                SELECT p.id AS prediction_id, p.dish_id, p.target_date, p.predicted_mid, p.created_at,
+                       d.name AS dish_name, s.input_json, f.adopted, f.adjusted_qty, f.reason
+                FROM prediction_record p JOIN dish d ON d.id=p.dish_id
+                JOIN prediction_input_snapshot s ON s.prediction_id=p.id
+                LEFT JOIN prediction_feedback f ON f.id=(SELECT MAX(f2.id) FROM prediction_feedback f2 WHERE f2.prediction_id=p.id)
+                ORDER BY p.id DESC LIMIT 100
+                """);
+        for (var row : rows) {
+            row.put("target_date", String.valueOf(row.get("target_date")));
+            var snapshot = new tools.jackson.databind.ObjectMapper().readTree(String.valueOf(row.remove("input_json")));
+            String meal = snapshot.path("mealPeriod").asText("");
+            row.put("meal_period", meal);
+            row.put("history_cutoff", snapshot.path("historyCutoff").asText("未记录"));
+            row.put("source_nature", snapshot.path("sourceNature").asText("未核验"));
+            var operations = jdbcTemplate.queryForList("""
+                    SELECT prepared_qty, sold_qty, leftover_qty FROM daily_operation
+                    WHERE dish_id=? AND business_date=? AND meal_period=?
+                    """, row.get("dish_id"), row.get("target_date"), meal);
+            if (!operations.isEmpty()) {
+                var operation = operations.get(0);
+                row.putAll(operation);
+                row.put("prediction_error", ((Number) operation.get("sold_qty")).intValue() - ((Number) row.get("predicted_mid")).intValue());
+                row.put("execution_error", row.get("adjusted_qty") == null ? null :
+                        ((Number) operation.get("prepared_qty")).intValue() - ((Number) row.get("adjusted_qty")).intValue());
+            }
+        }
+        return rows;
+    }
+
+    public Map<String, Object> predictionFeedbackContext(long predictionId) {
+        var rows = jdbcTemplate.queryForList("""
+                SELECT p.dish_id, p.target_date, p.predicted_mid, s.input_json,
+                       (SELECT planned_total FROM preparation_plan WHERE prediction_id=p.id ORDER BY id DESC LIMIT 1) AS constrained_total
+                FROM prediction_record p JOIN prediction_input_snapshot s ON s.prediction_id=p.id
+                WHERE p.id=?
+                """, predictionId);
+        if (rows.isEmpty()) throw new IllegalArgumentException("预测记录不存在或缺少可追溯快照");
+        return rows.get(0);
     }
 
     public void savePredictionFeedback(long predictionId, boolean adopted, Integer adjustedQty,
@@ -790,7 +1118,7 @@ public class FoodwiseRepository {
 
     public List<DishInfo> dishesDto() {
         return jdbcTemplate.query("""
-                SELECT d.id, d.name, d.category, d.price, d.unit_cost, d.prep_minutes,
+                SELECT d.id, d.name, d.category, d.price, d.unit_cost, d.prep_minutes, d.quantity_unit,
                        d.active, d.color, s.name AS stall_name,
                        COALESCE(AVG(o.sold_qty), 0) AS avg_sales,
                        COALESCE(AVG(CASE WHEN o.prepared_qty = 0 THEN 0
@@ -798,7 +1126,7 @@ public class FoodwiseRepository {
                 FROM dish d
                 JOIN stall s ON s.id = d.stall_id
                 LEFT JOIN daily_operation o ON o.dish_id = d.id
-                GROUP BY d.id, d.name, d.category, d.price, d.unit_cost, d.prep_minutes,
+                GROUP BY d.id, d.name, d.category, d.price, d.unit_cost, d.prep_minutes, d.quantity_unit,
                          d.active, d.color, s.name
                 ORDER BY d.id
                 """, DtoMappers.dishInfo());
@@ -826,7 +1154,7 @@ public class FoodwiseRepository {
 
     public List<OperationRow> operationRowsDto() {
         return jdbcTemplate.query("""
-                SELECT o.id AS operation_id, o.dish_id, s.name AS stall_name, d.name AS dish_name, o.phase,
+                SELECT o.id AS operation_id, o.dish_id, o.meal_period, s.name AS stall_name, d.name AS dish_name, o.phase,
                        o.planned_qty, o.prepared_qty, o.sold_qty, o.discount_sold_qty,
                        o.leftover_qty, o.revenue, o.business_date, o.weather, o.event_tag,
                        o.recommendation_adopted

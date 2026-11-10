@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="583.92pt" height="225.504pt" viewBox="0 0 583.92 225.504" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-09T21:57:58.745855</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.8.4, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 225.504 
+L 583.92 225.504 
+L 583.92 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 32.49 68.84352 
+L 367.29 68.84352 
+L 367.29 23.60448 
+L 32.49 23.60448 
+z
+" clip-path="url(#p86aa3d5bc1)" style="fill: #edf4f8; stroke: #285e82; stroke-width: 1.3; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 32.49 132.7104 
+L 367.29 132.7104 
+L 367.29 87.47136 
+L 32.49 87.47136 
+z
+" clip-path="url(#p86aa3d5bc1)" style="fill: #edf4f8; stroke: #285e82; stroke-width: 1.3; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 32.49 196.57728 
+L 367.29 196.57728 
+L 367.29 151.33824 
+L 32.49 151.33824 
+z
+" clip-path="url(#p86aa3d5bc1)" style="fill: #edf4f8; stroke: #328e96; stroke-width: 1.3; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 202.68 73.502429 
+Q 202.68 78.155582 202.68 81.131684 
+" clip-path="url(#p86aa3d5bc1)" style="fill: none; stroke: #285e82; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 205.28 75.931684 
+L 202.68 81.131684 
+L 200.08 75.931684 
+z
+" clip-path="url(#p86aa3d5bc1)" style="fill: #285e82; stroke: #285e82; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 202.68 137.369309 
+Q 202.68 142.022462 202.68 144.998564 
+" clip-path="url(#p86aa3d5bc1)" style="fill: none; stroke: #285e82; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 205.28 139.798564 
+L 202.68 144.998564 
+L 200.08 139.798564 
+z
+" clip-path="url(#p86aa3d5bc1)" style="fill: #285e82; stroke: #285e82; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 423.927 134.04096 
+L 542.223 134.04096 
+Q 547.245 134.04096 547.245 129.250944 
+L 547.245 53.675136 
+Q 547.245 48.88512 542.223 48.88512 
+L 423.927 48.88512 
+Q 418.905 48.88512 418.905 53.675136 
+L 418.905 129.250944 
+Q 418.905 134.04096 423.927 134.04096 
+z
+" clip-path="url(#p86aa3d5bc1)" style="fill: #fbf3e8; stroke: #c78743; stroke-width: 1.3; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 415.509626 111.42144 
+Q 393.794409 111.42144 373.756243 111.42144 
+" clip-path="url(#p86aa3d5bc1)" style="fill: none; stroke: #c78743; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 378.956243 114.02144 
+L 373.756243 111.42144 
+L 378.956243 108.82144 
+z
+" clip-path="url(#p86aa3d5bc1)" style="fill: #c78743; stroke: #c78743; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #203748; font: 13px 'SimHei'; text-anchor: middle" x="99.45" y="50.641969" transform="rotate(-0 99.45 50.641969)">使用界面</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #203748; font: 12px 'SimHei'; text-anchor: middle" x="266.85" y="49.69275" transform="rotate(-0 266.85 49.69275)">Vue 3 · TypeScript</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #203748; font: 13px 'SimHei'; text-anchor: middle" x="99.45" y="114.483458" transform="rotate(-0 99.45 114.483458)">经营业务</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #203748; font: 12px 'SimHei'; text-anchor: middle" x="266.85" y="113.55963" transform="rotate(-0 266.85 113.55963)">Java 21 · Spring Boot</text>
+   </g>
+   <g id="text_5">
+    <text style="fill: #203748; font: 13px 'SimHei'; text-anchor: middle" x="99.45" y="178.401119" transform="rotate(-0 99.45 178.401119)">记录与修订</text>
+   </g>
+   <g id="text_6">
+    <text style="fill: #203748; font: 12px 'SimHei'; text-anchor: middle" x="266.85" y="177.61401" transform="rotate(-0 266.85 177.61401)">JDBC · Flyway · H2 / MySQL</text>
+   </g>
+   <g id="text_7">
+    <text style="fill: #203748; font: 12px 'SimHei'" transform="translate(459.075 83.423978)">离线研究</text>
+    <text style="fill: #203748; font: 12px 'SimHei'" transform="translate(465.075 94.823978)">Python</text>
+    <text style="fill: #203748; font: 12px 'SimHei'" transform="translate(438.075 107.798978)">公开回测 / 仿真</text>
+   </g>
+   <g id="text_8">
+    <text style="fill: #566d7c; font: 11px 'SimHei'; text-anchor: middle" x="481.68" y="165.721001" transform="rotate(-0 481.68 165.721001)">评估后接入</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p86aa3d5bc1">
+   <rect x="12.96" y="12.96" width="558" height="199.584"/>
+  </clipPath>
+ </defs>
+</svg>

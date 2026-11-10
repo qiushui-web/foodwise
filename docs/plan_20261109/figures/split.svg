@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="583.92pt" height="158.976pt" viewBox="0 0 583.92 158.976" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-09T21:57:58.656694</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.8.4, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 158.976 
+L 583.92 158.976 
+L 583.92 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 35.28 101.664 
+L 249.18 101.664 
+L 249.18 46.224 
+L 35.28 46.224 
+z
+" clip-path="url(#p265347e64f)" style="fill: #285e82; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 249.18 101.664 
+L 334.74 101.664 
+L 334.74 46.224 
+L 249.18 46.224 
+z
+" clip-path="url(#p265347e64f)" style="fill: #328e96; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 334.74 101.664 
+L 377.52 101.664 
+L 377.52 46.224 
+L 334.74 46.224 
+z
+" clip-path="url(#p265347e64f)" style="fill: #c78743; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 377.52 101.664 
+L 548.64 101.664 
+L 548.64 46.224 
+L 377.52 46.224 
+z
+" clip-path="url(#p265347e64f)" style="fill: #527793; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 37.276521 123.84 
+Q 293.354939 123.84 547.756305 123.84 
+" clip-path="url(#p265347e64f)" style="fill: none; stroke: #285e82; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 542.556305 121.24 
+L 547.756305 123.84 
+L 542.556305 126.44 
+z
+" clip-path="url(#p265347e64f)" style="fill: #285e82; stroke: #285e82; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #ffffff; font: 12px 'SimHei'" transform="translate(130.23 71.759625)">训练</text>
+    <text style="fill: #ffffff; font: 12px 'SimHei'" transform="translate(130.23 84.003375)">25日</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #ffffff; font: 12px 'SimHei'" transform="translate(279.96 71.829937)">调参</text>
+    <text style="fill: #ffffff; font: 12px 'SimHei'" transform="translate(279.96 84.073687)">10日</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #ffffff; font: 12px 'SimHei'" transform="translate(344.13 71.853375)">校准</text>
+    <text style="fill: #ffffff; font: 12px 'SimHei'" transform="translate(347.13 84.097125)">5日</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #ffffff; font: 12px 'SimHei'" transform="translate(451.08 71.876812)">测试</text>
+    <text style="fill: #ffffff; font: 12px 'SimHei'" transform="translate(451.08 84.120562)">20日</text>
+   </g>
+   <g id="text_5">
+    <text style="fill: #203748; font: 11px 'SimHei'; text-anchor: middle" x="291.96" y="144.210281" transform="rotate(-0 291.96 144.210281)">按全局日期向前</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p265347e64f">
+   <rect x="12.96" y="12.96" width="558" height="133.056"/>
+  </clipPath>
+ </defs>
+</svg>

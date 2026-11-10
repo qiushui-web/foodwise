@@ -1,16 +1,21 @@
 package org.foodwise.controller;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 public class PageController {
 
     @GetMapping({"/app", "/app/", "/app/{*path}"})
-    public String vueApp() {
+    public String vueApp(@PathVariable(required = false) String path, HttpServletResponse response) {
+        // 未知前端路径仍返回单页外壳（由前端渲染“页面未找到”），但状态码必须诚实。
+        if (!SpaRoutes.isKnown(path)) {
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        }
         return "app";
     }
 

@@ -9,6 +9,7 @@ def main():
     commands = [
         [sys.executable, '-m', 'unittest', 'discover', '-s', 'modeling/tests'],
         [sys.executable, 'modeling/scripts/15_feature_contract_check.py'],
+        [sys.executable, 'modeling/scripts/30_verify_manifest.py'],
     ]
     if '--experiment' in sys.argv:
         commands.append([sys.executable, 'modeling/scripts/14_public_sales_validation.py'])

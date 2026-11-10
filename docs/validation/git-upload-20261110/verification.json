@@ -1,0 +1,41 @@
+{
+  "frontendTypecheck": "passed",
+  "frontendBuild": "passed",
+  "bootJar": "passed",
+  "backendTests": {
+    "total": 82,
+    "failed": 12,
+    "failures": [
+      {
+        "class": "OperationSourceEvidenceTests",
+        "observedFailure": "4 dependency-injection failures"
+      },
+      {
+        "class": "PredictionAtomicityTests",
+        "observedFailure": "1 bean override failure"
+      },
+      {
+        "class": "SpaRoutesTests",
+        "observedFailure": "3 class-loading failures"
+      },
+      {
+        "class": "AssistantContractTests",
+        "observedFailure": "initializationError"
+      },
+      {
+        "class": "AssistantEvalSetTests",
+        "observedFailure": "initializationError"
+      },
+      {
+        "class": "AssistantServiceTests",
+        "observedFailure": "initializationError"
+      },
+      {
+        "class": "BaselineDecisionEngineTests",
+        "observedFailure": "initializationError"
+      }
+    ],
+    "evidence": "Observed console result of gradlew.bat test bootJar --console=plain: 82 tests completed, 12 failed. XML reports are mutable local build output and were not frozen."
+  },
+  "scope": "Current application source, models, engineering documents and reproducibility scripts. Local runtime databases, dependencies, previews and external workspace delivery folders excluded."
+}

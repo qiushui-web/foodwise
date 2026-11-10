@@ -1,0 +1,198 @@
+{
+  "source": "食刻有数_AIC算法创新赛计划书_终审优化版.docx",
+  "output": "食刻有数_AIC算法创新赛计划书_图表精修版.docx",
+  "removed": [
+    "image25.png",
+    "image28.png",
+    "image29.png",
+    "image12.png",
+    "image13.png",
+    "image14.png",
+    "image33.png",
+    "image36.png",
+    "image45.png",
+    "image52.png"
+  ],
+  "figures": [
+    {
+      "number": "1-1",
+      "media": "image1.jpeg",
+      "title": "中国高校食堂就餐场景（汕头职业技术学院[9]，非本项目现场）",
+      "action": "preserved"
+    },
+    {
+      "number": "1-2",
+      "media": "image2.png",
+      "title": "创新要点与经营动作",
+      "action": "redrawn"
+    },
+    {
+      "number": "2-1",
+      "media": "image3.png",
+      "title": "外部条件与服务切入点",
+      "action": "redrawn"
+    },
+    {
+      "number": "2-2",
+      "media": "image4.png",
+      "title": "一天经营决策链",
+      "action": "redrawn"
+    },
+    {
+      "number": "3-1",
+      "media": "image20.png",
+      "title": "今日经营总览与趋势",
+      "action": "preserved"
+    },
+    {
+      "number": "3-2",
+      "media": "image21.png",
+      "title": "档口与菜品经营管理",
+      "action": "preserved"
+    },
+    {
+      "number": "3-3",
+      "media": "image22.png",
+      "title": "备餐决策中心",
+      "action": "preserved"
+    },
+    {
+      "number": "3-4",
+      "media": "image23.png",
+      "title": "限时优惠与预约核销",
+      "action": "preserved"
+    },
+    {
+      "number": "3-5",
+      "media": "image24.png",
+      "title": "周期经营复盘",
+      "action": "preserved"
+    },
+    {
+      "number": "4-1",
+      "media": "image6.png",
+      "title": "调研与经营验证证据链",
+      "action": "redrawn"
+    },
+    {
+      "number": "4-2",
+      "media": "image26.png",
+      "title": "经营数据回传界面",
+      "action": "preserved"
+    },
+    {
+      "number": "4-3",
+      "media": "image27.png",
+      "title": "十四日备餐、售出与剩余趋势",
+      "action": "redrawn"
+    },
+    {
+      "number": "4-4",
+      "media": "image30.png",
+      "title": "后续试点验证安排",
+      "action": "redrawn"
+    },
+    {
+      "number": "4-5",
+      "media": "image53.png",
+      "title": "预测模型、智能体与人工确认分工",
+      "action": "redrawn"
+    },
+    {
+      "number": "5-1",
+      "media": "image54.png",
+      "title": "经营测算阶段数量对比",
+      "action": "redrawn"
+    },
+    {
+      "number": "5-2",
+      "media": "image55.png",
+      "title": "阶段指标对比：剩余率、售罄率与预测误差",
+      "action": "redrawn"
+    },
+    {
+      "number": "6-1",
+      "media": "image11.png",
+      "title": "目标市场分层测算",
+      "action": "redrawn"
+    },
+    {
+      "number": "6-2",
+      "media": "image15.png",
+      "title": "客户准入与服务启动",
+      "action": "redrawn"
+    },
+    {
+      "number": "7-1",
+      "media": "image31.png",
+      "title": "参与角色与付费关系",
+      "action": "redrawn"
+    },
+    {
+      "number": "7-2",
+      "media": "image32.png",
+      "title": "服务类型与规划价格",
+      "action": "redrawn"
+    },
+    {
+      "number": "7-3",
+      "media": "image34.png",
+      "title": "单档口服务的单位经济性",
+      "action": "redrawn"
+    },
+    {
+      "number": "7-4",
+      "media": "image35.png",
+      "title": "客户评估与续费路径",
+      "action": "redrawn"
+    },
+    {
+      "number": "8-1",
+      "media": "image16.png",
+      "title": "经营动作与数据记录闭环",
+      "action": "redrawn"
+    },
+    {
+      "number": "8-2",
+      "media": "image17.png",
+      "title": "三端信息权限",
+      "action": "redrawn"
+    },
+    {
+      "number": "8-3",
+      "media": "image18.png",
+      "title": "限时优惠发布判断",
+      "action": "redrawn"
+    },
+    {
+      "number": "8-4",
+      "media": "image19.png",
+      "title": "高校经营场景适配",
+      "action": "redrawn"
+    },
+    {
+      "number": "9-1",
+      "media": "image38.png",
+      "title": "三年营业收入与利润情景",
+      "action": "redrawn"
+    },
+    {
+      "number": "9-2",
+      "media": "image43.png",
+      "title": "主要风险定性矩阵",
+      "action": "redrawn"
+    },
+    {
+      "number": "9-3",
+      "media": "image44.png",
+      "title": "异常处置与复核",
+      "action": "redrawn"
+    },
+    {
+      "number": "9-4",
+      "media": "image46.png",
+      "title": "减损结果核验路径",
+      "action": "redrawn"
+    }
+  ]
+}
